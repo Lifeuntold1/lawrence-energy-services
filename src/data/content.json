@@ -1,0 +1,827 @@
+{
+  "_readme": "Single source of truth for the LESL website v2. Every fact comes from the client's company profile PDF, the portfolio, or the filled intake. Items marked 'confirm' need client OK before launch.",
+  "company": {
+    "name": "Lawrence Energy Services Limited",
+    "short": "LESL",
+    "tagline": "...done as agreed",
+    "founded": 2009,
+    "incorporated": 2012,
+    "what_we_are": "An industrial engineering services and contracting firm",
+    "reach": "Nigeria and across Africa",
+    "reach_note": "Intake said 'world wide'. The profile says Nigeria and across Africa. Use the profile wording until the client confirms.",
+    "head_office": "79 Opebi Road, Ikeja, Lagos",
+    "phones": [
+      "+234 (0) 703-800-9642",
+      "+234 (0) 805-180-3130"
+    ],
+    "whatsapp": "+2347038009642",
+    "email": "Hello@lesl.ng",
+    "website": "www.lesl.ng",
+    "hours": "Monday to Friday, 9:00 am to 5:00 pm",
+    "reply_time": "Within 24 hours",
+    "rc_number": "confirm (client said yes but did not send the number)",
+    "social_links": "none given. Hide social icons until the client sends them.",
+    "email_note": "Two emails appear in the client's files. Portfolio and intake use Hello@lesl.ng. The Comprehensive Profile uses wasiu.ekhaine@lesl.ng. We use Hello@lesl.ng on the site."
+  },
+  "brand": {
+    "red": "#D9251C",
+    "red_deep": "#B01E17",
+    "red_tint": "#FDECEA",
+    "yellow": "#FFF500",
+    "yellow_gold": "#E6DA00",
+    "black": "#0C0C0C",
+    "white": "#FFFFFF",
+    "cream": "#FFFBEA",
+    "ink": "#1A1A1A",
+    "grey": "#5B5B5B",
+    "line": "#E7E7E7",
+    "font": "Poppins",
+    "logo": "assets/brand/lesl-logo.png",
+    "logo_on_dark": "assets/brand/lesl-logo-on-white-badge.png",
+    "symbol": "assets/brand/lesl-symbol.png",
+    "favicon": "assets/brand/favicon-64.png"
+  },
+  "hero": {
+    "headline": "Engineering that keeps industry running.",
+    "sub": "Electrical and mechanical installation, equipment supply, testing, consultancy and training. One team for your plant, since 2009.",
+    "chips": [
+      "About 400 MW built",
+      "100,000 safe man-hours",
+      "Since 2009"
+    ],
+    "primary_cta": {
+      "label": "Request a quote",
+      "href": "/quote"
+    },
+    "secondary_cta": {
+      "label": "See our work",
+      "href": "/projects"
+    },
+    "marquee_words": [
+      "Electrical",
+      "Mechanical",
+      "Fabrication",
+      "Welding",
+      "Piping",
+      "Transformers",
+      "Gas Generators",
+      "Cables",
+      "Pipes and Steel",
+      "Testing",
+      "Consultancy",
+      "Training"
+    ]
+  },
+  "stats": [
+    {
+      "id": "mw",
+      "prefix": "About ",
+      "value": "400",
+      "unit": "MW",
+      "label": "Megawatts of industrial power installed with Jenbacher gas generators since 2012",
+      "detail": "High-capacity gas generation facilities delivered for manufacturing and private utilities nationwide.",
+      "source": "Portfolio p16",
+      "status": "verified"
+    },
+    {
+      "id": "safe",
+      "value": "100,000",
+      "unit": "Hours",
+      "label": "Safe engineering work hours completed without a lost-time injury",
+      "detail": "Zero lost-time injuries recorded across all field installations and factory maintenance sites.",
+      "source": "Portfolio p11",
+      "status": "verified"
+    },
+    {
+      "id": "years",
+      "value": "17",
+      "unit": "Years",
+      "label": "Continuous mechanical and electrical engineering for Nigerian industry",
+      "detail": "Serving enterprise manufacturers, food and beverage plants, and independent power operators since 2009.",
+      "source": "Portfolio p1 (founded 2009)",
+      "status": "verified"
+    },
+    {
+      "id": "rank",
+      "value": "1st",
+      "type": "badge",
+      "unit": "in Safety",
+      "label": "Ranked first for safety compliance among Cummins West Africa contractors",
+      "detail": "Officially rated top contractor for strict occupational health and safety standards.",
+      "source": "Portfolio p17",
+      "status": "verified"
+    }
+  ],
+  "stats_partners": [
+    {
+      "value": 12,
+      "unit": "years",
+      "label": "Engineering partner to Cummins West Africa and Seven-Up Bottling Co.",
+      "source": "Portfolio p17, p18"
+    }
+  ],
+  "stats_pending": [
+    "Total MW installed",
+    "Total man-hours",
+    "People trained",
+    "km of cable laid",
+    "km of pipe installed",
+    "MVA of transformers",
+    "Panels built",
+    "States and countries",
+    "Staff strength"
+  ],
+  "stats_rule": "Show only numbers with a source. Never show counts of projects, clients, brands, services or photos.",
+  "nav": [
+    {
+      "label": "Home",
+      "href": "/"
+    },
+    {
+      "label": "About",
+      "href": "/about"
+    },
+    {
+      "label": "Services",
+      "href": "/services"
+    },
+    {
+      "label": "Projects",
+      "href": "/projects"
+    },
+    {
+      "label": "Partners",
+      "href": "/partners"
+    },
+    {
+      "label": "Contact",
+      "href": "/contact"
+    }
+  ],
+  "about": {
+    "intro": "Lawrence Energy Services Limited started in 2009 and became a registered company in 2012. We are an engineering and contracting firm. We install, fix and supply electrical and mechanical systems for factories, plants and big buildings. We also advise, test and train.",
+    "approach": "We solve hard engineering problems with smart methods, and we keep getting better.",
+    "mission": "To set the standard for smart engineering. We plan with cost in mind and finish projects on time and to a high standard.",
+    "vision": "To become the leading home-grown engineering company in West Africa.",
+    "why_choose": "We are a seasoned industrial engineering firm and general contractor. Clients know us for great service and strong results. We have worked on many high-profile projects that meet strict international standards. We work with global experts. And we keep our clients for a long time.",
+    "service_record": "Our record shows quality, reliability and happy clients, confirming your project is in capable hands.",
+    "different": [
+      "Service delivery that exceeds industry benchmarks",
+      "Personalized technical attention for every plant",
+      "Qualified and experienced engineers, technicians and site teams",
+      "Reliable execution focused on long-term client growth",
+      "A proven track record helping industrial plants expand"
+    ],
+    "do_deliver": [
+      "Finished and commissioned systems",
+      "Test, inspection and commissioning reports",
+      "As-built drawings and technical papers, where needed",
+      "Equipment manuals and care guides",
+      "Certificates and compliance papers",
+      "Warranty papers as agreed",
+      "Project completion and handover papers"
+    ],
+    "who_we_serve": [
+      "Oil and gas companies",
+      "Factories and industrial firms",
+      "Offices and commercial buildings",
+      "Builders and real estate companies",
+      "Government agencies and public bodies",
+      "Hotels, hospitals and schools",
+      "Small, medium and large businesses",
+      "Property developers",
+      "Companies and private clients"
+    ]
+  },
+  "values": [
+    {
+      "name": "Integrity",
+      "line": "We do what we say."
+    },
+    {
+      "name": "Team Spirit",
+      "line": "We win together."
+    },
+    {
+      "name": "Professionalism",
+      "line": "We work with care and skill."
+    },
+    {
+      "name": "Innovation",
+      "line": "We look for better ways to do the job."
+    },
+    {
+      "name": "Excellence",
+      "line": "We aim high on every job."
+    },
+    {
+      "name": "Enhancing Client Value",
+      "line": "Your project should gain real value from us."
+    },
+    {
+      "name": "Local content development",
+      "line": "We grow Nigerian skills and talent."
+    }
+  ],
+  "safety": {
+    "headline": "Safety comes first. Always.",
+    "body": "We train our people all the time. We protect life, nature, equipment and property. We report every accident, because honest reports show our care for total safety.",
+    "proof": [
+      "100,000 safe man-hours without a lost-time injury",
+      "Rated 1st among Cummins West Africa vendors for safety compliance"
+    ],
+    "pillars": [
+      "Safety Training",
+      "Tools Knowledge",
+      "Experience",
+      "Safety First",
+      "Regulations",
+      "Insurance",
+      "Health",
+      "Protection"
+    ]
+  },
+  "services": [
+    {
+      "slug": "electrical",
+      "title": "Electrical Installation and Maintenance",
+      "short": "We install, test and maintain electrical systems for factories and big buildings.",
+      "items": [
+        "Factory equipment installation and maintenance",
+        "High-voltage (HV) and low-voltage (LV) factory plant, gas generator and gas turbine installation and maintenance",
+        "Transformer installation (all sizes)",
+        "Factory panel and control system installation",
+        "Factory lighting and maintenance",
+        "Electrical installation of waste heat recovery boilers (WHRB) and vapor absorption chillers (VAC)",
+        "Factory ventilation system installation",
+        "Electrical designs and instrumentation",
+        "Large-scale electrical wiring and system design for industrial estates, commercial malls, and high-rise buildings",
+        "Electrical consultancy services"
+      ]
+    },
+    {
+      "slug": "mechanical",
+      "title": "Mechanical Installation and Maintenance",
+      "short": "We fabricate, weld, pipe and repair, so your plant keeps running.",
+      "items": [
+        "Fabrication",
+        "Welding",
+        "Servicing and maintenance of industrial machines",
+        "Factory ventilation system installation",
+        "Piping works (gas lines, steam lines, water lines, fire hydrant systems, oil lines)",
+        "Mechanical designs and implementation (isometric)",
+        "Thermal insulation and cladding works"
+      ]
+    },
+    {
+      "slug": "supply",
+      "title": "Sales and Supply",
+      "short": "We supply certified cables, pipes, steel, instruments and power plant hardware.",
+      "items": [
+        "Flexible and armored cables (all types and sizes)",
+        "Power plant installation accessories",
+        "Cable path fabrication accessories",
+        "Cable racks and trays (all sizes)",
+        "Mild steel, carbon steel, galvanized iron, and stainless steel pipes (MS, CS, GI, SS in all sizes)",
+        "Beams and steel channels (all sizes)",
+        "Mechanical and electrical instruments",
+        "Health, Safety, and Environment (HSE) personal protective equipment and site safety kits",
+        "Transformers and metering units"
+      ]
+    },
+    {
+      "slug": "consultancy",
+      "title": "Consultancy and Training",
+      "short": "We advise on plant engineering, conduct high-voltage tests, and train technical and safety personnel.",
+      "items": [
+        "Electrical consultation",
+        "Mechanical consultation",
+        "Training of technical personnel",
+        "Health, Safety, and Environment (HSE) compliance training",
+        "High-voltage (HV) insulation resistance and pressure testing",
+        "Earth resistivity, continuity and soil testing",
+        "Transformer testing and transformer oil testing"
+      ]
+    }
+  ],
+  "also_offer": [
+    "Engineering project management and delivery",
+    "Power systems and generator solutions",
+    "Technical supervision and support",
+    "Testing, inspection and commissioning"
+  ],
+  "process": {
+    "title": "How a job runs, from first call to handover",
+    "steps": [
+      {
+        "n": "01",
+        "title": "Talk and understand",
+        "text": "We listen to your need and inspect the site when required."
+      },
+      {
+        "n": "02",
+        "title": "Plan and design",
+        "text": "We draw the plan, specify equipment and agree on cost and timeline."
+      },
+      {
+        "n": "03",
+        "title": "Supply and install",
+        "text": "We procure hardware and our trained team executes the work safely."
+      },
+      {
+        "n": "04",
+        "title": "Test and hand over",
+        "text": "We test everything and deliver reports, drawings, manuals, certificates and warranties."
+      }
+    ]
+  },
+  "projects": [
+    {
+      "id": "sbc-ikeja-ipp",
+      "title": "17.6 MW Gas Generator Installation for SBC Ikeja IPP",
+      "caption": "Complete mechanical and electrical installation, procurement of installation materials, and commissioning of 4 units of 4.4 MW CAT Gas Generator sets and all BOPs for Seven-Up Bottling Company in Oregun, Ikeja.",
+      "client": "Seven-Up Bottling Company (SBC)",
+      "location": "SBC Ikeja Plant, Oregun, Ikeja, Lagos",
+      "year": "Sept, 2023",
+      "tags": [
+        "Power plants",
+        "Gas turbines and generators",
+        "Electrical"
+      ],
+      "photos": [
+        "assets/projects/sbc-ikeja-4-4mw-2.jpg",
+        "assets/projects/sbc-ikeja-4-4mw-1.jpg"
+      ]
+    },
+    {
+      "id": "safety-award",
+      "title": "Safety award: 100,000 safe man-hours",
+      "caption": "Official safety compliance award recognizing 100,000 engineering work hours completed with zero lost-time injuries.",
+      "tags": [
+        "Safety"
+      ],
+      "photos": [
+        "assets/projects/safety-award.jpg"
+      ]
+    },
+    {
+      "id": "oando-brass-3mw",
+      "title": "3 MW power project, Brass",
+      "caption": "3 MW power generation project executed for RCE Overseas at Oando Terminal in Brass, Bayelsa State.",
+      "tags": [
+        "Power plants"
+      ],
+      "photos": [
+        "assets/projects/oando-brass-3mw.jpg"
+      ]
+    },
+    {
+      "id": "elebele-9mw-ipp",
+      "title": "9 MW power plant, Elebele",
+      "caption": "Turnkey 9 MW Independent Power Plant engineering and commissioning at Elebele, Yenagoa, Bayelsa State.",
+      "tags": [
+        "Power plants"
+      ],
+      "photos": [
+        "assets/projects/elebele-9mw-ipp.jpg"
+      ]
+    },
+    {
+      "id": "evans-pharm-capstone",
+      "title": "Two 2 MW Capstone gas turbines",
+      "caption": "Installation and electrical integration of two 2 MW Capstone gas micro-turbines at Evans Medical, Agbara.",
+      "tags": [
+        "Gas turbines and generators"
+      ],
+      "photos": [
+        "assets/projects/evans-pharm-capstone.jpg"
+      ]
+    },
+    {
+      "id": "schneider-ogba-turbines",
+      "title": "Three 65 kW gas turbines",
+      "caption": "Installation and electrical setup of three 65 kW gas micro-turbines at the Schneider Electric regional office in Ogba, Lagos.",
+      "tags": [
+        "Gas turbines and generators"
+      ],
+      "photos": [
+        "assets/projects/schneider-ogba-turbines.jpg",
+        "assets/projects/schneider-ogba-turbines-2.jpg"
+      ]
+    },
+    {
+      "id": "kano-30mw-panels",
+      "title": "Control panels, 30 MW plant",
+      "caption": "Control panels installed for 30 MW power plant, Kano.",
+      "tags": [
+        "Power plants",
+        "Electrical"
+      ],
+      "photos": [
+        "assets/projects/kano-30mw-panels.jpg"
+      ]
+    },
+    {
+      "id": "mamuda-30mw-jenbacher",
+      "title": "30 MW Jenbacher gas generators",
+      "caption": "30 MW synchronized Jenbacher gas generator sets for Mamuda Group, Kano.",
+      "tags": [
+        "Power plants",
+        "Gas turbines and generators"
+      ],
+      "photos": [
+        "assets/projects/mamuda-30mw-jenbacher.jpg"
+      ]
+    },
+    {
+      "id": "mamuda-11kv-cabling",
+      "title": "11 kV underground cabling",
+      "caption": "11 kV underground cabling for power distribution at Mamuda Group, Challawa, Kano.",
+      "tags": [
+        "Electrical"
+      ],
+      "photos": [
+        "assets/projects/mamuda-11kv-cabling.jpg",
+        "assets/projects/mamuda-11kv-cabling-2.jpg"
+      ]
+    },
+    {
+      "id": "nbc-whrb",
+      "title": "Waste heat recovery boiler, NBC",
+      "caption": "Mechanical and electrical installation of waste heat recovery boiler at NBC, Port Harcourt.",
+      "tags": [
+        "Mechanical and piping",
+        "Electrical"
+      ],
+      "photos": [
+        "assets/projects/nbc-whrb.jpg",
+        "assets/projects/nbc-whrb-2.jpg"
+      ]
+    },
+    {
+      "id": "generator-room-soundproofing",
+      "title": "Engine Room Soundproofing to Attain Up to 69 dB",
+      "caption": "Acoustic soundproofing of industrial generator room, reducing operating sound levels down to 69 decibels (dB).",
+      "tags": [
+        "Mechanical and piping"
+      ],
+      "photos": [
+        "assets/projects/generator-room-soundproofing.jpg",
+        "assets/projects/generator-room-soundproofing-2.jpg",
+        "assets/projects/generator-room-soundproofing-3.jpg"
+      ]
+    },
+    {
+      "id": "rmu-service",
+      "title": "Ring Main Unit (RMU) installation and repairs",
+      "caption": "High-voltage Ring Main Units (RMU): complete installation, switchgear servicing, and insulation repairs.",
+      "tags": [
+        "Electrical"
+      ],
+      "photos": [
+        "assets/projects/sbc-ikeja-4-4mw-1.jpg",
+        "assets/projects/rmu-service-2.jpg"
+      ]
+    },
+    {
+      "id": "kano-30mw-greenfield",
+      "title": "30 MW greenfield power plant, Kano",
+      "caption": "Mechanical and electrical installation for 30 MW greenfield power plant, Kano.",
+      "tags": [
+        "Power plants"
+      ],
+      "photos": [
+        "assets/projects/kano-30mw-greenfield.jpg"
+      ]
+    },
+    {
+      "id": "cooling-radiator-34mw",
+      "title": "Cooling Radiator for 34 MW Gas Engine",
+      "caption": "Installation of dual-circuit variable-speed cooling radiator arrays and manifold tie-ins for 34 MW gas engine.",
+      "tags": [
+        "Gas turbines and generators",
+        "Mechanical and piping"
+      ],
+      "photos": [
+        "assets/projects/cooling-radiator-3-4mw.jpg"
+      ]
+    },
+    {
+      "id": "gas-piping-burner",
+      "title": "Gas piping to boiler burner",
+      "caption": "Gas piping to boiler burner.",
+      "tags": [
+        "Mechanical and piping"
+      ],
+      "photos": [
+        "assets/projects/gas-piping-burner.jpg"
+      ]
+    },
+    {
+      "id": "switchgear-11kv",
+      "title": "11,000 V switchgear",
+      "caption": "Supply, assembling and commissioning of 11,000 V switchgear.",
+      "tags": [
+        "Electrical"
+      ],
+      "photos": [
+        "assets/projects/switchgear-11kv.jpg",
+        "assets/projects/switchgear-11kv-2.jpg"
+      ]
+    },
+    {
+      "id": "control-panel",
+      "title": "Control panel build",
+      "caption": "Control panel assembly and testing.",
+      "tags": [
+        "Electrical"
+      ],
+      "photos": [
+        "assets/projects/control-panel.jpg"
+      ]
+    }
+  ],
+  "project_filters": [
+    "All",
+    "Power plants",
+    "Gas turbines and generators",
+    "Electrical",
+    "Mechanical and piping",
+    "Safety"
+  ],
+  "partners": [
+    {
+      "slug": "clarke-energy",
+      "name": "Clarke Energy Limited",
+      "logo": "clarke-energy.png",
+      "story": "Clarke Energy is part of the Rehlko group. It builds distributed energy systems, from engineering and installation to long-term care. In Nigeria and other African countries, Clarke Energy works with LESL as its specialized Nigerian engineering partner for gas generator installation and power plant setup for private industries.",
+      "highlight": "Since 2012, LESL has executed approximately 400 MW of industrial power plant projects featuring Jenbacher gas generator sets, for which Clarke Energy serves as the authorized distributor in Nigeria and globally."
+    },
+    {
+      "slug": "cummins-west-africa",
+      "name": "Cummins West Africa Limited",
+      "logo": "cummins.png",
+      "story": "Cummins West Africa has partnered with LESL for over 12 years, relying on our team as a trusted Nigerian engineering partner for heavy electrical installations, generator overhauls, and power plant infrastructure.",
+      "bullets": [
+        "Engineering installations for Independent Power Producer (IPP) utility plants across Nigeria",
+        "Industrial heat-recovery power projects (Combined Heat and Power) for Coca-Cola in Port Harcourt, Strong Pack in Agbara, and Flexi-pack in Ogun State"
+      ],
+      "highlight": "Ranked #1 for safety compliance among all Cummins West Africa engineering contractors."
+    },
+    {
+      "slug": "seven-up-bottling",
+      "name": "Seven-Up Bottling Company Limited (SBC)",
+      "logo": "sbc-seven-up.png",
+      "story": "For over 12 years, LESL has served as the nationwide electrical and mechanical engineering contractor for Seven-Up Bottling Company, maintaining continuous operations across all 9 beverage manufacturing plants in Nigeria.",
+      "bullets": [
+        "Turnkey power plant installations across factories in Ikeja, Abuja, Aba, Kano, Enugu, and Benin totaling 40 MW electrical generation capacity",
+        "Full production line electrical wiring, control panels, and automation at the Ikeja and Enugu bottling facilities",
+        "Resident electrical and mechanical engineering teams stationed on-site across all 9 bottling plants nationwide",
+        "Complete electrical blueprints, load balancing, and switchgear installations",
+        "Hands-on safety and maintenance training programs for plant operating personnel"
+      ]
+    }
+  ],
+  "clients": [
+    {
+      "name": "7UP Bottling Company",
+      "logo": "assets/client-logos/sbc-seven-up.png"
+    },
+    {
+      "name": "Cummins West Africa",
+      "logo": "assets/client-logos/cummins.png"
+    },
+    {
+      "name": "Clarke Energy",
+      "logo": "assets/client-logos/clarke-energy.png"
+    },
+    {
+      "name": "Lagos Free Zone",
+      "logo": "assets/client-logos/lagos-free-zone.png"
+    },
+    {
+      "name": "Mamuda",
+      "logo": "assets/client-logos/mamuda.png"
+    },
+    {
+      "name": "Dufil",
+      "logo": "assets/client-logos/dufil.png"
+    },
+    {
+      "name": "TGI",
+      "logo": "assets/client-logos/tgi.png"
+    },
+    {
+      "name": "OK Foods",
+      "logo": "assets/client-logos/ok-foods.png"
+    },
+    {
+      "name": "Rite Foods",
+      "logo": "assets/client-logos/rite-foods.png"
+    },
+    {
+      "name": "Primera Foods",
+      "logo": "assets/client-logos/primera-foods.png"
+    },
+    {
+      "name": "New Bisco",
+      "logo": "assets/client-logos/newbisco.png"
+    },
+    {
+      "name": "Prime Pak",
+      "logo": "assets/client-logos/primepak.png"
+    },
+    {
+      "name": "OK Plastic",
+      "logo": "assets/client-logos/ok-plast.png"
+    },
+    {
+      "name": "Sunplast",
+      "logo": "assets/client-logos/sunplast.png"
+    },
+    {
+      "name": "Metal Packaging",
+      "logo": "assets/client-logos/metal-packaging.png"
+    },
+    {
+      "name": "MDV",
+      "logo": "assets/client-logos/mdv-industries.png"
+    },
+    {
+      "name": "Sunglass Industries",
+      "logo": null
+    },
+    {
+      "name": "Aspira",
+      "logo": "assets/client-logos/aspira.png"
+    },
+    {
+      "name": "Eko Supreme",
+      "logo": null
+    },
+    {
+      "name": "Premium Cocoa",
+      "logo": "assets/client-logos/cocoa-ile-oluji.png"
+    },
+    {
+      "name": "RCE Overseas",
+      "logo": "assets/client-logos/rce-international.png"
+    }
+  ],
+  "leaders": [
+    {
+      "rank": 1,
+      "tier": 1,
+      "name": "Lawrence Ehigie",
+      "full_name": "Lawrence Ehigie Obaghagie",
+      "title": "Chairman & Managing Director",
+      "photo": "assets/team/lawrence-ehigie-v2.jpeg",
+      "bio": "Lawrence has more than 20 years in electrical engineering, factory installations, power systems and project management. He trained with Boulting Group in the UK from 1999 to 2003. He then led electrical and technical work at E-Jerrys Nigeria Limited (2003 to 2010) and headed the electrical department at IMPCO (2010 to 2012). Since 2012 he has led LESL as Chairman and Managing Director. He studied technical and engineering subjects at Benin Technical College and Federal Polytechnic Auchi.",
+      "skills": [
+        "Electrical design, installation and care",
+        "High-voltage systems and factory electrical work",
+        "Power generation systems and electrical equipment",
+        "Mechanical and electrical project teamwork",
+        "Technical supervision, checks and quality control",
+        "Project planning, delivery and management",
+        "Buying equipment and judging it technically",
+        "Health, safety and rules in engineering work",
+        "Business leadership, planning and client care"
+      ]
+    },
+    {
+      "rank": 2,
+      "tier": 2,
+      "name": "Ekhaine Wasiu",
+      "title": "Director of Operations",
+      "photo": "assets/team/ekhaine-wasiu-v2.jpeg"
+    },
+    {
+      "rank": 3,
+      "tier": 3,
+      "name": "Otsemobor Godfrey",
+      "title": "Senior Site Manager",
+      "photo": "assets/team/otsemobor-godfrey.jpg"
+    },
+    {
+      "rank": 4,
+      "tier": 3,
+      "name": "Audu Anthony",
+      "title": "Head, Accounts and Admin",
+      "photo": "assets/team/audu-anthony.jpg"
+    },
+    {
+      "rank": 5,
+      "tier": 3,
+      "name": "Njoku Ogechi Kasarachi",
+      "title": "Head of Legal and Compliance, and Human Resources Manager",
+      "photo": "assets/team/njoku-ogechi-kasarachi-v3.jpeg"
+    }
+  ],
+  "org_chart": {
+    "top": [
+      "Management Board",
+      "Chairman & Managing Director",
+      "General Manager (Operations)"
+    ],
+    "project_department": {
+      "site_manager": {
+        "supervisory_head_electrical": [
+          "Electrical Technicians",
+          "Electrical Trainees"
+        ],
+        "head_site_operations_services": [
+          "GG Operators",
+          "Operator Trainee"
+        ],
+        "supervisory_head_mechanical": [
+          "Mechanical Technicians",
+          "Mechanical Trainees"
+        ]
+      },
+      "safety_manager": {
+        "assistant_safety_manager": [
+          "Safety Assistant"
+        ]
+      }
+    },
+    "administrative_department": [
+      "I.T. Department",
+      "Accounts / Admin. Manager (Stock / Store Inventory Officer, Office Secretary, Drivers, Cleaners, Office Clerk)",
+      "HR / Legal and Compliance Department"
+    ]
+  },
+  "faq": [
+    {
+      "q": "What engineering work does LESL perform?",
+      "a": "We install, test, and maintain electrical and mechanical systems. We also supply equipment, provide engineering consultancy, and train technical staff."
+    },
+    {
+      "q": "Who do you work with?",
+      "a": "Factories, oil and gas firms, builders, offices, hotels, hospitals, schools, and public infrastructure agencies."
+    },
+    {
+      "q": "What documentation is provided upon handover?",
+      "a": "A fully tested and commissioned system, accompanied by test reports, as-built drawings where needed, equipment manuals, statutory compliance certificates, warranty papers, and formal handover sign-off."
+    },
+    {
+      "q": "How fast will you reply to a request?",
+      "a": "Within 24 hours."
+    },
+    {
+      "q": "Can I book a technical consultation?",
+      "a": "Yes. Sessions take place Monday to Friday between 9:00 am and 5:00 pm. Meetings run 30 to 60 minutes and can be conducted in person at our Lagos office or online."
+    },
+    {
+      "q": "Do you work on commercial towers and residential complexes?",
+      "a": "Yes. We execute electrical and mechanical designs for mansions, shopping malls, and commercial towers, as well as industrial production plants."
+    },
+    {
+      "q": "What geographic locations do you cover?",
+      "a": "All across Nigeria, including Lagos, Ogun, Kano, Bayelsa, Rivers, Abuja, Abia, Enugu, and Edo, as well as projects across Africa."
+    }
+  ],
+  "forms": {
+    "quote_fields": [
+      "Full name",
+      "Company",
+      "Email",
+      "Phone",
+      "Service needed (Electrical, Mechanical, Supply, Consultancy and training, Not sure)",
+      "Project location",
+      "Tell us about the work"
+    ],
+    "success_quote": "Thank you. We got your request. We will reply within 24 hours.",
+    "error": "Sorry, something went wrong. Please try again or call +234 (0) 703-800-9642."
+  },
+  "careers": {
+    "headline": "Want to work with us?",
+    "body": "We are not listing open roles right now. But we love meeting skilled people. Send your CV to Hello@lesl.ng and tell us what you do best."
+  },
+  "seo": {
+    "home": {
+      "title": "LESL | Electrical, Mechanical, Supply and Training | Lagos, Nigeria",
+      "desc": "Lagos engineering firm: electrical and mechanical installation, equipment supply, testing, consultancy and training for factories and big buildings. Request a quote."
+    },
+    "about": {
+      "title": "About LESL | Industrial Engineering Since 2009",
+      "desc": "Meet the team behind LESL. Our story, mission, safety promise and leaders."
+    },
+    "services": {
+      "title": "Services | Electrical, Mechanical, Supply, Consultancy and Training | LESL",
+      "desc": "Electrical and mechanical installation, equipment supply, testing and training for factories and big buildings."
+    },
+    "projects": {
+      "title": "Projects | Power Plants and Installations | LESL",
+      "desc": "Projects we have built across Nigeria: power plants, gas turbines, switchgear, and piping."
+    },
+    "partners": {
+      "title": "Clients and Partners | Clarke Energy, Cummins West Africa, Seven-Up | LESL",
+      "desc": "The brands that trust LESL, including Clarke Energy, Cummins West Africa and 7UP Bottling Company."
+    },
+    "contact": {
+      "title": "Contact LESL | 79 Opebi Road, Ikeja, Lagos",
+      "desc": "Call, email or visit LESL in Ikeja, Lagos. Request a quote or book a meeting."
+    }
+  }
+}

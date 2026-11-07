@@ -1,0 +1,1039 @@
+import React, { useState, useEffect, useRef } from 'react';
+
+// Exact CAD Gear Tooth Path Generator
+function generateGearPath(cx, cy, rOuter, rRoot, numTeeth) {
+  let path = '';
+  const dTheta = (2 * Math.PI) / numTeeth;
+  for (let i = 0; i < numTeeth; i++) {
+    const a0 = i * dTheta;
+    const a1 = a0 + dTheta * 0.25;
+    const a2 = a0 + dTheta * 0.5;
+    const a3 = a0 + dTheta * 0.75;
+    const a4 = a0 + dTheta;
+
+    const x0 = (cx + rRoot * Math.cos(a0)).toFixed(1);
+    const y0 = (cy + rRoot * Math.sin(a0)).toFixed(1);
+    const x1 = (cx + rOuter * Math.cos(a1)).toFixed(1);
+    const y1 = (cy + rOuter * Math.sin(a1)).toFixed(1);
+    const x2 = (cx + rOuter * Math.cos(a2)).toFixed(1);
+    const y2 = (cy + rOuter * Math.sin(a2)).toFixed(1);
+    const x3 = (cx + rRoot * Math.cos(a3)).toFixed(1);
+    const y3 = (cy + rRoot * Math.sin(a3)).toFixed(1);
+    const x4 = (cx + rRoot * Math.cos(a4)).toFixed(1);
+    const y4 = (cy + rRoot * Math.sin(a4)).toFixed(1);
+
+    if (i === 0) path += `M ${x0} ${y0} `;
+    path += `L ${x1} ${y1} L ${x2} ${y2} L ${x3} ${y3} L ${x4} ${y4} `;
+  }
+  return path + 'Z';
+}
+
+export default function HeroArt({ className = '', theme = 'light' }) {
+  const [sketchKey, setSketchKey] = useState(0);
+  const [motionActive, setMotionActive] = useState(false);
+  const [arcFlash, setArcFlash] = useState(false);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const containerRef = useRef(null);
+
+  const isLight = theme === 'light';
+
+  // Precision color palette for technical architectural whiteprint
+  const colors = isLight
+    ? {
+        tower: '#111827', // Deep graphite charcoal
+        towerSpine: 'rgba(17, 24, 39, 0.28)',
+        towerLattice: '#1F2937',
+        insulatorStem: '#B45309',
+        insulatorDisc: '#D97706',
+        insulatorOrb: '#D9251C',
+        summitBoltFill: '#D9251C',
+        summitBoltStroke: '#B01E17',
+        catenaryLine: '#334155', // Industrial dark slate cable
+        catenaryPulseStart: '#D9251C',
+        catenaryPulseEnd: '#F59E0B',
+        pipeWall: '#1E293B',
+        pipeMask: '#FAF9F5',
+        pipeCenter: '#D9251C',
+        pipeFlange: '#D9251C',
+        pipeBolt: '#FFFFFF',
+        valveBody: '#FAF9F5',
+        valveStem: '#D9251C',
+        valveAccent: '#D97706',
+        gaugeDial: '#FFFFFF',
+        gaugeRim: '#1E293B',
+        gaugeTicks: '#64748B',
+        gaugeNeedle: '#D9251C',
+        skidBed1: '#1E293B',
+        skidBed2: '#D9251C',
+        gearDark: '#1E293B',
+        gearAccent: '#D9251C',
+        gearAmber: '#D97706',
+        gearPinion: '#334155',
+        pistonHead: '#D9251C',
+        connectingRod: '#1E293B',
+        dropShadow: 'drop-shadow-[0_15px_35px_rgba(17,24,39,0.12)]',
+        ambientGlow: 'from-red/10 via-yellow/15 to-transparent',
+      }
+    : {
+        tower: '#FFFFFF',
+        towerSpine: 'rgba(255, 255, 255, 0.4)',
+        towerLattice: '#FFFFFF',
+        insulatorStem: '#FFD700',
+        insulatorDisc: '#FF5722',
+        insulatorOrb: '#FFD700',
+        summitBoltFill: '#FFD700',
+        summitBoltStroke: '#FF5722',
+        catenaryLine: '#FFD700',
+        catenaryPulseStart: '#FF5722',
+        catenaryPulseEnd: '#FFD700',
+        pipeWall: '#FFD700',
+        pipeMask: '#141619',
+        pipeCenter: '#FFFFFF',
+        pipeFlange: '#FF5722',
+        pipeBolt: '#FFFFFF',
+        valveBody: '#141619',
+        valveStem: '#FFFFFF',
+        valveAccent: '#FFD700',
+        gaugeDial: '#141619',
+        gaugeRim: '#FFD700',
+        gaugeTicks: '#FFD700',
+        gaugeNeedle: '#FF5722',
+        skidBed1: '#FFD700',
+        skidBed2: '#FF5722',
+        gearDark: '#FFD700',
+        gearAccent: '#FF5722',
+        gearAmber: '#FFD700',
+        gearPinion: '#FFD700',
+        pistonHead: '#FF5722',
+        connectingRod: '#FFFFFF',
+        dropShadow: 'drop-shadow-[0_20px_50px_rgba(255,87,34,0.35)]',
+        ambientGlow: 'from-[#FF5722]/35 via-[#FFD700]/25 to-transparent',
+      };
+
+  useEffect(() => {
+    setMotionActive(false);
+    const timer = setTimeout(() => {
+      setMotionActive(true);
+    }, 10000);
+
+    return () => clearTimeout(timer);
+  }, [sketchKey]);
+
+  useEffect(() => {
+    if (!motionActive) return;
+    const arcInterval = setInterval(() => {
+      setArcFlash(true);
+      setTimeout(() => setArcFlash(false), 380);
+    }, 3800);
+
+    return () => clearInterval(arcInterval);
+  }, [motionActive]);
+
+  const handleMouseMove = (e) => {
+    if (!containerRef.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+    setMousePos({ x: x * 6, y: y * 6 });
+  };
+
+  const handleMouseLeave = () => {
+    setMousePos({ x: 0, y: 0 });
+  };
+
+  const handleReplaySketch = () => {
+    setSketchKey((prev) => prev + 1);
+  };
+
+  // Pre-calculated gear profiles
+  const turbineRingGearPath = generateGearPath(660, 620, 136, 118, 32);
+  const spurGearPath = generateGearPath(470, 740, 75, 63, 24);
+  const pinionGearPath = generateGearPath(565, 795, 41, 33, 16);
+
+  return (
+    <div
+      ref={containerRef}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      className={`relative select-none group ${className}`}
+      style={{
+        transform: `perspective(1000px) rotateY(${mousePos.x * 0.4}deg) rotateX(${-mousePos.y * 0.4}deg)`,
+        transition: 'transform 0.35s cubic-bezier(0.22, 1, 0.36, 1)',
+      }}
+      aria-label="Lawrence Energy Services Hybrid Electrical and Mechanical Engineering Kinetic Art"
+    >
+      {/* Background Radial Glow */}
+      <div
+        className={`absolute inset-0 rounded-full bg-gradient-to-tr ${colors.ambientGlow} blur-[90px] pointer-events-none transition-opacity duration-1000 ${
+          motionActive ? (arcFlash ? 'opacity-95' : 'opacity-70') : 'opacity-40'
+        }`}
+      />
+
+      {/* Blueprint SVG Container */}
+      <svg
+        key={sketchKey}
+        viewBox="0 0 900 1000"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        className={`w-full h-auto ${colors.dropShadow} overflow-visible ${
+          motionActive ? 'blueprint-motion-active' : ''
+        }`}
+      >
+        <defs>
+          {/* Intense Electrical and Radiant Glow Filters */}
+          <filter id="hero-elec-glow" x="-30%" y="-30%" width="160%" height="160%">
+            <feGaussianBlur stdDeviation={isLight ? "1.5" : "3.8"} result="blur" />
+            <feMerge>
+              <feMergeNode in="blur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+
+          <filter id="hero-spark-glow" x="-60%" y="-60%" width="220%" height="220%">
+            <feGaussianBlur stdDeviation={isLight ? "2.5" : "6"} result="brightBlur" />
+            <feMerge>
+              <feMergeNode in="brightBlur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+
+          {/* Fluid Flow Gradient */}
+          <linearGradient id="fluid-surge-pulse" x1="0%" y1="100%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor={colors.pipeFlange} stopOpacity="0.1" />
+            <stop offset="45%" stopColor={colors.gearAccent} stopOpacity="0.95" />
+            <stop offset="55%" stopColor={isLight ? "#FFB300" : "#FFFFFF"} stopOpacity="1" />
+            <stop offset="100%" stopColor={colors.pipeFlange} stopOpacity="0.1" />
+          </linearGradient>
+
+          {/* Catenary Conductor Gradient */}
+          <linearGradient id="catenary-pulse-glow" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor={colors.catenaryPulseStart} stopOpacity="0" />
+            <stop offset="35%" stopColor={colors.catenaryPulseEnd} stopOpacity="0.9" />
+            <stop offset="50%" stopColor={isLight ? "#D9251C" : "#FFFFFF"} stopOpacity="1" />
+            <stop offset="65%" stopColor={colors.catenaryPulseEnd} stopOpacity="0.9" />
+            <stop offset="100%" stopColor={colors.catenaryPulseStart} stopOpacity="0" />
+          </linearGradient>
+
+          <style>{`
+            /* Hand-Drawn Blueprint Sketch Keyframes (Full 2000px length ensures zero cutoffs) */
+            @keyframes drawBlueprintStroke {
+              0% {
+                stroke-dashoffset: 2000;
+                opacity: 0.15;
+              }
+              1% {
+                opacity: 1;
+              }
+              100% {
+                stroke-dashoffset: 0;
+                opacity: 1;
+              }
+            }
+
+            .sketch-pipe {
+              stroke-dasharray: 2000;
+              stroke-dashoffset: 2000;
+              animation: drawBlueprintStroke 2.5s cubic-bezier(0.25, 1, 0.5, 1) 0.0s forwards;
+            }
+
+            .sketch-mech {
+              stroke-dasharray: 2000;
+              stroke-dashoffset: 2000;
+              animation: drawBlueprintStroke 2.5s cubic-bezier(0.25, 1, 0.5, 1) 2.5s forwards;
+            }
+
+            .sketch-tower {
+              stroke-dasharray: 2000;
+              stroke-dashoffset: 2000;
+              animation: drawBlueprintStroke 2.5s cubic-bezier(0.25, 1, 0.5, 1) 5.0s forwards;
+            }
+
+            .sketch-crossarms {
+              stroke-dasharray: 2000;
+              stroke-dashoffset: 2000;
+              animation: drawBlueprintStroke 1.5s cubic-bezier(0.25, 1, 0.5, 1) 7.5s forwards;
+            }
+
+            .sketch-catenary {
+              stroke-dasharray: 2000;
+              stroke-dashoffset: 2000;
+              animation: drawBlueprintStroke 1.0s cubic-bezier(0.25, 1, 0.5, 1) 9.0s forwards;
+            }
+
+            /* Once fully drawn, ensure all static lines become 100% solid with zero dash gaps */
+            .blueprint-motion-active .sketch-pipe,
+            .blueprint-motion-active .sketch-mech,
+            .blueprint-motion-active .sketch-tower,
+            .blueprint-motion-active .sketch-crossarms,
+            .blueprint-motion-active .sketch-catenary {
+              stroke-dasharray: none !important;
+              stroke-dashoffset: 0 !important;
+            }
+
+            /* Continuous Kinetic Rotations and Harmonic Oscillations */
+            @keyframes spinClockwise {
+              from { transform: rotate(0deg); }
+              to { transform: rotate(360deg); }
+            }
+
+            @keyframes spinCounterClockwise {
+              from { transform: rotate(0deg); }
+              to { transform: rotate(-360deg); }
+            }
+
+            @keyframes pistonReciprocateMotion {
+              0%, 100% { transform: translate(0px, 0px); }
+              50% { transform: translate(-20px, -14px); }
+            }
+
+            @keyframes crankPinSpin {
+              from { transform: rotate(0deg); }
+              to { transform: rotate(-360deg); }
+            }
+
+            @keyframes gaugeNeedleOscillate1 {
+              0%, 100% { transform: rotate(-16deg); }
+              50% { transform: rotate(26deg); }
+            }
+
+            @keyframes gaugeNeedleOscillate2 {
+              0%, 100% { transform: rotate(18deg); }
+              50% { transform: rotate(-22deg); }
+            }
+
+            @keyframes fluidSurgeFlow {
+              0% { stroke-dashoffset: 400; }
+              100% { stroke-dashoffset: 0; }
+            }
+
+            @keyframes coronaFlicker {
+              0%, 100% { transform: scale(1); opacity: 0.7; }
+              50% { transform: scale(1.25); opacity: 1; }
+            }
+
+            @keyframes catenaryTravelingWave {
+              0% { stroke-dashoffset: 800; }
+              50% { stroke-dashoffset: -800; }
+              100% { stroke-dashoffset: 800; }
+            }
+
+            .catenary-wave-active {
+              stroke-dasharray: 160 540 !important;
+              animation: catenaryTravelingWave 5.2s cubic-bezier(0.45, 0, 0.25, 1) infinite;
+            }
+          `}</style>
+        </defs>
+
+        {/* =========================================================================
+            LAYER 1: ELECTRICAL TRANSMISSION TOWER (COMPLETE, UNBROKEN GEOMETRY)
+            Every strut, leg, cross-arm and internal triangle is fully defined.
+           ========================================================================= */}
+        <g id="electrical-transmission-subsystem">
+          {/* Foundation Footing Pads */}
+          <path
+            d="M 220 850 L 270 850 L 270 865 L 220 865 Z M 590 850 L 640 850 L 640 865 L 590 865 Z"
+            fill={colors.insulatorDisc}
+            stroke={colors.insulatorStem}
+            strokeWidth="2.5"
+            className="sketch-tower"
+          />
+
+          {/* Main Tower Pylon Legs (Ground to Apex) */}
+          <path
+            d="M 230 875 L 245 855 L 430 85 L 615 855 L 630 875"
+            stroke={colors.tower}
+            strokeWidth="4.2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="sketch-tower"
+          />
+
+          {/* Vertical Centerline Structural Spine */}
+          <path
+            d="M 430 85 L 430 855"
+            stroke={colors.towerSpine}
+            strokeWidth="1.8"
+            strokeDasharray="6 4"
+            className="sketch-tower"
+          />
+
+          {/* Complete Horizontal Girders (All 6 Structural Tiers) */}
+          <path
+            d="
+              M 410 175 L 450 175
+              M 388 270 L 472 270
+              M 358 415 L 502 415
+              M 322 570 L 538 570
+              M 284 725 L 576 725
+              M 220 855 L 640 855
+            "
+            stroke={colors.tower}
+            strokeWidth="3.5"
+            strokeLinecap="round"
+            className="sketch-tower"
+          />
+
+          {/* Complete Triangular X-Lattice Bracing (Zero Broken Triangles) */}
+          {/* Tier 1 Apex Triangle */}
+          <path
+            d="M 410 175 L 430 85 L 450 175 Z"
+            stroke={colors.towerLattice}
+            strokeWidth="2.8"
+            strokeLinejoin="round"
+            className="sketch-tower"
+          />
+
+          {/* Tier 1 to 2 X-Lattice Triangles */}
+          <path
+            d="M 410 175 L 472 270 M 450 175 L 388 270 M 410 175 L 430 270 M 450 175 L 430 270"
+            stroke={colors.towerLattice}
+            strokeWidth="2.8"
+            className="sketch-tower"
+          />
+
+          {/* Tier 2 to 3 X-Lattice Triangles */}
+          <path
+            d="M 388 270 L 502 415 M 472 270 L 358 415 M 388 270 L 430 342 M 472 270 L 430 342 M 358 415 L 430 342 M 502 415 L 430 342"
+            stroke={colors.towerLattice}
+            strokeWidth="2.8"
+            className="sketch-tower"
+          />
+
+          {/* Tier 3 to 4 X-Lattice Triangles */}
+          <path
+            d="M 358 415 L 538 570 M 502 415 L 322 570 M 358 415 L 430 492 M 502 415 L 430 492 M 322 570 L 430 492 M 538 570 L 430 492"
+            stroke={colors.towerLattice}
+            strokeWidth="2.8"
+            className="sketch-tower"
+          />
+
+          {/* Tier 4 to 5 X-Lattice Triangles */}
+          <path
+            d="M 322 570 L 576 725 M 538 570 L 284 725 M 322 570 L 430 647 M 538 570 L 430 647 M 284 725 L 430 647 M 576 725 L 430 647"
+            stroke={colors.towerLattice}
+            strokeWidth="2.8"
+            className="sketch-tower"
+          />
+
+          {/* Tier 5 to Base Lattice Triangles */}
+          <path
+            d="M 284 725 L 615 855 M 576 725 L 245 855 M 284 725 L 430 790 M 576 725 L 430 790 M 245 855 L 430 790 M 615 855 L 430 790"
+            stroke={colors.towerLattice}
+            strokeWidth="2.8"
+            className="sketch-tower"
+          />
+
+          {/* Cantilever Cross-Arms (3 Tiers with Complete Diagonal Stay Triangles) */}
+          <g className="sketch-crossarms">
+            {/* Top Cross-Arm (Tier 2, Y=270) */}
+            <path
+              d="M 220 270 L 640 270 M 220 270 L 430 190 M 640 270 L 430 190"
+              stroke={colors.tower}
+              strokeWidth="4.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            {/* Middle Cross-Arm (Tier 3, Y=415) */}
+            <path
+              d="M 140 415 L 720 415 M 140 415 L 430 305 M 720 415 L 430 305"
+              stroke={colors.tower}
+              strokeWidth="4.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            {/* Lower Cross-Arm (Tier 4, Y=570) */}
+            <path
+              d="M 160 570 L 700 570 M 160 570 L 430 460 M 700 570 L 430 460"
+              stroke={colors.tower}
+              strokeWidth="4.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </g>
+
+          {/* Suspended Ceramic Insulator Strings */}
+          <g className="sketch-crossarms">
+            {[
+              { x: 220, y: 270, h: 45 },
+              { x: 640, y: 270, h: 45 },
+              { x: 140, y: 415, h: 50 },
+              { x: 720, y: 415, h: 50 },
+              { x: 160, y: 570, h: 45 },
+              { x: 700, y: 570, h: 45 },
+            ].map((ins, ii) => (
+              <g key={ii}>
+                <line
+                  x1={ins.x}
+                  y1={ins.y}
+                  x2={ins.x}
+                  y2={ins.y + ins.h}
+                  stroke={colors.insulatorStem}
+                  strokeWidth="4"
+                  strokeDasharray="4 2.5"
+                />
+                {[12, 22, 32].map((dy, ri) => (
+                  <ellipse
+                    key={ri}
+                    cx={ins.x}
+                    cy={ins.y + dy}
+                    rx="6"
+                    ry="2.2"
+                    fill={colors.insulatorDisc}
+                    stroke={colors.insulatorStem}
+                    strokeWidth="1.2"
+                  />
+                ))}
+                <circle
+                  cx={ins.x}
+                  cy={ins.y + ins.h}
+                  r="4.8"
+                  fill={colors.insulatorOrb}
+                  stroke={colors.insulatorDisc}
+                  strokeWidth="2"
+                  filter="url(#hero-elec-glow)"
+                />
+              </g>
+            ))}
+          </g>
+
+          {/* Summit Lightning Bolt & Glowing Finial */}
+          <g className="sketch-crossarms">
+            {motionActive && (
+              <>
+                <circle
+                  cx="430"
+                  cy="58"
+                  r="18"
+                  stroke={colors.summitBoltFill}
+                  strokeWidth="2"
+                  fill="none"
+                  style={{
+                    transformOrigin: '430px 58px',
+                    animation: 'coronaFlicker 2.8s ease-in-out infinite',
+                  }}
+                />
+                <circle
+                  cx="430"
+                  cy="58"
+                  r="36"
+                  stroke={colors.summitBoltStroke}
+                  strokeWidth="1.5"
+                  strokeDasharray="5 4"
+                  fill="none"
+                  style={{
+                    transformOrigin: '430px 58px',
+                    animation: 'coronaFlicker 2.8s ease-in-out infinite 0.4s',
+                  }}
+                />
+              </>
+            )}
+
+            <path
+              d="M 430 25 L 418 64 L 434 64 L 420 98 L 444 56 L 430 56 Z"
+              fill={colors.summitBoltFill}
+              stroke={colors.summitBoltStroke}
+              strokeWidth="2.5"
+              strokeLinejoin="round"
+              filter="url(#hero-spark-glow)"
+              className={`transition-transform duration-200 ${
+                motionActive && arcFlash ? 'scale-125' : 'scale-100'
+              }`}
+              style={{ transformOrigin: '430px 60px' }}
+            />
+          </g>
+
+          {/* 4 Sweeping Catenary Power Lines */}
+          <path
+            d="M 40 200 Q 230 255 430 190 T 820 230"
+            stroke={colors.catenaryLine}
+            strokeWidth="3.2"
+            fill="none"
+            strokeLinecap="round"
+            className="sketch-catenary"
+            filter="url(#hero-elec-glow)"
+          />
+          <path
+            d="M 25 310 Q 220 380 430 295 T 840 335"
+            stroke={colors.catenaryLine}
+            strokeWidth="3.5"
+            fill="none"
+            strokeLinecap="round"
+            className="sketch-catenary"
+            filter="url(#hero-elec-glow)"
+          />
+          <path
+            d="M 15 420 Q 210 500 440 395 T 850 435"
+            stroke={colors.catenaryLine}
+            strokeWidth="5"
+            fill="none"
+            strokeLinecap="round"
+            className="sketch-catenary"
+            filter="url(#hero-spark-glow)"
+          />
+          {motionActive && (
+            <path
+              d="M 15 420 Q 210 500 440 395 T 850 435"
+              stroke="url(#catenary-pulse-glow)"
+              strokeWidth="6"
+              fill="none"
+              strokeLinecap="round"
+              filter="url(#hero-spark-glow)"
+              className="catenary-wave-active"
+            />
+          )}
+          <path
+            d="M 10 540 Q 220 625 440 515 T 845 555"
+            stroke={colors.catenaryLine}
+            strokeWidth="3.5"
+            fill="none"
+            strokeLinecap="round"
+            className="sketch-catenary"
+            filter="url(#hero-elec-glow)"
+          />
+        </g>
+
+        {/* =========================================================================
+            LAYER 2: MECHANICAL POWER SUBSYSTEM (BASE & RIGHT)
+            Precision CAD gears, turbine, piston linkage and U-pipe in gold & orange.
+            Translucent fills allow the electrical lattice behind to remain visible.
+           ========================================================================= */}
+        <g id="mechanical-engineering-subsystem">
+          {/* Foundation Machine Skid Bed */}
+          <g className="sketch-pipe">
+            <line x1="200" y1="855" x2="680" y2="855" stroke={colors.skidBed1} strokeWidth="7" />
+            <line x1="200" y1="863" x2="680" y2="863" stroke={colors.skidBed2} strokeWidth="2.5" />
+            <rect x="225" y="850" width="55" height="15" fill={colors.skidBed2} stroke={colors.skidBed1} strokeWidth="2" rx="2" />
+            <rect x="585" y="850" width="55" height="15" fill={colors.skidBed2} stroke={colors.skidBed1} strokeWidth="2" rx="2" />
+            {[235, 250, 265, 595, 610, 625].map((bx, bi) => (
+              <line key={bi} x1={bx} y1="850" x2={bx + 6} y2="865" stroke={colors.pipeBolt} strokeWidth="1.5" />
+            ))}
+          </g>
+
+          {/* Thick U-Shaped Industrial Flanged Pipe Wrapping Underneath */}
+          <g className="sketch-pipe">
+            <path
+              d="M 175 700 L 175 780 L 215 780 L 215 820 L 175 820 L 175 920 L 810 920 L 810 640 L 750 640"
+              stroke={colors.pipeMask}
+              strokeWidth="16"
+              strokeLinecap="square"
+              strokeLinejoin="miter"
+            />
+            <path
+              d="M 175 700 L 175 780 L 215 780 L 215 820 L 175 820 L 175 920 L 810 920 L 810 640 L 750 640"
+              stroke={colors.pipeWall}
+              strokeWidth="4"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <path
+              d="M 175 700 L 175 780 L 215 780 L 215 820 L 175 820 L 175 920 L 810 920 L 810 640 L 750 640"
+              stroke={colors.pipeCenter}
+              strokeWidth="1.8"
+              strokeDasharray="6 4"
+              opacity="0.8"
+            />
+
+            {/* Flanged Joints with Hex Bolts */}
+            {[
+              { x: 175, y: 740, rot: 0 },
+              { x: 235, y: 920, rot: 90 },
+              { x: 660, y: 920, rot: 90 },
+              { x: 755, y: 920, rot: 90 },
+              { x: 810, y: 840, rot: 0 },
+              { x: 810, y: 730, rot: 0 },
+              { x: 775, y: 640, rot: 90 },
+            ].map((flange, fi) => (
+              <g key={fi} transform={`translate(${flange.x}, ${flange.y}) rotate(${flange.rot})`}>
+                <rect x="-16" y="-5" width="32" height="10" fill={colors.pipeFlange} stroke={colors.pipeWall} strokeWidth="2" rx="2" />
+                <circle cx="-10" cy="0" r="2.2" fill={colors.pipeBolt} />
+                <circle cx="10" cy="0" r="2.2" fill={colors.pipeBolt} />
+              </g>
+            ))}
+          </g>
+
+          {/* Pulsing Fluid Surge Channel (Phase 2 Continuous Motion) */}
+          {motionActive && (
+            <path
+              d="M 175 700 L 175 780 L 215 780 L 215 820 L 175 820 L 175 920 L 810 920 L 810 640 L 750 640"
+              stroke="url(#fluid-surge-pulse)"
+              strokeWidth="6"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeDasharray="80 160"
+              style={{
+                animation: 'fluidSurgeFlow 3.2s linear infinite',
+              }}
+            />
+          )}
+
+          {/* Industrial T-Handle Gate Valve */}
+          <g transform="translate(708, 920)" className="sketch-pipe">
+            <polygon points="-16,-6 16,-6 12,-20 -12,-20" fill={colors.valveBody} stroke={colors.pipeWall} strokeWidth="2.5" />
+            <line x1="0" y1="-20" x2="0" y2="-62" stroke={colors.valveStem} strokeWidth="3.5" />
+            <line x1="-3" y1="-32" x2="3" y2="-32" stroke={colors.valveAccent} strokeWidth="2" />
+            <line x1="-3" y1="-44" x2="3" y2="-44" stroke={colors.valveAccent} strokeWidth="2" />
+            <rect x="-10" y="-30" width="20" height="6" fill={colors.pipeFlange} stroke={colors.pipeWall} strokeWidth="1.5" rx="1" />
+            <rect x="-24" y="-68" width="48" height="8" rx="4" fill={colors.pipeFlange} stroke={colors.pipeWall} strokeWidth="2" />
+            <circle cx="0" cy="-64" r="5" fill={colors.valveAccent} stroke={colors.valveStem} strokeWidth="1.5" />
+            <circle cx="-16" cy="-64" r="2" fill={colors.pipeBolt} />
+            <circle cx="16" cy="-64" r="2" fill={colors.pipeBolt} />
+          </g>
+
+          {/* Pressure Gauge 1 (Left Pipe Branch) */}
+          <g transform="translate(220, 660)" className="sketch-pipe">
+            <line x1="0" y1="40" x2="0" y2="24" stroke={colors.pipeWall} strokeWidth="3" />
+            <rect x="-5" y="24" width="10" height="6" fill={colors.pipeFlange} stroke={colors.pipeWall} strokeWidth="1.5" />
+            <circle cx="0" cy="0" r="24" fill={colors.gaugeDial} stroke={colors.gaugeRim} strokeWidth="3.2" />
+            <circle cx="0" cy="0" r="20" stroke={colors.gaugeTicks} strokeWidth="1" strokeDasharray="3 2" />
+            {[-120, -90, -60, -30, 0, 30, 60, 90, 120].map((deg, di) => (
+              <line
+                key={di}
+                x1="0"
+                y1="-14"
+                x2="0"
+                y2="-19"
+                stroke={colors.gaugeTicks}
+                strokeWidth="1.6"
+                transform={`rotate(${deg} 0 0)`}
+              />
+            ))}
+            <g
+              style={{
+                transformOrigin: '220px 660px',
+                animation: motionActive ? 'gaugeNeedleOscillate1 2.4s ease-in-out infinite' : 'none',
+              }}
+            >
+              <line x1="0" y1="0" x2="0" y2="-17" stroke={colors.gaugeNeedle} strokeWidth="2.6" strokeLinecap="round" />
+              <line x1="0" y1="0" x2="0" y2="4" stroke={colors.gaugeNeedle} strokeWidth="2.2" />
+            </g>
+            <circle cx="0" cy="0" r="3.2" fill={colors.gaugeRim} stroke={colors.gaugeDial} strokeWidth="1" />
+          </g>
+
+          {/* Pressure Gauge 2 (Intermediate Tube) */}
+          <g transform="translate(525, 410)" className="sketch-pipe">
+            <line x1="0" y1="28" x2="0" y2="18" stroke={colors.pipeWall} strokeWidth="2.5" />
+            <circle cx="0" cy="0" r="20" fill={colors.gaugeDial} stroke={colors.gaugeRim} strokeWidth="3" />
+            <circle cx="0" cy="0" r="16" stroke={colors.gaugeTicks} strokeWidth="1" strokeDasharray="3 2" />
+            {[-90, -45, 0, 45, 90].map((deg, di) => (
+              <line
+                key={di}
+                x1="0"
+                y1="-11"
+                x2="0"
+                y2="-16"
+                stroke={colors.gaugeTicks}
+                strokeWidth="1.5"
+                transform={`rotate(${deg} 0 0)`}
+              />
+            ))}
+            <g
+              style={{
+                transformOrigin: '525px 410px',
+                animation: motionActive ? 'gaugeNeedleOscillate2 2.1s ease-in-out infinite' : 'none',
+              }}
+            >
+              <line x1="0" y1="0" x2="0" y2="-14" stroke={colors.gaugeNeedle} strokeWidth="2.5" strokeLinecap="round" />
+            </g>
+            <circle cx="0" cy="0" r="2.8" fill={colors.gaugeRim} />
+          </g>
+
+          {/* Turbine Structural Casing Shroud */}
+          <g className="sketch-mech">
+            <path
+              d="M 525 640 L 525 500 L 780 500 L 780 780 L 735 780 L 735 855"
+              stroke={colors.gearDark}
+              strokeWidth="3.5"
+              strokeLinejoin="round"
+            />
+            <path
+              d="M 750 470 L 750 500 M 780 530 L 810 530"
+              stroke={colors.gearAccent}
+              strokeWidth="2.5"
+            />
+            <rect x="715" y="845" width="40" height="10" fill={colors.gearAccent} stroke={colors.gearDark} strokeWidth="2" rx="2" />
+          </g>
+
+          {/* Toothed Outer Ring Gear Encapsulating Multi-Blade Turbine Runner */}
+          <g
+            className="sketch-mech"
+            style={{
+              transformOrigin: '660px 620px',
+              animation: motionActive ? 'spinClockwise 12s linear infinite' : 'none',
+            }}
+          >
+            {/* Translucent fill allows tower struts behind to remain visible */}
+            <path d={turbineRingGearPath} fill={isLight ? "rgba(240, 238, 230, 0.45)" : "rgba(20, 22, 25, 0.45)"} stroke={colors.gearDark} strokeWidth="3" />
+            <circle cx="660" cy="620" r="114" stroke={colors.gearAccent} strokeWidth="3.2" fill="none" />
+            <circle cx="660" cy="620" r="95" stroke={colors.gearAmber} strokeWidth="1.8" strokeDasharray="6 4" fill="none" />
+            <circle cx="660" cy="620" r="76" stroke={colors.gearDark} strokeWidth="1.2" fill="none" />
+
+            {/* 12 Curved Turbine Runner Blades */}
+            {[0, 30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330].map((angle, idx) => (
+              <g key={idx} transform={`rotate(${angle} 660 620)`}>
+                <path
+                  d="M 660 588 C 678 570 690 535 705 508"
+                  stroke={colors.gearDark}
+                  strokeWidth="2.8"
+                  fill="none"
+                  strokeLinecap="round"
+                />
+                <path
+                  d="M 660 588 C 672 574 682 546 695 516"
+                  stroke={colors.gearAccent}
+                  strokeWidth="1.4"
+                  fill="none"
+                  strokeLinecap="round"
+                />
+              </g>
+            ))}
+
+            {/* Central Generator Shaft Hub */}
+            <circle cx="660" cy="620" r="32" fill={colors.gearAccent} stroke={colors.gearDark} strokeWidth="3.5" />
+            <circle cx="660" cy="620" r="14" fill={colors.gearAmber} stroke={colors.pipeBolt} strokeWidth="2" />
+            <circle cx="660" cy="620" r="5" fill={colors.pipeBolt} />
+            <line x1="660" y1="588" x2="660" y2="652" stroke={colors.pipeBolt} strokeWidth="2.5" />
+            <line x1="628" y1="620" x2="692" y2="620" stroke={colors.pipeBolt} strokeWidth="2.5" />
+          </g>
+
+          {/* Interlocking Main Center Spur Gear (Rotates Counter-Clockwise 6s) */}
+          <g
+            className="sketch-mech"
+            style={{
+              transformOrigin: '470px 740px',
+              animation: motionActive ? 'spinCounterClockwise 6s linear infinite' : 'none',
+            }}
+          >
+            <path d={spurGearPath} fill={isLight ? "rgba(240, 238, 230, 0.55)" : "rgba(20, 22, 25, 0.55)"} stroke={colors.gearDark} strokeWidth="2.8" />
+            <circle cx="470" cy="740" r="62" stroke={colors.gearAccent} strokeWidth="2.2" fill="none" />
+            {[0, 60, 120, 180, 240, 300].map((deg, hi) => {
+              const rad = (deg * Math.PI) / 180;
+              const hx = 470 + 40 * Math.cos(rad);
+              const hy = 740 + 40 * Math.sin(rad);
+              return (
+                <circle key={hi} cx={hx} cy={hy} r="12" fill={colors.gaugeDial} stroke={colors.gearDark} strokeWidth="1.8" />
+              );
+            })}
+            <circle cx="470" cy="740" r="20" fill={colors.gearAccent} stroke={colors.gearDark} strokeWidth="3" />
+            <circle cx="470" cy="740" r="8" fill={colors.gearAmber} stroke={colors.pipeBolt} strokeWidth="1.5" />
+          </g>
+
+          {/* Counter-Meshing Pinion Spur Gear (Rotates Clockwise 3.2s) */}
+          <g
+            className="sketch-mech"
+            style={{
+              transformOrigin: '565px 795px',
+              animation: motionActive ? 'spinClockwise 3.2s linear infinite' : 'none',
+            }}
+          >
+            <path d={pinionGearPath} fill={isLight ? "rgba(240, 238, 230, 0.65)" : "rgba(20, 22, 25, 0.65)"} stroke={colors.gearPinion} strokeWidth="2.5" />
+            <circle cx="565" cy="795" r="32" stroke={colors.gearAccent} strokeWidth="2" fill="none" />
+            <circle cx="565" cy="795" r="14" fill={colors.gearAccent} stroke={colors.gearPinion} strokeWidth="2.5" />
+            <circle cx="565" cy="795" r="5" fill={colors.pipeBolt} />
+            <line x1="565" y1="765" x2="565" y2="825" stroke={colors.pipeBolt} strokeWidth="2" />
+            <line x1="535" y1="795" x2="595" y2="795" stroke={colors.pipeBolt} strokeWidth="2" />
+          </g>
+
+          {/* Engine Cylinder Housing with Cooling Fins */}
+          <g className="sketch-mech">
+            <g transform="translate(280, 785) rotate(-32)">
+              <rect x="0" y="-22" width="75" height="44" rx="3" fill={isLight ? "#F1F0EA" : "#141619"} stroke={colors.gearDark} strokeWidth="2.8" />
+              {[-18, -10, -2, 6, 14].map((fy, i) => (
+                <line key={i} x1="-8" y1={fy} x2="0" y2={fy} stroke={colors.gearDark} strokeWidth="3" strokeLinecap="round" />
+              ))}
+              <line x1="0" y1="0" x2="75" y2="0" stroke={colors.gearAccent} strokeWidth="1.5" strokeDasharray="4 3" />
+            </g>
+          </g>
+
+          {/* Crank Disc at Center (360, 840) */}
+          <g
+            className="sketch-mech"
+            style={{
+              transformOrigin: '360px 840px',
+              animation: motionActive ? 'crankPinSpin 2.4s linear infinite' : 'none',
+            }}
+          >
+            <circle cx="360" cy="840" r="42" fill={isLight ? "rgba(240, 238, 230, 0.65)" : "rgba(20, 22, 25, 0.65)"} stroke={colors.gearDark} strokeWidth="3" />
+            <circle cx="360" cy="840" r="32" stroke={colors.gearAccent} strokeWidth="1.8" strokeDasharray="5 3" />
+            <circle cx="360" cy="840" r="14" fill={colors.gearAccent} stroke={colors.gearDark} strokeWidth="2.5" />
+            <circle cx="338" cy="824" r="5.5" fill={colors.gearAmber} stroke={colors.gearAccent} strokeWidth="2" />
+          </g>
+
+          {/* Reciprocating Connecting Rod & Piston Head */}
+          <g
+            className="sketch-mech"
+            style={{
+              animation: motionActive ? 'pistonReciprocateMotion 2.4s ease-in-out infinite' : 'none',
+            }}
+          >
+            <g transform="translate(295, 775) rotate(-32)">
+              <rect x="5" y="-16" width="30" height="32" rx="2" fill={colors.pistonHead} stroke={colors.connectingRod} strokeWidth="2.2" />
+              <line x1="15" y1="-16" x2="15" y2="16" stroke={colors.gearAmber} strokeWidth="1.8" />
+              <line x1="25" y1="-16" x2="25" y2="16" stroke={colors.gearAmber} strokeWidth="1.8" />
+            </g>
+            <line x1="310" y1="785" x2="340" y2="826" stroke={colors.connectingRod} strokeWidth="4.5" strokeLinecap="round" />
+            <line x1="310" y1="785" x2="340" y2="826" stroke={colors.pistonHead} strokeWidth="2" strokeLinecap="round" />
+            <circle cx="310" cy="785" r="5" fill={colors.gearAmber} stroke={colors.connectingRod} strokeWidth="1.5" />
+          </g>
+        </g>
+
+        {/* =========================================================================
+            LAYER 3: CONTINUOUS TRAVELING ORBS & ARC FLASHES (PHASE 2)
+           ========================================================================= */}
+        {motionActive && (
+          <g id="kinetic-energy-pulses">
+            {/* Orb on Catenary 1 */}
+            <g>
+              <circle r="7.5" fill={colors.catenaryPulseEnd} filter="url(#hero-spark-glow)">
+                <animateMotion
+                  path="M 40 200 Q 230 255 430 190 T 820 230"
+                  dur="4.2s"
+                  repeatCount="indefinite"
+                />
+              </circle>
+              <circle r="4" fill={colors.pipeBolt}>
+                <animateMotion
+                  path="M 40 200 Q 230 255 430 190 T 820 230"
+                  dur="4.2s"
+                  repeatCount="indefinite"
+                />
+              </circle>
+            </g>
+
+            {/* Orb on Catenary 2 (Bidirectional Sweep) */}
+            <g>
+              <circle r="8.5" fill={colors.catenaryPulseEnd} filter="url(#hero-spark-glow)">
+                <animateMotion
+                  path="M 25 310 Q 220 380 430 295 T 840 335"
+                  dur="4.8s"
+                  keyPoints="0;1;0"
+                  keyTimes="0;0.5;1"
+                  calcMode="spline"
+                  keySplines="0.45 0 0.25 1; 0.45 0 0.25 1"
+                  repeatCount="indefinite"
+                />
+              </circle>
+              <circle r="4.5" fill={colors.pipeBolt}>
+                <animateMotion
+                  path="M 25 310 Q 220 380 430 295 T 840 335"
+                  dur="4.8s"
+                  keyPoints="0;1;0"
+                  keyTimes="0;0.5;1"
+                  calcMode="spline"
+                  keySplines="0.45 0 0.25 1; 0.45 0 0.25 1"
+                  repeatCount="indefinite"
+                />
+              </circle>
+            </g>
+
+            {/* High-Energy Pulse Orb on Catenary 3 */}
+            <g>
+              <circle r="10.5" fill={colors.catenaryPulseStart} filter="url(#hero-spark-glow)">
+                <animateMotion
+                  path="M 15 420 Q 210 500 440 395 T 850 435"
+                  dur="3.8s"
+                  repeatCount="indefinite"
+                />
+              </circle>
+              <circle r="5.5" fill={colors.pipeBolt}>
+                <animateMotion
+                  path="M 15 420 Q 210 500 440 395 T 850 435"
+                  dur="3.8s"
+                  repeatCount="indefinite"
+                />
+              </circle>
+            </g>
+
+            {/* Secondary Staggered Orb on Catenary 3 */}
+            <g>
+              <circle r="7.5" fill={colors.catenaryPulseStart} filter="url(#hero-elec-glow)">
+                <animateMotion
+                  path="M 15 420 Q 210 500 440 395 T 850 435"
+                  dur="3.8s"
+                  begin="-1.9s"
+                  repeatCount="indefinite"
+                />
+              </circle>
+              <circle r="3.5" fill={colors.catenaryPulseEnd}>
+                <animateMotion
+                  path="M 15 420 Q 210 500 440 395 T 850 435"
+                  dur="3.8s"
+                  begin="-1.9s"
+                  repeatCount="indefinite"
+                />
+              </circle>
+            </g>
+
+            {/* Orb on Catenary 4 */}
+            <g>
+              <circle r="8" fill={colors.catenaryPulseEnd} filter="url(#hero-spark-glow)">
+                <animateMotion
+                  path="M 10 540 Q 220 625 440 515 T 845 555"
+                  dur="5.4s"
+                  repeatCount="indefinite"
+                />
+              </circle>
+              <circle r="4" fill={colors.pipeBolt}>
+                <animateMotion
+                  path="M 10 540 Q 220 625 440 515 T 845 555"
+                  dur="5.4s"
+                  repeatCount="indefinite"
+                />
+              </circle>
+            </g>
+
+            {/* High-Voltage Arc Flash Sparks */}
+            {arcFlash && (
+              <g filter="url(#hero-spark-glow)">
+                <path
+                  d="M 220 315 L 245 350 L 230 358 L 260 390"
+                  stroke={colors.insulatorOrb}
+                  strokeWidth="3.5"
+                  strokeLinecap="round"
+                  fill="none"
+                  className="animate-ping"
+                  style={{ animationDuration: '0.38s' }}
+                />
+                <path
+                  d="M 640 315 L 615 348 L 628 356 L 600 388"
+                  stroke={colors.catenaryPulseEnd}
+                  strokeWidth="3.2"
+                  strokeLinecap="round"
+                  fill="none"
+                />
+                <circle cx="430" cy="85" r="16" fill={colors.summitBoltFill} opacity="0.85" className="animate-pulse" />
+              </g>
+            )}
+          </g>
+        )}
+      </svg>
+
+      {/* Desktop-Only Hover Replay Icon Button (Hidden on Mobile) */}
+      <div className="hidden lg:flex absolute bottom-3 right-3 items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
+        <button
+          onClick={handleReplaySketch}
+          type="button"
+          aria-label="Replay sketch animation"
+          title="Replay Sketch"
+          className={`w-9 h-9 rounded-full flex items-center justify-center backdrop-blur-md shadow-md transition-all hover:scale-110 active:scale-95 cursor-pointer focus-visible:outline-none focus-visible:ring-2 ${
+            isLight
+              ? 'bg-white/95 border border-line text-ink hover:text-red hover:border-red hover:bg-cream focus-visible:ring-red shadow-xs'
+              : 'bg-[#141619]/90 border border-[#FFD700]/40 text-[#FFD700] hover:text-white hover:border-[#FFD700] hover:bg-[#FF5722]/35 focus-visible:ring-[#FFD700] shadow-xl'
+          }`}
+        >
+          <svg
+            className="w-4 h-4"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2.4"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
+            <path d="M3 3v5h5" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  );
+}
