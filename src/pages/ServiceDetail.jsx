@@ -42,9 +42,9 @@ export default function ServiceDetail() {
   };
 
   const serviceHeroImages = {
-    electrical: '/assets/projects/switchgear-11kv.jpg',
-    mechanical: '/assets/projects/gas-piping-burner.jpg',
-    supply: '/assets/projects/control-panel.jpg',
+    electrical: '/assets/projects/sbc-ikeja-4-4mw-1.jpg',
+    mechanical: '/assets/projects/nbc-whrb.jpg',
+    supply: '/assets/projects/kano-30mw-panels.jpg',
     consultancy: '/assets/projects/safety-award.jpg',
   };
 
