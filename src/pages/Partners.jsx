@@ -115,7 +115,7 @@ export default function Partners() {
                   <img
                     src={`/assets/client-logos/${partner.logo}`}
                     alt={partner.name}
-                    className="max-h-16 sm:max-h-20 max-w-[220px] sm:max-w-[260px] object-contain"
+                    className="max-h-20 sm:max-h-24 max-w-[250px] sm:max-w-[290px] object-contain"
                     loading="lazy"
                   />
                 </div>
@@ -167,16 +167,24 @@ export default function Partners() {
           </div>
 
           {/* Logo Grid - Enlarged & High Visibility */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-6">
             {clientsWithLogos.map((client, idx) => (
               <div
                 key={idx}
-                className="logo-tile bg-white border border-line rounded-[8px] p-6 sm:p-8 h-36 sm:h-44 flex flex-col items-center justify-center text-center shadow-sm hover:shadow-md hover:border-red/40 transition-all group"
+                className="logo-tile bg-white border border-line rounded-[8px] p-4 sm:p-6 h-36 sm:h-44 md:h-48 flex items-center justify-center text-center shadow-sm hover:shadow-md hover:border-red/40 transition-all group overflow-hidden"
               >
                 <img
                   src={`/${client.logo}`}
                   alt={client.name}
-                  className="max-h-20 sm:max-h-24 max-w-[170px] sm:max-w-[210px] object-contain transition-transform duration-300 group-hover:scale-105"
+                  className={`object-contain transition-transform duration-300 group-hover:scale-110 ${
+                    client.logo.includes('newbisco')
+                      ? 'w-[94%] max-h-20 sm:max-h-24 scale-110'
+                      : client.logo.includes('metal-packaging')
+                      ? 'w-[92%] max-h-22 sm:max-h-26 scale-105'
+                      : client.logo.includes('primera') || client.logo.includes('tgi') || client.logo.includes('clarke')
+                      ? 'w-[88%] max-h-24 sm:max-h-28 scale-105'
+                      : 'w-auto h-auto max-h-24 sm:max-h-28 max-w-[85%] sm:max-w-[88%]'
+                  }`}
                   loading="lazy"
                 />
               </div>

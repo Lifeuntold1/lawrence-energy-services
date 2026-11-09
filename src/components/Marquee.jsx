@@ -27,11 +27,11 @@ export default function Marquee({
                 <Zap className="w-4 h-4 text-yellow fill-yellow shrink-0" />
               </div>
             ) : (
-              <div className="logo-tile bg-white border border-line rounded-[6px] w-[140px] sm:w-[160px] h-[75px] sm:h-[85px] p-3 flex items-center justify-center shadow-sm shrink-0">
+              <div className="logo-tile bg-white border border-line rounded-[6px] w-[140px] sm:w-[170px] h-[75px] sm:h-[90px] p-2.5 sm:p-3 flex items-center justify-center shadow-sm shrink-0">
                 <img
                   src={`/${item.logo}`}
                   alt={item.name}
-                  className="max-h-12 max-w-[120px] object-contain"
+                  className="max-h-14 sm:max-h-16 max-w-[125px] sm:max-w-[145px] object-contain"
                   loading="lazy"
                 />
               </div>
