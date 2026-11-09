@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Filter, Eye, ArrowRight, Tag } from 'lucide-react';
+import { Filter, ArrowRight, Tag } from 'lucide-react';
 import content from '../data/content.json';
 import Lightbox from '../components/Lightbox';
 import InnerHeroCanvas from '../components/InnerHeroCanvas';
@@ -46,8 +46,8 @@ export default function Projects() {
   return (
     <div className="bg-white text-ink pt-16 sm:pt-20 lg:pt-24 pb-28 lg:pb-16">
       {/* 1. Header */}
-      <section className="relative bg-cream border-b border-line py-12 sm:py-16 lg:py-24 overflow-hidden">
-        {/* Full-Bleed Kinetic Background Motion (Zero Text) */}
+      <section className="relative bg-[#FAF9F5] text-ink border-b border-line py-12 sm:py-16 lg:py-24 overflow-hidden">
+        {/* Full-Bleed Kinetic Background Motion with Authentic Project Photography */}
         <InnerHeroCanvas variant="projects" />
 
         <div className="relative z-10 max-w-container mx-auto px-5 lg:px-10">
@@ -129,13 +129,6 @@ export default function Projects() {
                       {proj.photos.length} Photos
                     </div>
                   )}
-
-                  {/* Hover Overlay */}
-                  <div className="absolute inset-0 bg-red/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                    <div className="w-12 h-12 rounded-full bg-yellow text-black flex items-center justify-center shadow-lg transform scale-75 group-hover:scale-100 transition-transform duration-300">
-                      <Eye className="w-6 h-6" />
-                    </div>
-                  </div>
                 </div>
 
                 <div className="p-5">

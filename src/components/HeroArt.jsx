@@ -160,6 +160,7 @@ export default function HeroArt({ className = '', theme = 'light' }) {
         transform: `perspective(1000px) rotateY(${mousePos.x * 0.4}deg) rotateX(${-mousePos.y * 0.4}deg)`,
         transition: 'transform 0.35s cubic-bezier(0.22, 1, 0.36, 1)',
       }}
+      role="img"
       aria-label="Lawrence Energy Services Hybrid Electrical and Mechanical Engineering Kinetic Art"
     >
       {/* Background Radial Glow */}

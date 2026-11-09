@@ -195,6 +195,8 @@ export default function Header() {
                   : `/${content.brand.logo_on_dark}`
               }
               alt="LESL Logo"
+              width="160"
+              height="48"
               className="h-11 sm:h-13 lg:h-14 w-auto object-contain transition-all duration-200"
             />
           </Link>

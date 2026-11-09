@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import {
   Grid,
   Columns,
-  Eye,
   ArrowRight,
   Filter,
   ChevronLeft,
@@ -159,12 +158,12 @@ const GALLERY_PHOTOS = [
   {
     id: 'gas-piping-burner',
     title: 'High-Pressure Gas Supply to Boiler Burner',
-    client: 'Industrial Client',
-    location: 'Manufacturing Facility, Nigeria',
+    client: '7up Bottling Company Kano',
+    location: 'Kano, Nigeria',
     category: 'Piping & Boilers',
     specs: 'Natural Gas / Certified Flanged Runs',
     src: 'assets/projects/gas-piping-burner.jpg',
-    caption: 'Double-block-and-bleed gas train installation, slam-shut safety valves, and burner interconnecting pipeline.',
+    caption: 'Double-block-and-bleed gas train installation, slam-shut safety valves, and burner interconnecting pipeline for Seven-Up Bottling Company (SBC) Kano.',
   },
   {
     id: 'generator-room-soundproofing',
@@ -249,12 +248,12 @@ const GALLERY_PHOTOS = [
   {
     id: 'safety-award',
     title: '100,000 Safe Man-Hours Safety Recognition',
-    client: 'Cummins West Africa Ltd',
-    location: 'Nationwide Vendor Evaluation',
+    client: 'Lagos Free Zone (LFZ)',
+    location: 'Ibeju Lekki, Lagos',
     category: 'Safety & Commissioning',
     specs: 'Zero Lost-Time Injury / Top Ranked Vendor',
     src: 'assets/projects/safety-award.jpg',
-    caption: 'Formal industry recognition awarded to LESL for 100,000 safe man-hours executed without a single lost-time incident.',
+    caption: 'Formal industry recognition awarded to LESL by Lagos Free Zone (LFZ) for 100,000 safe man-hours executed without a single lost-time incident.',
   },
 ];
 
@@ -315,9 +314,9 @@ export default function Gallery() {
 
   return (
     <div className="bg-white text-ink pt-16 sm:pt-20 lg:pt-24 pb-28 lg:pb-16 min-h-screen">
-      {/* 1. BRIGHT PAGE HEADER */}
-      <section className="relative bg-cream border-b border-line py-12 sm:py-16 lg:py-24 overflow-hidden">
-        {/* Full-Bleed Kinetic Background Motion (Zero Text) */}
+      {/* 1. PAGE HEADER */}
+      <section className="relative bg-[#FAF9F5] text-ink border-b border-line py-12 sm:py-16 lg:py-24 overflow-hidden">
+        {/* Full-Bleed Kinetic Background Motion with Authentic Project Photography */}
         <InnerHeroCanvas variant="gallery" />
 
         <div className="relative z-10 max-w-container mx-auto px-5 lg:px-10">
@@ -427,13 +426,6 @@ export default function Gallery() {
                     {/* Category Tag */}
                     <div className="absolute top-3 left-3 bg-black/80 text-white text-[10px] font-mono font-bold uppercase tracking-wider px-2.5 py-1 rounded-[4px] border border-white/20">
                       {photo.category}
-                    </div>
-
-                    {/* Hover Inspect Icon */}
-                    <div className="absolute inset-0 bg-red/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                      <div className="w-12 h-12 rounded-full bg-yellow text-black flex items-center justify-center shadow-lg transform scale-75 group-hover:scale-100 transition-transform duration-300">
-                        <Eye className="w-6 h-6" />
-                      </div>
                     </div>
                   </div>
 

@@ -30,8 +30,8 @@ export default function About() {
   return (
     <div className="bg-white text-ink pt-16 sm:pt-20 lg:pt-24 pb-28 lg:pb-16">
       {/* 1. PAGE HEADER */}
-      <section className="relative bg-cream border-b border-line py-12 sm:py-16 lg:py-24 overflow-hidden">
-        {/* Full-Bleed Kinetic Background Motion (Zero Text) */}
+      <section className="relative bg-[#FAF9F5] text-ink border-b border-line py-12 sm:py-16 lg:py-24 overflow-hidden">
+        {/* Full-Bleed Kinetic Background Motion with Authentic Project Photography */}
         <InnerHeroCanvas variant="about" />
 
         <div className="relative z-10 max-w-container mx-auto px-5 lg:px-10">

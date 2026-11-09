@@ -21,8 +21,8 @@ export default function Partners() {
   return (
     <div className="bg-white text-ink pt-16 sm:pt-20 lg:pt-24 pb-28 lg:pb-16">
       {/* 1. Page Header */}
-      <section className="relative bg-cream border-b border-line py-12 sm:py-16 lg:py-24 overflow-hidden">
-        {/* Full-Bleed Kinetic Background Motion (Zero Text) */}
+      <section className="relative bg-[#FAF9F5] text-ink border-b border-line py-12 sm:py-16 lg:py-24 overflow-hidden">
+        {/* Full-Bleed Kinetic Background Motion with Authentic Project Photography */}
         <InnerHeroCanvas variant="partners" />
 
         <div className="relative z-10 max-w-container mx-auto px-5 lg:px-10">
@@ -39,7 +39,7 @@ export default function Partners() {
             <div className="flex flex-wrap items-center gap-4 mt-8 pt-6 border-t border-line text-xs font-mono text-grey">
               <span className="font-bold text-red">TRUSTED CLARKE ENERGY &amp; CUMMINS PARTNER</span>
               <span>•</span>
-              <span>TRUSTED BY DANGOTE, BUA &amp; FLOUR MILLS</span>
+              <span>TRUSTED BY CUMMINS WEST AFRICA, CLARKE ENERGY LTD &amp; 7UP BOTTLING COMPANY</span>
               <span>•</span>
               <span>DECADE-LONG CLIENT RETENTION</span>
             </div>

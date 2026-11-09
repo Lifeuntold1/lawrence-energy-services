@@ -1,0 +1,33 @@
+# Lawrence Energy Services Limited (LESL)
+
+> Turnkey electrical and mechanical engineering contractors in Nigeria since 2009. Over 400 MW installed capacity, 100,000 accident-free man-hours, and trusted alliances with Cummins West Africa, Clarke Energy Ltd, and 7up Bottling Company.
+
+## Core Capabilities
+- Power Generation: Turnkey multi-megawatt gas generator power plant installation and commissioning (Jenbacher, Caterpillar, Cummins).
+- Substations & Switchgear: 11 kV / 33 kV substation erection, switchgear assembly, RMU maintenance, transformer installation, and protection testing.
+- Mechanical & Industrial Piping: High-pressure gas pipelines, steam piping (ASME B31.3), boiler burners, fuel gas conditioning skids, and acoustic soundproofing down to 69 dB.
+- Technical Consultancy, Testing & Commissioning: Secondary injection, dielectric testing, heat rate audits, and power quality analysis.
+
+## Key Projects
+- Mamuda Group 30 MW Greenfield Power Station, Challawa, Kano.
+- Seven-Up Bottling Company (SBC) Ikeja IPP (17.6 MW Gas Generation).
+- Seven-Up Bottling Company (SBC) Kano Gas Burner & Boiler Piping.
+- Elebele 9 MW Gas Turbine IPP, Bayelsa State.
+- Lagos Free Zone (LFZ) 100,000 Safe Man-Hours Safety Recognition Award, Ibeju Lekki, Lagos.
+
+## Pages & Routes
+- Homepage: https://lesl-energy-website.vercel.app/
+- About: https://lesl-energy-website.vercel.app/about
+- Services: https://lesl-energy-website.vercel.app/services
+- Projects: https://lesl-energy-website.vercel.app/projects
+- Gallery: https://lesl-energy-website.vercel.app/gallery
+- Partners: https://lesl-energy-website.vercel.app/partners
+- Careers: https://lesl-energy-website.vercel.app/careers
+- Contact: https://lesl-energy-website.vercel.app/contact
+- Request a Quote: https://lesl-energy-website.vercel.app/quote
+- Book Consultation: https://lesl-energy-website.vercel.app/book
+
+## Head Office
+- Address: 12, Industrial Avenue, Ikeja, Lagos State, Nigeria.
+- Email: info@lesl.ng
+- Phone: +234 803 300 0000

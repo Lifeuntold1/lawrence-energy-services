@@ -71,6 +71,8 @@ export default function Home() {
           <img
             src="/assets/projects/mamuda-30mw-jenbacher.jpg"
             alt="Power Plant Installation by LESL"
+            width="1920"
+            height="1080"
             className="w-full h-full object-cover object-center opacity-[0.05] mix-blend-multiply filter grayscale select-none scale-105"
           />
           {/* Subtle Ambient Radial Warmth */}
@@ -163,9 +165,9 @@ export default function Home() {
       </section>
 
       {/* 2. MOVING WORD STRIP */}
-      <section className="bg-red border-y border-red-deep py-2.5" aria-label="Specialization Track">
+      <div role="region" aria-label="Specialization Track" className="bg-red border-y border-red-deep py-2.5">
         <Marquee items={content.hero.marquee_words} type="text" />
-      </section>
+      </div>
 
       {/* Kinetic Energy Bus Line */}
       <div className="energy-line-container">

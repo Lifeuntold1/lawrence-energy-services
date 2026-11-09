@@ -15,6 +15,8 @@ export default function Footer() {
               <img
                 src={`/${content.brand.logo_on_dark}`}
                 alt="LESL Logo"
+                width="140"
+                height="40"
                 className="h-10 w-auto object-contain"
               />
             </Link>
@@ -25,7 +27,7 @@ export default function Footer() {
 
           {/* Column 2: Company Navigation */}
           <div className="lg:col-span-2">
-            <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-yellow mb-5">Company</h4>
+            <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-yellow mb-5">Company</h3>
             <ul className="space-y-2.5 text-sm">
               <li>
                 <Link to="/about" className="text-white/75 hover:text-white transition-colors">
@@ -67,7 +69,7 @@ export default function Footer() {
 
           {/* Column 3: Services */}
           <div className="lg:col-span-3">
-            <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-yellow mb-5">Services</h4>
+            <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-yellow mb-5">Services</h3>
             <ul className="space-y-2.5 text-sm">
               {content.services.map((svc) => (
                 <li key={svc.slug}>
@@ -85,7 +87,7 @@ export default function Footer() {
 
           {/* Column 4: Contact & Office */}
           <div className="lg:col-span-3 flex flex-col gap-4 text-sm">
-            <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-yellow mb-1">Head Office</h4>
+            <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-yellow mb-1">Head Office</h3>
             
             <div className="flex items-start gap-3 text-white/80">
               <MapPin className="w-4 h-4 text-red shrink-0 mt-1" />

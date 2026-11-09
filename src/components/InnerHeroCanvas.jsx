@@ -1,25 +1,67 @@
 import React from 'react';
 
+const VARIANT_IMAGES = {
+  about: '/assets/projects/elebele-9mw-ipp.jpg',
+  services: '/assets/projects/switchgear-11kv.jpg',
+  projects: '/assets/projects/mamuda-30mw-jenbacher.jpg',
+  gallery: '/assets/projects/kano-30mw-panels.jpg',
+  partners: '/assets/projects/partners-logo-grid.jpg',
+  careers: '/assets/projects/safety-award.jpg',
+  contact: '/assets/projects/lng-pipeline.jpg',
+};
+
 /**
  * InnerHeroCanvas
  * 
- * Delivers clean, bold, mature, and minimalist background vector motion
- * tailored to each page topic without noise or visual clutter.
+ * Delivers full-bleed authentic industrial project photography paired with
+ * architectural scrims, technical CAD grid textures, and minimalist vector motion.
  */
-export default function InnerHeroCanvas({ variant = 'about', className = '' }) {
+export default function InnerHeroCanvas({ variant = 'about', className = '', image = null }) {
+  const bgImg = image || VARIANT_IMAGES[variant] || VARIANT_IMAGES.about;
+
   return (
     <div
       className={`absolute inset-0 pointer-events-none overflow-hidden select-none ${className}`}
       aria-hidden="true"
     >
-      {/* Soft Architectural Ambient Lighting */}
+      {/* 1. Authentic Industrial Background Photo (Clear, crisp, high-contrast) */}
+      <img
+        src={bgImg}
+        alt=""
+        width="1920"
+        height="1080"
+        className={`absolute inset-0 w-full h-full object-cover object-right sm:object-center pointer-events-none select-none transition-transform duration-700 ${
+          variant === 'partners' ? 'opacity-85 sm:opacity-95' : 'opacity-40 sm:opacity-65'
+        }`}
+        style={variant === 'partners' ? { filter: 'contrast(1.04) brightness(1.01)' } : { filter: 'contrast(1.14) saturate(1.25) brightness(1.02)' }}
+        loading="eager"
+      />
+
+      {/* 2. Directional Parchment Scrim: solid text clarity on left, crystal-clear engineering facility/logos on right */}
+      <div className={`absolute inset-0 ${
+        variant === 'partners'
+          ? 'bg-gradient-to-r from-[#FAF9F5] via-[#FAF9F5]/80 sm:via-[#FAF9F5]/40 to-transparent'
+          : 'bg-gradient-to-r from-[#FAF9F5] via-[#FAF9F5]/90 sm:via-[#FAF9F5]/70 to-[#FAF9F5]/30 sm:to-transparent'
+      }`} />
+      <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-[#FAF9F5] to-transparent" />
+
+      {/* 3. Subtle Technical CAD Blueprint Grid */}
+      <div 
+        className="absolute inset-0 opacity-40" 
+        style={{
+          backgroundImage: 'linear-gradient(to right, rgba(0,0,0,0.04) 1px, transparent 1px), linear-gradient(to bottom, rgba(0,0,0,0.04) 1px, transparent 1px)',
+          backgroundSize: '40px 40px'
+        }}
+      />
+
+      {/* 4. Soft Architectural Ambient Energy Glow */}
       <div className="absolute -top-40 right-10 w-[550px] h-[550px] bg-gradient-to-bl from-yellow/12 via-red/8 to-transparent rounded-full blur-[130px]" />
       <div className="absolute -bottom-40 left-10 w-[450px] h-[450px] bg-gradient-to-tr from-red/8 via-yellow/5 to-transparent rounded-full blur-[120px]" />
 
-      {/* Subtle Horizontal Architectural Horizon Datum */}
+      {/* 5. Precision Architectural Horizon Datum */}
       <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-line/80 to-transparent" />
 
-      {/* Bold, Minimalist Vector Engineering Motifs */}
+      {/* 6. Bold, Minimalist Vector Engineering Motifs */}
       {variant === 'about' && <AboutMotion />}
       {variant === 'services' && <ServicesMotion />}
       {variant === 'projects' && <ProjectsMotion />}

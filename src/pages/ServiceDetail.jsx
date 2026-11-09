@@ -41,6 +41,13 @@ export default function ServiceDetail() {
     consultancy: <GraduationCap className="w-8 h-8 text-red" />,
   };
 
+  const serviceHeroImages = {
+    electrical: '/assets/projects/switchgear-11kv.jpg',
+    mechanical: '/assets/projects/gas-piping-burner.jpg',
+    supply: '/assets/projects/control-panel.jpg',
+    consultancy: '/assets/projects/safety-award.jpg',
+  };
+
   const relatedProjectIds = {
     electrical: ['kano-30mw-panels', 'mamuda-11kv-cabling', 'switchgear-11kv', 'rmu-service'],
     mechanical: ['nbc-whrb', 'cooling-radiator-34mw', 'gas-piping-burner', 'generator-room-soundproofing'],
@@ -57,9 +64,12 @@ export default function ServiceDetail() {
   return (
     <div className="bg-white text-ink pt-16 sm:pt-20 lg:pt-24 pb-28 lg:pb-16">
       {/* 1. Header Banner */}
-      <section className="relative bg-cream border-b border-line py-12 sm:py-16 lg:py-24 overflow-hidden">
-        {/* Full-Bleed Kinetic Background Motion (Zero Text) */}
-        <InnerHeroCanvas variant="services" />
+      <section className="relative bg-[#FAF9F5] text-ink border-b border-line py-12 sm:py-16 lg:py-24 overflow-hidden">
+        {/* Full-Bleed Kinetic Background Motion with Authentic Project Photography */}
+        <InnerHeroCanvas
+          variant="services"
+          image={serviceHeroImages[slug] || '/assets/projects/switchgear-11kv.jpg'}
+        />
 
         <div className="relative z-10 max-w-container mx-auto px-5 lg:px-10">
           <div className="max-w-3xl">
@@ -72,7 +82,7 @@ export default function ServiceDetail() {
             </Link>
 
             <div className="flex items-center gap-4 mt-2">
-              <div className="p-3.5 bg-red-tint rounded-[6px] border border-red/20 shrink-0 shadow-sm">
+              <div className="p-3.5 bg-red-tint text-red rounded-[6px] border border-red/20 shrink-0 shadow-sm">
                 {serviceIcons[slug]}
               </div>
               <h1 className="text-3xl sm:text-5xl lg:text-[54px] font-extrabold text-black tracking-tight leading-tight">

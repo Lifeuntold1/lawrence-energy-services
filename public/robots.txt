@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://lesl-energy-website.vercel.app/sitemap.xml

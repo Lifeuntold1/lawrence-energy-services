@@ -1,0 +1,16 @@
+{
+  "name": "Lawrence Energy Services Limited (LESL)",
+  "description": "Turnkey electrical and mechanical engineering contractors for power plants, 11kV/33kV substations, industrial piping, and factory automation in Nigeria.",
+  "url": "https://lesl-energy-website.vercel.app",
+  "llms_txt": "https://lesl-energy-website.vercel.app/llms.txt",
+  "contact": {
+    "email": "info@lesl.ng",
+    "phone": "+2348033000000"
+  },
+  "services": [
+    "Power Generation Contracting",
+    "High Voltage Substations & Switchgear",
+    "Industrial Gas & Steam Piping",
+    "Testing, Commissioning & Technical Consultancy"
+  ]
+}
