@@ -45,15 +45,15 @@ export default function Quote() {
             <h1 className="text-4xl sm:text-6xl lg:text-[64px] font-extrabold text-black mt-4 tracking-tight leading-[1.08]">
               Request a Quote
             </h1>
-            <p className="text-lg sm:text-xl text-grey mt-4 max-w-2xl font-normal leading-relaxed">
+            <p className="text-lg sm:text-xl font-bold text-black mt-4 max-w-2xl leading-relaxed">
               Provide your technical requirements. Our engineering team prepares a tailored bill of quantities and project estimate.
             </p>
             <div className="flex flex-wrap items-center gap-4 mt-8 pt-6 border-t border-line text-xs font-mono text-grey">
               <span className="font-bold text-red">DETAILED ENGINEERING BILL OF QUANTITIES</span>
               <span>•</span>
-              <span>FAST 24 TO 48 HOUR ESTIMATE TURNAROUND</span>
+              <span className="font-bold text-black/85">FAST 24 TO 48 HOUR ESTIMATE TURNAROUND</span>
               <span>•</span>
-              <span>TRANSPARENT FIXED-PRICE CONTRACT TERMS</span>
+              <span className="font-bold text-black/85">TRANSPARENT FIXED-PRICE CONTRACT TERMS</span>
             </div>
           </div>
         </div>

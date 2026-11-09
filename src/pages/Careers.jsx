@@ -23,15 +23,15 @@ export default function Careers() {
             <h1 className="text-4xl sm:text-6xl lg:text-[64px] font-extrabold text-black mt-4 tracking-tight leading-[1.08]">
               Careers at LESL
             </h1>
-            <p className="text-lg sm:text-xl text-grey mt-4 max-w-2xl font-normal leading-relaxed">
+            <p className="text-lg sm:text-xl font-bold text-black mt-4 max-w-2xl leading-relaxed">
               {content.careers.body}
             </p>
             <div className="flex flex-wrap items-center gap-4 mt-8 pt-6 border-t border-line text-xs font-mono text-grey">
               <span className="font-bold text-red">COREN &amp; NSE ACCREDITED PROJECTS</span>
               <span>•</span>
-              <span>ZERO-COMPROMISE WORK SAFETY CULTURE</span>
+              <span className="font-bold text-black/85">ZERO-COMPROMISE WORK SAFETY CULTURE</span>
               <span>•</span>
-              <span>MERIT-BASED PROFESSIONAL GROWTH</span>
+              <span className="font-bold text-black/85">MERIT-BASED PROFESSIONAL GROWTH</span>
             </div>
           </div>
         </div>

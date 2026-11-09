@@ -33,15 +33,15 @@ export default function Partners() {
             <h1 className="text-4xl sm:text-6xl lg:text-[64px] font-extrabold text-black mt-4 tracking-tight leading-[1.08]">
               Clients &amp; Partners
             </h1>
-            <p className="text-lg sm:text-xl text-grey mt-4 max-w-2xl font-normal leading-relaxed">
+            <p className="text-lg sm:text-xl font-bold text-black mt-4 max-w-2xl leading-relaxed">
               Long-standing collaborations with multinational manufacturers and power infrastructure providers across West Africa.
             </p>
             <div className="flex flex-wrap items-center gap-4 mt-8 pt-6 border-t border-line text-xs font-mono text-grey">
               <span className="font-bold text-red">TRUSTED CLARKE ENERGY &amp; CUMMINS PARTNER</span>
               <span>•</span>
-              <span>TRUSTED BY CUMMINS WEST AFRICA, CLARKE ENERGY LTD &amp; 7UP BOTTLING COMPANY</span>
+              <span className="font-bold text-black/85">TRUSTED BY CUMMINS WEST AFRICA, CLARKE ENERGY LTD &amp; 7UP BOTTLING COMPANY</span>
               <span>•</span>
-              <span>DECADE-LONG CLIENT RETENTION</span>
+              <span className="font-bold text-black/85">DECADE-LONG CLIENT RETENTION</span>
             </div>
           </div>
         </div>
@@ -111,11 +111,11 @@ export default function Partners() {
               className="bg-white border-t-4 border-t-red border border-line p-8 sm:p-10 rounded-[6px] shadow-sm grid grid-cols-1 lg:grid-cols-12 gap-8 items-start"
             >
               <div className="lg:col-span-4 flex flex-col gap-4">
-                <div className="h-16 flex items-center">
+                <div className="h-20 sm:h-24 flex items-center">
                   <img
                     src={`/assets/client-logos/${partner.logo}`}
                     alt={partner.name}
-                    className="max-h-12 max-w-[180px] object-contain"
+                    className="max-h-16 sm:max-h-20 max-w-[220px] sm:max-w-[260px] object-contain"
                     loading="lazy"
                   />
                 </div>
@@ -166,17 +166,17 @@ export default function Partners() {
             </p>
           </div>
 
-          {/* Logo Grid */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+          {/* Logo Grid - Enlarged & High Visibility */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
             {clientsWithLogos.map((client, idx) => (
               <div
                 key={idx}
-                className="logo-tile bg-white border border-line rounded-[6px] p-5 h-28 flex flex-col items-center justify-center text-center shadow-sm hover:shadow transition-all group"
+                className="logo-tile bg-white border border-line rounded-[8px] p-6 sm:p-8 h-36 sm:h-44 flex flex-col items-center justify-center text-center shadow-sm hover:shadow-md hover:border-red/40 transition-all group"
               >
                 <img
                   src={`/${client.logo}`}
                   alt={client.name}
-                  className="max-h-12 max-w-[120px] object-contain"
+                  className="max-h-20 sm:max-h-24 max-w-[170px] sm:max-w-[210px] object-contain transition-transform duration-300 group-hover:scale-105"
                   loading="lazy"
                 />
               </div>

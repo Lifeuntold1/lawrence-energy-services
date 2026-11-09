@@ -80,15 +80,15 @@ export default function Book() {
             <h1 className="text-4xl sm:text-6xl lg:text-[64px] font-extrabold text-black mt-4 tracking-tight leading-[1.08]">
               Book a Technical Consultation
             </h1>
-            <p className="text-lg sm:text-xl text-grey mt-4 max-w-2xl font-normal leading-relaxed">
+            <p className="text-lg sm:text-xl font-bold text-black mt-4 max-w-2xl leading-relaxed">
               Schedule a 30 to 60 minute briefing with the General Manager or designated lead project engineer.
             </p>
             <div className="flex flex-wrap items-center gap-4 mt-8 pt-6 border-t border-line text-xs font-mono text-grey">
               <span className="font-bold text-red">DIRECT ONE-ON-ONE CHIEF ENGINEER BRIEFING</span>
               <span>•</span>
-              <span>CUSTOM POWER &amp; PIPING ARCHITECTURE REVIEW</span>
+              <span className="font-bold text-black/85">CUSTOM POWER &amp; PIPING ARCHITECTURE REVIEW</span>
               <span>•</span>
-              <span>ZERO CONSULTATION OBLIGATION</span>
+              <span className="font-bold text-black/85">ZERO CONSULTATION OBLIGATION</span>
             </div>
           </div>
         </div>

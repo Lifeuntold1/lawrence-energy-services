@@ -24,7 +24,7 @@ export default function InnerHeroCanvas({ variant = 'about', className = '', ima
       className={`absolute inset-0 pointer-events-none overflow-hidden select-none ${className}`}
       aria-hidden="true"
     >
-      {/* 1. Authentic Industrial Background Photo (Clear, crisp, high-contrast) */}
+      {/* 1. Authentic Industrial Background Photo (Soft architectural ambience, faded behind text) */}
       <img
         src={bgImg}
         alt=""
@@ -32,36 +32,32 @@ export default function InnerHeroCanvas({ variant = 'about', className = '', ima
         height="1080"
         className={`absolute inset-0 w-full h-full object-cover pointer-events-none select-none transition-transform duration-700 ${
           variant === 'partners'
-            ? 'object-right sm:object-center opacity-85 sm:opacity-95'
+            ? 'object-right sm:object-center opacity-30 sm:opacity-45'
             : variant === 'contact'
-            ? 'object-right sm:object-[72%_25%] opacity-60 sm:opacity-80'
+            ? 'object-right sm:object-[72%_25%] opacity-25 sm:opacity-35'
             : variant === 'services'
-            ? 'object-right sm:object-center opacity-65 sm:opacity-85'
-            : 'object-center opacity-50 sm:opacity-75'
+            ? 'object-right sm:object-center opacity-25 sm:opacity-35'
+            : 'object-center opacity-25 sm:opacity-35'
         }`}
         style={
           variant === 'partners'
-            ? { filter: 'contrast(1.04) brightness(1.01)' }
+            ? { filter: 'contrast(1.02) brightness(1.02)' }
             : variant === 'contact'
-            ? { filter: 'contrast(1.08) saturate(1.15) brightness(1.02)' }
+            ? { filter: 'contrast(1.05) saturate(1.1) brightness(1.02)' }
             : variant === 'services'
-            ? { filter: 'contrast(1.12) saturate(1.2) brightness(1.03)' }
-            : { filter: 'contrast(1.14) saturate(1.25) brightness(1.02)' }
+            ? { filter: 'contrast(1.05) saturate(1.1) brightness(1.02)' }
+            : { filter: 'contrast(1.05) saturate(1.1) brightness(1.02)' }
         }
         loading="eager"
       />
 
-      {/* 2. Directional Parchment Scrim: solid text clarity on left, crystal-clear engineering facility/logos on right */}
+      {/* 2. Directional Parchment Scrim: solid text clarity on left, soft engineering silhouette on right */}
       <div className={`absolute inset-0 ${
         variant === 'partners'
-          ? 'bg-gradient-to-r from-[#FAF9F5] via-[#FAF9F5]/80 sm:via-[#FAF9F5]/40 to-transparent'
-          : variant === 'contact'
-          ? 'bg-gradient-to-r from-[#FAF9F5] via-[#FAF9F5]/85 sm:via-[#FAF9F5]/55 to-transparent'
-          : variant === 'services'
-          ? 'bg-gradient-to-r from-[#FAF9F5] via-[#FAF9F5]/80 sm:via-[#FAF9F5]/45 to-transparent'
-          : 'bg-gradient-to-r from-[#FAF9F5] via-[#FAF9F5]/88 sm:via-[#FAF9F5]/65 to-[#FAF9F5]/20 sm:to-transparent'
+          ? 'bg-gradient-to-r from-[#FAF9F5] via-[#FAF9F5]/90 sm:via-[#FAF9F5]/70 to-[#FAF9F5]/25 sm:to-transparent'
+          : 'bg-gradient-to-r from-[#FAF9F5] via-[#FAF9F5]/95 sm:via-[#FAF9F5]/85 to-[#FAF9F5]/40 sm:to-[#FAF9F5]/10'
       }`} />
-      <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-[#FAF9F5] to-transparent" />
+      <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#FAF9F5] via-[#FAF9F5]/80 to-transparent" />
 
       {/* 3. Subtle Technical CAD Blueprint Grid */}
       <div 

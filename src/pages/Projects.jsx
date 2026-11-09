@@ -58,15 +58,15 @@ export default function Projects() {
             <h1 className="text-4xl sm:text-6xl lg:text-[64px] font-extrabold text-black mt-4 tracking-tight leading-[1.08]">
               Our Projects
             </h1>
-            <p className="text-lg sm:text-xl text-grey mt-4 max-w-2xl font-normal leading-relaxed">
+            <p className="text-lg sm:text-xl font-bold text-black mt-4 max-w-2xl leading-relaxed">
               Real work, in real places. High-voltage installations, synchronised gas generation, industrial piping, and factory automation across Nigeria.
             </p>
             <div className="flex flex-wrap items-center gap-4 mt-8 pt-6 border-t border-line text-xs font-mono text-grey">
               <span className="font-bold text-red">MULTI-MEGAWATT CAPACITY</span>
               <span>•</span>
-              <span>RAPID NATIONWIDE MOBILIZATION</span>
+              <span className="font-bold text-black/85">RAPID NATIONWIDE MOBILIZATION</span>
               <span>•</span>
-              <span>100% ON-TIME COMMISSIONING RECORD</span>
+              <span className="font-bold text-black/85">100% ON-TIME COMMISSIONING RECORD</span>
             </div>
           </div>
         </div>

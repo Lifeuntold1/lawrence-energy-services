@@ -51,15 +51,15 @@ export default function Services() {
             <h1 className="text-4xl sm:text-6xl lg:text-[64px] font-extrabold text-black mt-4 tracking-tight leading-[1.08]">
               Our Services
             </h1>
-            <p className="text-lg sm:text-xl text-grey mt-4 max-w-2xl font-normal leading-relaxed">
+            <p className="text-lg sm:text-xl font-bold text-black mt-4 max-w-2xl leading-relaxed">
               Four balanced engineering disciplines covering heavy industrial power plants, mechanical infrastructure, equipment procurement, and professional consultancy.
             </p>
             <div className="flex flex-wrap items-center gap-4 mt-8 pt-6 border-t border-line text-xs font-mono text-grey">
               <span className="font-bold text-red">TURNKEY ENGINEERING &amp; CONSTRUCTION</span>
               <span>•</span>
-              <span>OVER 400 MW POWER COMMISSIONED</span>
+              <span className="font-bold text-black/85">OVER 400 MW POWER COMMISSIONED</span>
               <span>•</span>
-              <span>DIRECT MANUFACTURER PARTS &amp; WARRANTIES</span>
+              <span className="font-bold text-black/85">DIRECT MANUFACTURER PARTS &amp; WARRANTIES</span>
             </div>
           </div>
         </div>

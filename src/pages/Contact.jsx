@@ -42,15 +42,15 @@ export default function Contact() {
             <h1 className="text-4xl sm:text-6xl lg:text-[64px] font-extrabold text-black mt-4 tracking-tight leading-[1.08]">
               Contact LESL
             </h1>
-            <p className="text-lg sm:text-xl text-grey mt-4 max-w-2xl font-normal leading-relaxed">
+            <p className="text-lg sm:text-xl font-bold text-black mt-4 max-w-2xl leading-relaxed">
               Reach our engineering operations desk in Ikeja, Lagos. We reply to all inquiries within 24 hours.
             </p>
             <div className="flex flex-wrap items-center gap-4 mt-8 pt-6 border-t border-line text-xs font-mono text-grey">
               <span className="font-bold text-red">GUARANTEED 24-HOUR PROPOSAL DISPATCH</span>
               <span>•</span>
-              <span>DIRECT ACCESS TO LEAD PROJECT ENGINEERS</span>
+              <span className="font-bold text-black/85">DIRECT ACCESS TO LEAD PROJECT ENGINEERS</span>
               <span>•</span>
-              <span>ON-SITE INDUSTRIAL AUDITS NATIONWIDE</span>
+              <span className="font-bold text-black/85">ON-SITE INDUSTRIAL AUDITS NATIONWIDE</span>
             </div>
           </div>
         </div>

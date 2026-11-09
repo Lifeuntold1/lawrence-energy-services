@@ -327,15 +327,15 @@ export default function Gallery() {
             <h1 className="text-4xl sm:text-6xl lg:text-[64px] font-extrabold text-black mt-4 tracking-tight leading-[1.08]">
               Engineering in the Field
             </h1>
-            <p className="text-lg sm:text-xl text-grey mt-4 max-w-2xl font-normal leading-relaxed">
+            <p className="text-lg sm:text-xl font-bold text-black mt-4 max-w-2xl leading-relaxed">
               A photographic record of power plants, high-voltage substations, industrial piping, and factory installations delivered across Nigeria.
             </p>
             <div className="flex flex-wrap items-center gap-4 mt-8 pt-6 border-t border-line text-xs font-mono text-grey">
               <span className="font-bold text-red">UNCOMPROMISED BUILD QUALITY</span>
               <span>•</span>
-              <span>HEAVY SUBSTATIONS &amp; GENERATION ASSETS</span>
+              <span className="font-bold text-black/85">HEAVY SUBSTATIONS &amp; GENERATION ASSETS</span>
               <span>•</span>
-              <span>100% IN-HOUSE DIRECT WORKMANSHIP</span>
+              <span className="font-bold text-black/85">100% IN-HOUSE DIRECT WORKMANSHIP</span>
             </div>
           </div>
         </div>
