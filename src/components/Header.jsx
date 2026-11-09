@@ -197,6 +197,7 @@ export default function Header() {
               alt="LESL Logo"
               width="160"
               height="48"
+              style={{ aspectRatio: '160 / 48' }}
               className="h-11 sm:h-13 lg:h-14 w-auto object-contain transition-all duration-200"
             />
           </Link>

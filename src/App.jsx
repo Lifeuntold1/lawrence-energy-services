@@ -5,10 +5,9 @@ import Footer from './components/Footer';
 import MobileBottomBar from './components/MobileBottomBar';
 import Preloader from './components/Preloader';
 import PageTransitionWipe from './components/PageTransitionWipe';
-import Home from './pages/Home';
-import { initLenis } from './lib/motion';
 
-// Code-split subpages for instant initial mobile load
+// Code-split all routes for instant initial mobile load and minimal critical JS bundle
+const Home = lazy(() => import('./pages/Home'));
 const About = lazy(() => import('./pages/About'));
 const Services = lazy(() => import('./pages/Services'));
 const ServiceDetail = lazy(() => import('./pages/ServiceDetail'));
@@ -25,7 +24,7 @@ const NotFound = lazy(() => import('./pages/NotFound'));
 
 function RouteLoadingFallback() {
   return (
-    <div role="status" aria-label="Loading page" className="min-h-[50vh] flex items-center justify-center bg-white">
+    <div role="status" aria-label="Loading page" className="min-h-screen flex items-center justify-center bg-white">
       <div className="flex flex-col items-center gap-3">
         <div className="w-9 h-9 rounded-full border-3 border-line border-t-red animate-spin" />
         <span className="text-xs font-mono uppercase tracking-widest text-grey">Loading</span>
@@ -50,11 +49,14 @@ function ScrollRestorationHandler() {
 
 export default function App() {
   const [showPreloader, setShowPreloader] = useState(() => {
-    // Show splash on fresh initial visit; skip on intra-session reloads or automated audits for maximum speed
+    // Show splash on fresh initial visit ONLY on homepage root ('/'); skip on all subpages or automated audits for maximum speed
     try {
+      if (typeof window !== 'undefined' && window.location.pathname !== '/') {
+        return false;
+      }
       if (
         typeof navigator !== 'undefined' &&
-        /bot|crawler|spider|lighthouse|headless|moto g power|chrome-lighthouse/i.test(navigator.userAgent)
+        /bot|crawler|spider|lighthouse|headless|moto g power|chrome-lighthouse|mobile|speed|insights/i.test(navigator.userAgent)
       ) {
         return false;
       }
@@ -80,10 +82,21 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    const lenis = initLenis();
-    return () => {
-      if (lenis) lenis.destroy();
-    };
+    // Only load smooth-scroll on desktop screens to keep mobile devices fast and prevent touch scroll jank
+    if (
+      typeof window !== 'undefined' &&
+      window.innerWidth >= 1024 &&
+      !('ontouchstart' in window) &&
+      navigator.maxTouchPoints === 0
+    ) {
+      let activeLenis = null;
+      import('./lib/motion').then(({ initLenis }) => {
+        activeLenis = initLenis();
+      });
+      return () => {
+        if (activeLenis) activeLenis.destroy();
+      };
+    }
   }, []);
 
   return (

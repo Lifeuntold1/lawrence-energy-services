@@ -17,7 +17,8 @@ export default function Footer() {
                 alt="LESL Logo"
                 width="140"
                 height="40"
-                className="h-10 w-auto object-contain"
+                style={{ aspectRatio: '140 / 40' }}
+                className="h-10 w-[140px] max-w-full object-contain shrink-0"
               />
             </Link>
             <p className="text-white/70 text-sm leading-relaxed max-w-sm">
