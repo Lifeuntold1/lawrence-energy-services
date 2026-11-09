@@ -7,7 +7,7 @@ const VARIANT_IMAGES = {
   gallery: '/assets/projects/kano-30mw-panels.jpg',
   partners: '/assets/projects/partners-logo-grid.jpg',
   careers: '/assets/projects/safety-award.jpg',
-  contact: '/assets/projects/lng-pipeline.jpg',
+  contact: '/assets/projects/contact-hero.jpg',
 };
 
 /**
@@ -30,10 +30,20 @@ export default function InnerHeroCanvas({ variant = 'about', className = '', ima
         alt=""
         width="1920"
         height="1080"
-        className={`absolute inset-0 w-full h-full object-cover object-right sm:object-center pointer-events-none select-none transition-transform duration-700 ${
-          variant === 'partners' ? 'opacity-85 sm:opacity-95' : 'opacity-40 sm:opacity-65'
+        className={`absolute inset-0 w-full h-full object-cover pointer-events-none select-none transition-transform duration-700 ${
+          variant === 'partners'
+            ? 'object-right sm:object-center opacity-85 sm:opacity-95'
+            : variant === 'contact'
+            ? 'object-right sm:object-[72%_25%] opacity-55 sm:opacity-75'
+            : 'object-center opacity-40 sm:opacity-65'
         }`}
-        style={variant === 'partners' ? { filter: 'contrast(1.04) brightness(1.01)' } : { filter: 'contrast(1.14) saturate(1.25) brightness(1.02)' }}
+        style={
+          variant === 'partners'
+            ? { filter: 'contrast(1.04) brightness(1.01)' }
+            : variant === 'contact'
+            ? { filter: 'contrast(1.08) saturate(1.15) brightness(1.02)' }
+            : { filter: 'contrast(1.14) saturate(1.25) brightness(1.02)' }
+        }
         loading="eager"
       />
 
@@ -41,6 +51,8 @@ export default function InnerHeroCanvas({ variant = 'about', className = '', ima
       <div className={`absolute inset-0 ${
         variant === 'partners'
           ? 'bg-gradient-to-r from-[#FAF9F5] via-[#FAF9F5]/80 sm:via-[#FAF9F5]/40 to-transparent'
+          : variant === 'contact'
+          ? 'bg-gradient-to-r from-[#FAF9F5] via-[#FAF9F5]/85 sm:via-[#FAF9F5]/55 to-transparent'
           : 'bg-gradient-to-r from-[#FAF9F5] via-[#FAF9F5]/90 sm:via-[#FAF9F5]/70 to-[#FAF9F5]/30 sm:to-transparent'
       }`} />
       <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-[#FAF9F5] to-transparent" />
