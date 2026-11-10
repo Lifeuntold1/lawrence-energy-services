@@ -92,26 +92,26 @@ export default function InnerHeroCanvas({ variant = 'about', className = '', ima
         />
       </picture>
 
-      {/* 2. Directional Soft-Blur (In-place GPU blur exclusively under text column; 0% blur on Contact, Partners, and right flank) */}
+      {/* 2. Directional Progressive Soft-Blur (0% blur on right flank, increases gradually toward text; 0% blur on Contact & Partners) */}
       {variant !== 'partners' && variant !== 'contact' && (
         <div
           className="mask-hero-blur absolute inset-0 pointer-events-none"
           style={{
-            backdropFilter: 'blur(14px)',
-            WebkitBackdropFilter: 'blur(14px)',
+            backdropFilter: 'blur(8px)',
+            WebkitBackdropFilter: 'blur(8px)',
             backgroundColor: 'rgba(250, 249, 245, 0.01)',
           }}
         />
       )}
 
-      {/* 3. Directional Parchment Scrim: solid text clarity on left, completely transparent on right */}
+      {/* 3. Directional Parchment Scrim: solid text clarity on left, creamy progressive transition, completely transparent on right */}
       <div
         className={`absolute inset-0 pointer-events-none ${
           variant === 'partners'
             ? 'bg-gradient-to-r from-[#FAF9F5] via-[#FAF9F5]/90 sm:via-[#FAF9F5]/70 to-[#FAF9F5]/25 sm:to-transparent'
             : variant === 'contact'
             ? 'bg-[linear-gradient(to_bottom,#FAF9F5_0%,#FAF9F5_35%,rgba(250,249,245,0.85)_65%,transparent_90%)] sm:bg-[linear-gradient(to_right,#FAF9F5_0%,#FAF9F5_32%,rgba(250,249,245,0.88)_50%,rgba(250,249,245,0.30)_68%,transparent_82%)]'
-            : 'bg-[linear-gradient(to_bottom,#FAF9F5_0%,#FAF9F5_45%,rgba(250,249,245,0.95)_65%,rgba(250,249,245,0.60)_82%,transparent_96%)] sm:bg-[linear-gradient(to_right,#FAF9F5_0%,#FAF9F5_28%,rgba(250,249,245,0.94)_44%,rgba(250,249,245,0.78)_58%,rgba(250,249,245,0.25)_68%,transparent_78%)]'
+            : 'bg-[linear-gradient(to_bottom,#FAF9F5_0%,#FAF9F5_45%,rgba(250,249,245,0.94)_65%,rgba(250,249,245,0.55)_82%,transparent_96%)] sm:bg-[linear-gradient(to_right,#FAF9F5_0%,#FAF9F5_24%,rgba(250,249,245,0.92)_40%,rgba(250,249,245,0.72)_54%,rgba(250,249,245,0.20)_66%,transparent_76%)]'
         }`}
       />
       <div className="absolute inset-x-0 bottom-0 h-6 bg-gradient-to-t from-[#FAF9F5]/60 to-transparent pointer-events-none" />
