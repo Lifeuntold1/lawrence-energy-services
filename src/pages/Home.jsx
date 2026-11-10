@@ -625,11 +625,6 @@ export default function Home() {
                     className="w-full h-full object-cover object-top transition-transform duration-300 group-hover:scale-105"
                     loading="lazy"
                   />
-                  {idx === 0 && (
-                    <div className="absolute top-2 left-2 bg-yellow text-black text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-[4px] shadow">
-                      Chairman & Managing Director
-                    </div>
-                  )}
                 </div>
 
                 <div className="p-4">

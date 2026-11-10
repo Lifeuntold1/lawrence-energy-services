@@ -77,48 +77,44 @@ export default function InnerHeroCanvas({ variant = 'about', className = '', ima
           variant === 'partners'
             ? 'opacity-30 sm:opacity-45 bg-[position:center_center]'
             : variant === 'contact'
-            ? 'opacity-65 sm:opacity-85 bg-[position:55%_22%] sm:bg-[position:72%_25%]'
-            : 'opacity-65 sm:opacity-85 bg-[position:center_center]'
+            ? 'opacity-95 sm:opacity-100 bg-[position:55%_22%] sm:bg-[position:72%_25%]'
+            : 'opacity-95 sm:opacity-100 bg-[position:center_center]'
         }`}
         style={{
           backgroundImage: `url("${bgWebp}"), url("${bgJpg}")`,
           filter:
             variant === 'partners'
               ? 'contrast(1.02) brightness(1.02)'
-              : 'contrast(1.04) brightness(1.04) saturate(1.05)',
+              : 'contrast(1.08) brightness(1.08) saturate(1.10)',
         }}
       />
 
-      {/* 2. Directional Parchment Scrim: solid text clarity on left, bright and unblurred authentic photography on right */}
+      {/* 2. Directional Parchment Scrim: solid text clarity on left, completely transparent & bright on right */}
       <div
         className={`absolute inset-0 ${
           variant === 'partners'
             ? 'bg-gradient-to-r from-[#FAF9F5] via-[#FAF9F5]/90 sm:via-[#FAF9F5]/70 to-[#FAF9F5]/25 sm:to-transparent'
-            : 'bg-gradient-to-r from-[#FAF9F5] via-[#FAF9F5]/95 40% sm:via-[#FAF9F5]/80 50% to-transparent'
+            : 'bg-[linear-gradient(to_right,#FAF9F5_0%,#FAF9F5_22%,rgba(250,249,245,0.85)_42%,transparent_62%)] sm:bg-[linear-gradient(to_right,#FAF9F5_0%,#FAF9F5_18%,rgba(250,249,245,0.85)_28%,rgba(250,249,245,0.35)_38%,transparent_48%)]'
         }`}
       />
-      <div className="absolute inset-x-0 bottom-0 h-14 bg-gradient-to-t from-[#FAF9F5] to-transparent" />
+      <div className="absolute inset-x-0 bottom-0 h-8 bg-gradient-to-t from-[#FAF9F5]/70 to-transparent" />
 
-      {/* 3. Subtle Technical CAD Blueprint Grid */}
+      {/* 3. Subtle Technical CAD Blueprint Grid (Masked to text column only so photography remains razor sharp) */}
       <div 
-        className="absolute inset-0 opacity-40" 
+        className="absolute inset-0 opacity-25 pointer-events-none" 
         style={{
           backgroundImage: 'linear-gradient(to right, rgba(0,0,0,0.04) 1px, transparent 1px), linear-gradient(to bottom, rgba(0,0,0,0.04) 1px, transparent 1px)',
-          backgroundSize: '40px 40px'
+          backgroundSize: '40px 40px',
+          maskImage: 'linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 18%, transparent 38%)',
+          WebkitMaskImage: 'linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 18%, transparent 38%)'
         }}
       />
 
-      {/* 4. Soft Architectural Ambient Energy Glow (Hardware-accelerated radial gradient without costly blur filters) */}
-      <div
-        className="absolute -top-32 right-0 w-[480px] h-[480px] pointer-events-none"
-        style={{
-          background: 'radial-gradient(circle, rgba(255,245,0,0.08) 0%, rgba(217,37,28,0.04) 40%, transparent 70%)',
-        }}
-      />
+      {/* 4. Soft Architectural Ambient Energy Glow (Subtle bottom-left baseline anchor) */}
       <div
         className="absolute -bottom-32 left-0 w-[420px] h-[420px] pointer-events-none"
         style={{
-          background: 'radial-gradient(circle, rgba(217,37,28,0.05) 0%, rgba(255,245,0,0.03) 40%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(217,37,28,0.04) 0%, rgba(255,245,0,0.02) 40%, transparent 70%)',
         }}
       />
 

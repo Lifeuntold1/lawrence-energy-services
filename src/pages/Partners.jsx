@@ -171,19 +171,29 @@ export default function Partners() {
             {clientsWithLogos.map((client, idx) => (
               <div
                 key={idx}
-                className="logo-tile bg-white border border-line rounded-[8px] p-4 sm:p-6 h-36 sm:h-44 md:h-48 flex items-center justify-center text-center shadow-sm hover:shadow-md hover:border-red/40 transition-all group overflow-hidden"
+                className="logo-tile bg-white border border-line rounded-[8px] p-3 sm:p-4 md:p-5 h-36 sm:h-44 md:h-48 flex items-center justify-center text-center shadow-sm hover:shadow-md hover:border-red/40 transition-all group overflow-hidden"
               >
                 <img
                   src={`/${client.logo}`}
                   alt={client.name}
-                  className={`object-contain transition-transform duration-300 group-hover:scale-110 ${
+                  className={`object-contain transition-transform duration-300 group-hover:scale-115 ${
                     client.logo.includes('newbisco')
-                      ? 'w-[94%] max-h-20 sm:max-h-24 scale-110'
+                      ? 'w-[96%] max-h-24 sm:max-h-28 scale-130'
                       : client.logo.includes('metal-packaging')
-                      ? 'w-[92%] max-h-22 sm:max-h-26 scale-105'
-                      : client.logo.includes('primera') || client.logo.includes('tgi') || client.logo.includes('clarke')
-                      ? 'w-[88%] max-h-24 sm:max-h-28 scale-105'
-                      : 'w-auto h-auto max-h-24 sm:max-h-28 max-w-[85%] sm:max-w-[88%]'
+                      ? 'w-[94%] max-h-26 sm:max-h-30 scale-125'
+                      : client.logo.includes('tgi')
+                      ? 'w-[90%] max-h-26 sm:max-h-30 scale-125'
+                      : client.logo.includes('primera')
+                      ? 'w-[92%] max-h-26 sm:max-h-30 scale-120'
+                      : client.logo.includes('clarke')
+                      ? 'w-[94%] max-h-26 sm:max-h-30 scale-120'
+                      : client.logo.includes('dufil')
+                      ? 'w-[88%] max-h-28 sm:max-h-32 scale-120'
+                      : client.logo.includes('cummins')
+                      ? 'h-[80%] sm:h-[86%] max-h-28 sm:max-h-34 w-auto scale-115'
+                      : client.logo.includes('aspira') || client.logo.includes('mdv')
+                      ? 'h-[80%] sm:h-[86%] max-h-28 sm:max-h-34 w-auto scale-110'
+                      : 'w-auto h-auto max-h-28 sm:max-h-34 max-w-[88%] sm:max-w-[92%] scale-115'
                   }`}
                   loading="lazy"
                 />

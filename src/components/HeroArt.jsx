@@ -1034,109 +1034,134 @@ export default function HeroArt({ className = '', theme = 'light' }) {
               <rect x="744" y="774" width="12" height="6" rx="1" fill={colors.gearAccent} stroke={colors.gearDark} strokeWidth="1.2" />
             </g>
 
-            {/* Field Engineer Operator in Complete PPE (Dark Silhouette with High-Visibility Accents) */}
-            <g id="ppe-field-operator" transform="translate(775, 780)">
-              {/* Safety Hard Hat / Helmet (Safety Yellow with Peak) */}
+            {/* Field Engineer Operator in Complete PPE (Modeled on certified field engineer in jkimages.jpg) */}
+            <g id="ppe-field-operator" transform="translate(768, 765)">
+              {/* White Industrial Safety Helmet / Hard Hat (As in jkimages.jpg) */}
               <path
-                d="M 28 22 C 28 11 44 11 44 22 Z"
-                fill="#FFD700"
-                stroke={colors.gearDark}
-                strokeWidth="1.8"
-              />
-              {/* Helmet Brim & Chin Ridge */}
-              <path
-                d="M 24 23 Q 36 21 48 23"
-                fill="none"
-                stroke={colors.gearDark}
-                strokeWidth="2.2"
-                strokeLinecap="round"
-              />
-
-              {/* Head Silhouette in Dark Charcoal with Ear / Safety Profile */}
-              <circle cx="36" cy="28" r="9" fill={isLight ? "#111827" : "#0F172A"} stroke={colors.gearDark} strokeWidth="1.2" />
-              {/* Safety Eyewear / Goggles Profile */}
-              <rect x="27" y="25" width="8" height="4" rx="1.5" fill="#F59E0B" opacity="0.9" />
-
-              {/* Neck & Collar */}
-              <rect x="33" y="37" width="7" height="6" fill={isLight ? "#111827" : "#0F172A"} />
-
-              {/* Torso: Heavy-Duty Industrial Uniform with High-Visibility PPE Safety Vest */}
-              {/* Base Dark Garment */}
-              <path
-                d="M 25 43 L 48 43 L 52 82 L 20 82 Z"
-                fill={isLight ? "#1F2937" : "#0F172A"}
+                d="M 26 22 C 26 9 46 9 46 22 Z"
+                fill="#FFFFFF"
                 stroke={colors.gearDark}
                 strokeWidth="2"
               />
-              {/* High-Vis Safety Vest Overlay (Safety Yellow-Gold) */}
+              {/* Helmet Top Ventilation Ridge */}
               <path
-                d="M 26 43 L 47 43 L 50 78 L 22 78 Z"
-                fill="#FFD700"
-                opacity="0.95"
+                d="M 33 11 Q 36 8 39 11 L 39 20 L 33 20 Z"
+                fill="#E2E8F0"
+                stroke={colors.gearDark}
+                strokeWidth="1"
               />
-              {/* Silver / White Retro-Reflective Vest Stripes */}
-              <line x1="24" y1="58" x2="48" y2="58" stroke="#FFFFFF" strokeWidth="3" />
-              <line x1="23" y1="68" x2="49" y2="68" stroke="#FFFFFF" strokeWidth="3" />
-              <line x1="33" y1="43" x2="31" y2="78" stroke="#FFFFFF" strokeWidth="2.5" />
-              <line x1="41" y1="43" x2="43" y2="78" stroke="#FFFFFF" strokeWidth="2.5" />
-
-              {/* Left Arm: Extended toward the control panel console to operate switch */}
+              {/* Helmet Front Brim & Brow Protection */}
               <path
-                d="M 25 48 L 5 56 L -6 54"
+                d="M 22 23 Q 36 20 50 23"
                 fill="none"
-                stroke={isLight ? "#111827" : "#0F172A"}
+                stroke={colors.gearDark}
+                strokeWidth="2.5"
+                strokeLinecap="round"
+              />
+              {/* LESL Safety Red Dot Badge on Helmet */}
+              <circle cx="36" cy="16" r="2.2" fill={colors.summitBoltFill} />
+
+              {/* Head Silhouette in Dark Charcoal with Beard Profile */}
+              <circle cx="36" cy="28" r="9.5" fill={isLight ? "#111827" : "#0F172A"} stroke={colors.gearDark} strokeWidth="1.2" />
+              {/* Ear Detail */}
+              <circle cx="42" cy="29" r="2.2" fill={isLight ? "#1F2937" : "#1E293B"} />
+
+              {/* Orange Safety Glasses / Goggles (Exact signature from jkimages.jpg) */}
+              <rect x="25" y="24" width="10" height="5" rx="1.5" fill="#F97316" stroke="#EA580C" strokeWidth="0.8" />
+              <rect x="27" y="25" width="4" height="2" rx="0.5" fill="#FED7AA" opacity="0.8" />
+
+              {/* Neck & Work Collar */}
+              <rect x="33" y="37" width="8" height="7" fill={isLight ? "#111827" : "#0F172A"} />
+
+              {/* Torso: Industrial Work Coverall Jacket with Dual Neon-Lime Reflective Bands (As in jkimages.jpg) */}
+              {/* Base Navy/Dark Slate Heavy-Duty Garment */}
+              <path
+                d="M 23 44 L 50 44 L 54 84 L 18 84 Z"
+                fill={isLight ? "#1E293B" : "#0F172A"}
+                stroke={colors.gearDark}
+                strokeWidth="2.2"
+              />
+              {/* Upper Chest Grey Accent Panel */}
+              <path
+                d="M 25 44 L 49 44 L 50 56 L 23 56 Z"
+                fill={isLight ? "#64748B" : "#334155"}
+              />
+
+              {/* Dual Neon-Lime Reflective Safety Bands (Exact signature from jkimages.jpg) */}
+              {/* Band 1 across upper chest */}
+              <rect x="22" y="56" width="30" height="5" fill="#84CC16" stroke="#4D7C0F" strokeWidth="0.5" />
+              <line x1="22" y1="58.5" x2="52" y2="58.5" stroke="#FFFFFF" strokeWidth="1.5" />
+
+              {/* Band 2 across mid torso */}
+              <rect x="20" y="66" width="32" height="5" fill="#84CC16" stroke="#4D7C0F" strokeWidth="0.5" />
+              <line x1="20" y1="68.5" x2="52" y2="68.5" stroke="#FFFFFF" strokeWidth="1.5" />
+
+              {/* Vertical Radio / Tool Pocket on Chest */}
+              <rect x="38" y="47" width="8" height="8" rx="1" fill={isLight ? "#334155" : "#1E293B"} stroke="#84CC16" strokeWidth="0.8" />
+
+              {/* Left Arm: Operating Control Panel Breaker Switch */}
+              <path
+                d="M 24 49 L 3 58 L -9 55"
+                fill="none"
+                stroke={isLight ? "#1E293B" : "#0F172A"}
+                strokeWidth="5.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              {/* Neon Band on Left Sleeve */}
+              <line x1="9" y1="56" x2="14" y2="58" stroke="#84CC16" strokeWidth="4" />
+              {/* Work Glove Operating Console */}
+              <circle cx="-11" cy="55" r="5" fill="#D97706" stroke={colors.gearDark} strokeWidth="1.2" />
+
+              {/* Right Arm: Confident Stance at Side */}
+              <path
+                d="M 49 49 L 54 68 L 52 82"
+                fill="none"
+                stroke={isLight ? "#1E293B" : "#0F172A"}
                 strokeWidth="5"
                 strokeLinecap="round"
                 strokeLinejoin="round"
               />
-              {/* Left Hand: High-Grip Safety Work Glove touching panel */}
-              <circle cx="-8" cy="54" r="4.5" fill="#D97706" stroke={colors.gearDark} strokeWidth="1.2" />
+              {/* Neon Band on Right Sleeve */}
+              <line x1="51" y1="59" x2="54" y2="67" stroke="#84CC16" strokeWidth="3.5" />
+              <circle cx="52" cy="84" r="4.5" fill="#D97706" stroke={colors.gearDark} strokeWidth="1.2" />
 
-              {/* Right Arm: Resting at side */}
-              <path
-                d="M 48 48 L 52 66 L 50 78"
-                fill="none"
-                stroke={isLight ? "#111827" : "#0F172A"}
-                strokeWidth="4.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <circle cx="50" cy="80" r="4" fill="#D97706" stroke={colors.gearDark} strokeWidth="1" />
-
-              {/* Industrial Work Trousers (Dark Heavy Fabric) */}
+              {/* Industrial Work Trousers with Ankle Visibility Stripes */}
               {/* Left Leg */}
               <path
-                d="M 23 82 L 34 82 L 32 128 L 20 128 Z"
+                d="M 21 84 L 34 84 L 32 136 L 18 136 Z"
                 fill={isLight ? "#111827" : "#0A0E17"}
                 stroke={colors.gearDark}
-                strokeWidth="2"
+                strokeWidth="2.2"
               />
-              {/* Reflective Band on Left Trouser */}
-              <line x1="21" y1="116" x2="33" y2="116" stroke="#FFFFFF" strokeWidth="2" opacity="0.9" />
+              {/* Reflective Neon Ankle Band */}
+              <rect x="18" y="122" width="14" height="4" fill="#84CC16" />
+              <line x1="18" y1="124" x2="32" y2="124" stroke="#FFFFFF" strokeWidth="1.5" />
 
               {/* Right Leg */}
               <path
-                d="M 37 82 L 49 82 L 51 128 L 39 128 Z"
-                fill={isLight ? "#1F2937" : "#0F172A"}
+                d="M 37 84 L 51 84 L 53 136 L 39 136 Z"
+                fill={isLight ? "#1E293B" : "#0F172A"}
                 stroke={colors.gearDark}
-                strokeWidth="2"
+                strokeWidth="2.2"
               />
-              {/* Reflective Band on Right Trouser */}
-              <line x1="40" y1="116" x2="50" y2="116" stroke="#FFFFFF" strokeWidth="2" opacity="0.9" />
+              {/* Reflective Neon Ankle Band */}
+              <rect x="39" y="122" width="14" height="4" fill="#84CC16" />
+              <line x1="39" y1="124" x2="53" y2="124" stroke="#FFFFFF" strokeWidth="1.5" />
 
-              {/* Steel-Toe Safety Boots Standing on Skid Base */}
+              {/* Heavy-Duty Steel-Toe Safety Boots */}
               <path
-                d="M 17 128 L 33 128 L 33 138 L 13 138 Q 13 132 17 128 Z"
-                fill="#78350F"
+                d="M 15 136 L 33 136 L 33 147 L 11 147 Q 11 141 15 136 Z"
+                fill="#451A03"
                 stroke={colors.gearDark}
-                strokeWidth="2"
+                strokeWidth="2.2"
                 strokeLinejoin="round"
               />
               <path
-                d="M 38 128 L 52 128 L 54 138 L 36 138 Q 36 132 38 128 Z"
-                fill="#451A03"
+                d="M 38 136 L 55 136 L 57 147 L 36 147 Q 36 141 38 136 Z"
+                fill="#270F03"
                 stroke={colors.gearDark}
-                strokeWidth="2"
+                strokeWidth="2.2"
                 strokeLinejoin="round"
               />
             </g>
@@ -1310,6 +1335,14 @@ export default function HeroArt({ className = '', theme = 'light' }) {
           </g>
         )}
       </svg>
+
+      {/* Field Engineering Verification Floating Pill */}
+      <div className="absolute -bottom-2 left-4 hidden sm:flex items-center gap-2.5 px-3 py-1.5 rounded-full bg-white/95 border border-line shadow-sm backdrop-blur-md z-20 pointer-events-auto">
+        <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+        <span className="text-[10px] font-mono font-bold tracking-widest uppercase text-ink">
+          Field Operations • 100% PPE Compliant
+        </span>
+      </div>
 
       {/* Desktop-Only Hover Replay Icon Button (Hidden on Mobile) */}
       <div className="hidden lg:flex absolute bottom-3 right-3 items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
