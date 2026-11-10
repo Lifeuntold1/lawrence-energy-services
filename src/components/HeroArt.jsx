@@ -1336,14 +1336,6 @@ export default function HeroArt({ className = '', theme = 'light' }) {
         )}
       </svg>
 
-      {/* Field Engineering Verification Floating Pill */}
-      <div className="absolute -bottom-2 left-4 hidden sm:flex items-center gap-2.5 px-3 py-1.5 rounded-full bg-white/95 border border-line shadow-sm backdrop-blur-md z-20 pointer-events-auto">
-        <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-        <span className="text-[10px] font-mono font-bold tracking-widest uppercase text-ink">
-          Field Operations • 100% PPE Compliant
-        </span>
-      </div>
-
       {/* Desktop-Only Hover Replay Icon Button (Hidden on Mobile) */}
       <div className="hidden lg:flex absolute bottom-3 right-3 items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
         <button
