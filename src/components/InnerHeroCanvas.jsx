@@ -71,69 +71,52 @@ export default function InnerHeroCanvas({ variant = 'about', className = '', ima
       className={`absolute inset-0 pointer-events-none overflow-hidden select-none ${className}`}
       aria-hidden="true"
     >
-      {/* 1A. Authentic Base Sharp Cover Image (100% Quality, Natural Ratio, Bright & Vivid) */}
-      <div
-        className={`absolute inset-0 w-full h-full pointer-events-none select-none bg-no-repeat bg-cover transition-opacity duration-700 ${
-          variant === 'partners'
-            ? 'opacity-30 sm:opacity-45 bg-[position:center_center]'
-            : variant === 'contact'
-            ? 'opacity-95 sm:opacity-100 bg-[position:55%_22%] sm:bg-[position:72%_25%]'
-            : 'opacity-95 sm:opacity-100 bg-[position:center_center]'
-        }`}
-        style={{
-          backgroundImage: `url("${bgWebp}"), url("${bgJpg}")`,
-          filter:
+      {/* 1. Authentic Base Cover Image (Full 4K/3K Resolution, Natural Saturation, Zero Distortion) */}
+      <picture className="absolute inset-0 w-full h-full pointer-events-none select-none">
+        <source srcSet={bgWebp} type="image/webp" />
+        <img
+          src={bgJpg}
+          alt=""
+          loading="eager"
+          decoding="async"
+          className={`w-full h-full object-cover transition-opacity duration-700 ${
             variant === 'partners'
-              ? 'contrast(1.02) brightness(1.02)'
-              : 'contrast(1.06) brightness(1.06) saturate(1.08)',
-        }}
-      />
-
-      {/* 1B. Directional Soft-Blurred Image Layer (Only active under text column, softens high-contrast equipment details) */}
-      {variant !== 'partners' && (
-        <div
-          className={`mask-hero-blur absolute inset-0 w-full h-full pointer-events-none select-none bg-no-repeat bg-cover scale-105 ${
-            variant === 'contact'
-              ? 'bg-[position:55%_22%] sm:bg-[position:72%_25%]'
-              : 'bg-[position:center_center]'
+              ? 'opacity-35 sm:opacity-50 object-center'
+              : variant === 'contact'
+              ? 'opacity-100 object-[55%_22%] sm:object-[72%_25%]'
+              : 'opacity-100 object-center'
           }`}
           style={{
-            backgroundImage: `url("${bgWebp}"), url("${bgJpg}")`,
-            filter: 'blur(16px) contrast(1.04) brightness(1.02) saturate(1.06)',
+            imageRendering: 'auto',
+          }}
+        />
+      </picture>
+
+      {/* 2. Directional Soft-Blur (In-place GPU blur exclusively under text column; 0% blur on Contact, Partners, and right flank) */}
+      {variant !== 'partners' && variant !== 'contact' && (
+        <div
+          className="mask-hero-blur absolute inset-0 pointer-events-none"
+          style={{
+            backdropFilter: 'blur(14px)',
+            WebkitBackdropFilter: 'blur(14px)',
+            backgroundColor: 'rgba(250, 249, 245, 0.01)',
           }}
         />
       )}
 
-      {/* 2. Directional Parchment Scrim: solid legibility on left, gentle transition across text zone, 100% transparent on right */}
+      {/* 3. Directional Parchment Scrim: solid text clarity on left, completely transparent on right */}
       <div
-        className={`absolute inset-0 ${
+        className={`absolute inset-0 pointer-events-none ${
           variant === 'partners'
             ? 'bg-gradient-to-r from-[#FAF9F5] via-[#FAF9F5]/90 sm:via-[#FAF9F5]/70 to-[#FAF9F5]/25 sm:to-transparent'
-            : 'bg-[linear-gradient(to_bottom,#FAF9F5_0%,#FAF9F5_45%,rgba(250,249,245,0.95)_65%,rgba(250,249,245,0.60)_82%,transparent_96%)] sm:bg-[linear-gradient(to_right,#FAF9F5_0%,#FAF9F5_28%,rgba(250,249,245,0.95)_44%,rgba(250,249,245,0.82)_58%,rgba(250,249,245,0.30)_70%,transparent_80%)]'
+            : variant === 'contact'
+            ? 'bg-[linear-gradient(to_bottom,#FAF9F5_0%,#FAF9F5_35%,rgba(250,249,245,0.85)_65%,transparent_90%)] sm:bg-[linear-gradient(to_right,#FAF9F5_0%,#FAF9F5_32%,rgba(250,249,245,0.88)_50%,rgba(250,249,245,0.30)_68%,transparent_82%)]'
+            : 'bg-[linear-gradient(to_bottom,#FAF9F5_0%,#FAF9F5_45%,rgba(250,249,245,0.95)_65%,rgba(250,249,245,0.60)_82%,transparent_96%)] sm:bg-[linear-gradient(to_right,#FAF9F5_0%,#FAF9F5_28%,rgba(250,249,245,0.94)_44%,rgba(250,249,245,0.78)_58%,rgba(250,249,245,0.25)_68%,transparent_78%)]'
         }`}
       />
-      <div className="absolute inset-x-0 bottom-0 h-8 bg-gradient-to-t from-[#FAF9F5]/70 to-transparent" />
+      <div className="absolute inset-x-0 bottom-0 h-6 bg-gradient-to-t from-[#FAF9F5]/60 to-transparent pointer-events-none" />
 
-      {/* 3. Subtle Technical CAD Blueprint Grid (Masked to text column only so photography remains razor sharp) */}
-      <div 
-        className="absolute inset-0 opacity-20 pointer-events-none" 
-        style={{
-          backgroundImage: 'linear-gradient(to right, rgba(0,0,0,0.04) 1px, transparent 1px), linear-gradient(to bottom, rgba(0,0,0,0.04) 1px, transparent 1px)',
-          backgroundSize: '40px 40px',
-          maskImage: 'linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 18%, transparent 38%)',
-          WebkitMaskImage: 'linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 18%, transparent 38%)'
-        }}
-      />
-
-      {/* 4. Soft Architectural Ambient Energy Glow (Subtle bottom-left baseline anchor) */}
-      <div
-        className="absolute -bottom-32 left-0 w-[420px] h-[420px] pointer-events-none"
-        style={{
-          background: 'radial-gradient(circle, rgba(217,37,28,0.04) 0%, rgba(255,245,0,0.02) 40%, transparent 70%)',
-        }}
-      />
-
-      {/* 5. Precision Architectural Horizon Datum */}
+      {/* 4. Precision Architectural Horizon Datum */}
       <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-line/80 to-transparent" />
 
       {/* 6. Bold, Minimalist Vector Engineering Motifs */}
