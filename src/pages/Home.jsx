@@ -113,7 +113,7 @@ export default function Home() {
               </span>
             </h1>
 
-            <p className="text-base sm:text-lg lg:text-xl text-grey leading-relaxed max-w-2xl font-normal">
+            <p className="text-base sm:text-lg lg:text-xl font-bold text-black leading-relaxed max-w-2xl">
               {content.hero.sub}
             </p>
 
