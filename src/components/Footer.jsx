@@ -90,30 +90,39 @@ export default function Footer() {
           <div className="lg:col-span-3 flex flex-col gap-4 text-sm">
             <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-yellow mb-1">Head Office</h3>
             
-            <div className="flex items-start gap-3 text-white/80">
-              <MapPin className="w-4 h-4 text-red shrink-0 mt-1" />
+            <a
+              href="https://maps.google.com/?q=70+Opebi+Road,+Ikeja,+Lagos,+Nigeria"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-start gap-3 text-white/80 hover:text-yellow transition-colors group cursor-pointer"
+              title="Open office address in Google Maps"
+            >
+              <MapPin className="w-4 h-4 text-red shrink-0 mt-1 group-hover:text-yellow transition-colors" />
               <span>{content.company.head_office}</span>
-            </div>
+            </a>
 
             <div className="flex flex-col gap-1.5 pt-1">
               {content.company.phones.map((phone) => (
                 <a
                   key={phone}
                   href={`tel:${phone.replace(/[^0-9+]/g, '')}`}
-                  className="flex items-center gap-3 text-white/80 hover:text-yellow transition-colors"
+                  className="flex items-center gap-3 text-white/80 hover:text-yellow transition-colors group"
+                  title={`Call ${phone}`}
                 >
-                  <Phone className="w-4 h-4 text-red shrink-0" />
+                  <Phone className="w-4 h-4 text-red shrink-0 group-hover:text-yellow transition-colors" />
                   <span>{phone}</span>
                 </a>
               ))}
             </div>
 
-            <div className="flex items-center gap-3 text-white/80">
-              <Mail className="w-4 h-4 text-red shrink-0" />
-              <a href={`mailto:${content.company.email}`} className="hover:text-yellow transition-colors">
-                {content.company.email}
-              </a>
-            </div>
+            <a
+              href={`mailto:${content.company.email}`}
+              className="flex items-center gap-3 text-white/80 hover:text-yellow transition-colors group cursor-pointer"
+              title="Send an email to LESL"
+            >
+              <Mail className="w-4 h-4 text-red shrink-0 group-hover:text-yellow transition-colors" />
+              <span>{content.company.email}</span>
+            </a>
 
             <div className="flex items-start gap-3 text-white/60 text-xs pt-1">
               <Clock className="w-4 h-4 text-yellow shrink-0 mt-0.5" />

@@ -875,6 +875,272 @@ export default function HeroArt({ className = '', theme = 'light' }) {
             <line x1="310" y1="785" x2="340" y2="826" stroke={colors.pistonHead} strokeWidth="2" strokeLinecap="round" />
             <circle cx="310" cy="785" r="5" fill={colors.gearAmber} stroke={colors.connectingRod} strokeWidth="1.5" />
           </g>
+
+          {/* =========================================================================
+              INDUSTRIAL CONTROL CONSOLE & FIELD OPERATOR IN FULL PPE
+              (Represents technical plant operations and active power dispatch)
+             ========================================================================= */}
+          <g className="sketch-mech" id="operator-and-control-panel">
+            {/* Ground Equipment Skid Base Plate */}
+            <rect
+              x="660"
+              y="918"
+              width="200"
+              height="14"
+              rx="2"
+              fill={isLight ? "#E2E8F0" : "#1E293B"}
+              stroke={colors.gearDark}
+              strokeWidth="2.4"
+            />
+            {/* Skid Anchor Bolts */}
+            {[675, 710, 750, 790, 825, 850].map((bx, bi) => (
+              <circle key={bi} cx={bx} cy="925" r="2.5" fill={colors.gearAccent} stroke={colors.gearDark} strokeWidth="1" />
+            ))}
+
+            {/* Industrial Power Distribution / Switchgear Enclosure */}
+            <g id="switchgear-panel">
+              {/* Outer Housing Cabinet */}
+              <rect
+                x="675"
+                y="778"
+                width="92"
+                height="140"
+                rx="4"
+                fill={isLight ? "#FAF9F5" : "#181E29"}
+                stroke={colors.gearDark}
+                strokeWidth="3"
+              />
+              {/* Internal Bezel */}
+              <rect
+                x="682"
+                y="786"
+                width="78"
+                height="124"
+                rx="2"
+                fill="none"
+                stroke={isLight ? "rgba(17,24,39,0.18)" : "rgba(255,255,255,0.18)"}
+                strokeWidth="1.2"
+              />
+
+              {/* Top Digital SCADA / Power Meter Display */}
+              <rect
+                x="688"
+                y="795"
+                width="66"
+                height="28"
+                rx="2"
+                fill={isLight ? "#0F172A" : "#020617"}
+                stroke={colors.gearAccent}
+                strokeWidth="1.6"
+              />
+              {/* Digital Power Frequency / Voltage Wave Line */}
+              <path
+                d="M 693 809 Q 700 801 708 809 T 723 809 T 738 809 L 748 809"
+                fill="none"
+                stroke="#10B981"
+                strokeWidth="1.8"
+                strokeLinecap="round"
+                className={motionActive ? "animate-pulse" : ""}
+              />
+              {/* Mini Readout Status Dots */}
+              <circle cx="744" cy="802" r="2" fill="#10B981" className={motionActive ? "animate-ping" : ""} style={{ animationDuration: '2s' }} />
+              <circle cx="738" cy="802" r="1.5" fill="#3B82F6" />
+
+              {/* Status Indicator LED Lights (Green/Amber/Red) */}
+              <circle cx="693" cy="834" r="3.2" fill="#10B981" stroke={colors.gearDark} strokeWidth="1" />
+              <circle cx="704" cy="834" r="3.2" fill="#F59E0B" stroke={colors.gearDark} strokeWidth="1" />
+              <circle cx="715" cy="834" r="3.2" fill="#EF4444" stroke={colors.gearDark} strokeWidth="1" />
+
+              {/* Analog Pressure / Output Dial */}
+              <circle cx="739" cy="840" r="10" fill={colors.gaugeDial} stroke={colors.gearDark} strokeWidth="1.6" />
+              <circle cx="739" cy="840" r="8" stroke={colors.gaugeTicks} strokeWidth="0.8" strokeDasharray="2 1.5" />
+              <line
+                x1="739"
+                y1="840"
+                x2="744"
+                y2="834"
+                stroke={colors.gaugeNeedle}
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                className={motionActive ? "animate-pulse" : ""}
+              />
+              <circle cx="739" cy="840" r="1.8" fill={colors.gearRim || colors.gearDark} />
+
+              {/* Heavy-Duty Breaker Switches / Rotary Controls */}
+              <g id="panel-breakers">
+                <rect x="689" y="858" width="16" height="15" rx="2" fill={colors.summitBoltFill} stroke={colors.gearDark} strokeWidth="1.4" />
+                <line x1="697" y1="861" x2="697" y2="870" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round" />
+
+                <rect x="712" y="858" width="16" height="15" rx="2" fill={colors.gearAmber} stroke={colors.gearDark} strokeWidth="1.4" />
+                <line x1="720" y1="861" x2="720" y2="870" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round" />
+
+                <rect x="735" y="858" width="16" height="15" rx="2" fill={colors.gearPinion} stroke={colors.gearDark} strokeWidth="1.4" />
+                <line x1="743" y1="861" x2="743" y2="870" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round" />
+              </g>
+
+              {/* High-Voltage Danger Warning Triangle Emblem */}
+              <polygon
+                points="721,882 713,896 729,896"
+                fill="#FFD700"
+                stroke={colors.gearDark}
+                strokeWidth="1.2"
+                strokeLinejoin="round"
+              />
+              {/* Lightning Bolt Glyph */}
+              <path
+                d="M 721 885 L 718 890 L 722 890 L 719 895"
+                fill="none"
+                stroke={colors.gearDark}
+                strokeWidth="1.2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+
+              {/* Ventilation / Cooling Louvers at Lower Panel */}
+              {[901, 905, 909].map((ly, li) => (
+                <line key={li} x1="690" y1={ly} x2="752" y2={ly} stroke={isLight ? "rgba(17,24,39,0.3)" : "rgba(255,255,255,0.3)"} strokeWidth="1.5" strokeLinecap="round" />
+              ))}
+            </g>
+
+            {/* Industrial Armored Conduits Rising from Panel to Power Equipment */}
+            <g id="power-conduits">
+              {/* Conduit 1: Runs directly from top of panel to Turbine Generator Shaft Hub */}
+              <path
+                d="M 720 778 L 720 725 Q 720 680 690 655 L 668 640"
+                fill="none"
+                stroke={colors.pipeWall}
+                strokeWidth="3.2"
+                strokeLinecap="round"
+              />
+              <path
+                d="M 720 778 L 720 725 Q 720 680 690 655 L 668 640"
+                fill="none"
+                stroke={colors.gearAccent}
+                strokeWidth="1.2"
+                strokeDasharray="4 4"
+              />
+
+              {/* Conduit 2: Runs from right side of panel into Main Electrical Bus & Catenary Line */}
+              <path
+                d="M 750 778 L 750 705 Q 750 635 780 595 L 810 530"
+                fill="none"
+                stroke={colors.pipeWall}
+                strokeWidth="3"
+                strokeLinecap="round"
+              />
+
+              {/* Conduit Junction Couplings */}
+              <rect x="714" y="774" width="12" height="6" rx="1" fill={colors.gearAccent} stroke={colors.gearDark} strokeWidth="1.2" />
+              <rect x="744" y="774" width="12" height="6" rx="1" fill={colors.gearAccent} stroke={colors.gearDark} strokeWidth="1.2" />
+            </g>
+
+            {/* Field Engineer Operator in Complete PPE (Dark Silhouette with High-Visibility Accents) */}
+            <g id="ppe-field-operator" transform="translate(775, 780)">
+              {/* Safety Hard Hat / Helmet (Safety Yellow with Peak) */}
+              <path
+                d="M 28 22 C 28 11 44 11 44 22 Z"
+                fill="#FFD700"
+                stroke={colors.gearDark}
+                strokeWidth="1.8"
+              />
+              {/* Helmet Brim & Chin Ridge */}
+              <path
+                d="M 24 23 Q 36 21 48 23"
+                fill="none"
+                stroke={colors.gearDark}
+                strokeWidth="2.2"
+                strokeLinecap="round"
+              />
+
+              {/* Head Silhouette in Dark Charcoal with Ear / Safety Profile */}
+              <circle cx="36" cy="28" r="9" fill={isLight ? "#111827" : "#0F172A"} stroke={colors.gearDark} strokeWidth="1.2" />
+              {/* Safety Eyewear / Goggles Profile */}
+              <rect x="27" y="25" width="8" height="4" rx="1.5" fill="#F59E0B" opacity="0.9" />
+
+              {/* Neck & Collar */}
+              <rect x="33" y="37" width="7" height="6" fill={isLight ? "#111827" : "#0F172A"} />
+
+              {/* Torso: Heavy-Duty Industrial Uniform with High-Visibility PPE Safety Vest */}
+              {/* Base Dark Garment */}
+              <path
+                d="M 25 43 L 48 43 L 52 82 L 20 82 Z"
+                fill={isLight ? "#1F2937" : "#0F172A"}
+                stroke={colors.gearDark}
+                strokeWidth="2"
+              />
+              {/* High-Vis Safety Vest Overlay (Safety Yellow-Gold) */}
+              <path
+                d="M 26 43 L 47 43 L 50 78 L 22 78 Z"
+                fill="#FFD700"
+                opacity="0.95"
+              />
+              {/* Silver / White Retro-Reflective Vest Stripes */}
+              <line x1="24" y1="58" x2="48" y2="58" stroke="#FFFFFF" strokeWidth="3" />
+              <line x1="23" y1="68" x2="49" y2="68" stroke="#FFFFFF" strokeWidth="3" />
+              <line x1="33" y1="43" x2="31" y2="78" stroke="#FFFFFF" strokeWidth="2.5" />
+              <line x1="41" y1="43" x2="43" y2="78" stroke="#FFFFFF" strokeWidth="2.5" />
+
+              {/* Left Arm: Extended toward the control panel console to operate switch */}
+              <path
+                d="M 25 48 L 5 56 L -6 54"
+                fill="none"
+                stroke={isLight ? "#111827" : "#0F172A"}
+                strokeWidth="5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              {/* Left Hand: High-Grip Safety Work Glove touching panel */}
+              <circle cx="-8" cy="54" r="4.5" fill="#D97706" stroke={colors.gearDark} strokeWidth="1.2" />
+
+              {/* Right Arm: Resting at side */}
+              <path
+                d="M 48 48 L 52 66 L 50 78"
+                fill="none"
+                stroke={isLight ? "#111827" : "#0F172A"}
+                strokeWidth="4.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <circle cx="50" cy="80" r="4" fill="#D97706" stroke={colors.gearDark} strokeWidth="1" />
+
+              {/* Industrial Work Trousers (Dark Heavy Fabric) */}
+              {/* Left Leg */}
+              <path
+                d="M 23 82 L 34 82 L 32 128 L 20 128 Z"
+                fill={isLight ? "#111827" : "#0A0E17"}
+                stroke={colors.gearDark}
+                strokeWidth="2"
+              />
+              {/* Reflective Band on Left Trouser */}
+              <line x1="21" y1="116" x2="33" y2="116" stroke="#FFFFFF" strokeWidth="2" opacity="0.9" />
+
+              {/* Right Leg */}
+              <path
+                d="M 37 82 L 49 82 L 51 128 L 39 128 Z"
+                fill={isLight ? "#1F2937" : "#0F172A"}
+                stroke={colors.gearDark}
+                strokeWidth="2"
+              />
+              {/* Reflective Band on Right Trouser */}
+              <line x1="40" y1="116" x2="50" y2="116" stroke="#FFFFFF" strokeWidth="2" opacity="0.9" />
+
+              {/* Steel-Toe Safety Boots Standing on Skid Base */}
+              <path
+                d="M 17 128 L 33 128 L 33 138 L 13 138 Q 13 132 17 128 Z"
+                fill="#78350F"
+                stroke={colors.gearDark}
+                strokeWidth="2"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M 38 128 L 52 128 L 54 138 L 36 138 Q 36 132 38 128 Z"
+                fill="#451A03"
+                stroke={colors.gearDark}
+                strokeWidth="2"
+                strokeLinejoin="round"
+              />
+            </g>
+          </g>
         </g>
 
         {/* =========================================================================
@@ -882,6 +1148,43 @@ export default function HeroArt({ className = '', theme = 'light' }) {
            ========================================================================= */}
         {motionActive && (
           <g id="kinetic-energy-pulses">
+            {/* Operator Control Panel Energy Surge Pulse (Powering the Equipment) */}
+            <g>
+              <circle r="6" fill="#10B981" filter="url(#hero-spark-glow)">
+                <animateMotion
+                  path="M 720 778 L 720 725 Q 720 680 690 655 L 668 640"
+                  dur="2.4s"
+                  repeatCount="indefinite"
+                />
+              </circle>
+              <circle r="3" fill="#FFFFFF">
+                <animateMotion
+                  path="M 720 778 L 720 725 Q 720 680 690 655 L 668 640"
+                  dur="2.4s"
+                  repeatCount="indefinite"
+                />
+              </circle>
+            </g>
+
+            {/* Secondary Pulse from Panel into Main Grid */}
+            <g>
+              <circle r="6.5" fill={colors.summitBoltFill} filter="url(#hero-spark-glow)">
+                <animateMotion
+                  path="M 750 778 L 750 705 Q 750 635 780 595 L 810 530"
+                  dur="3s"
+                  begin="-1.2s"
+                  repeatCount="indefinite"
+                />
+              </circle>
+              <circle r="3.2" fill="#FFD700">
+                <animateMotion
+                  path="M 750 778 L 750 705 Q 750 635 780 595 L 810 530"
+                  dur="3s"
+                  begin="-1.2s"
+                  repeatCount="indefinite"
+                />
+              </circle>
+            </g>
             {/* Orb on Catenary 1 */}
             <g>
               <circle r="7.5" fill={colors.catenaryPulseEnd} filter="url(#hero-spark-glow)">

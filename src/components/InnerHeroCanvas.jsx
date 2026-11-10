@@ -77,29 +77,27 @@ export default function InnerHeroCanvas({ variant = 'about', className = '', ima
           variant === 'partners'
             ? 'opacity-30 sm:opacity-45 bg-[position:center_center]'
             : variant === 'contact'
-            ? 'opacity-25 sm:opacity-35 bg-[position:55%_22%] sm:bg-[position:72%_25%]'
-            : variant === 'services'
-            ? 'opacity-25 sm:opacity-35 bg-[position:center_center]'
-            : 'opacity-25 sm:opacity-35 bg-[position:center_center]'
+            ? 'opacity-65 sm:opacity-85 bg-[position:55%_22%] sm:bg-[position:72%_25%]'
+            : 'opacity-65 sm:opacity-85 bg-[position:center_center]'
         }`}
         style={{
           backgroundImage: `url("${bgWebp}"), url("${bgJpg}")`,
           filter:
             variant === 'partners'
               ? 'contrast(1.02) brightness(1.02)'
-              : 'contrast(1.05) saturate(1.1) brightness(1.02)',
+              : 'contrast(1.04) brightness(1.04) saturate(1.05)',
         }}
       />
 
-      {/* 2. Directional Parchment Scrim: solid text clarity on left, soft engineering silhouette on right */}
+      {/* 2. Directional Parchment Scrim: solid text clarity on left, bright and unblurred authentic photography on right */}
       <div
         className={`absolute inset-0 ${
           variant === 'partners'
             ? 'bg-gradient-to-r from-[#FAF9F5] via-[#FAF9F5]/90 sm:via-[#FAF9F5]/70 to-[#FAF9F5]/25 sm:to-transparent'
-            : 'bg-gradient-to-r from-[#FAF9F5] via-[#FAF9F5]/95 sm:via-[#FAF9F5]/85 to-[#FAF9F5]/40 sm:to-[#FAF9F5]/10'
+            : 'bg-gradient-to-r from-[#FAF9F5] via-[#FAF9F5]/95 40% sm:via-[#FAF9F5]/80 50% to-transparent'
         }`}
       />
-      <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#FAF9F5] via-[#FAF9F5]/80 to-transparent" />
+      <div className="absolute inset-x-0 bottom-0 h-14 bg-gradient-to-t from-[#FAF9F5] to-transparent" />
 
       {/* 3. Subtle Technical CAD Blueprint Grid */}
       <div 
