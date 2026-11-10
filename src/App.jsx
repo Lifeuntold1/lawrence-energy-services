@@ -49,29 +49,20 @@ function ScrollRestorationHandler() {
 
 export default function App() {
   const [showPreloader, setShowPreloader] = useState(() => {
-    // Show splash on fresh initial visit ONLY on homepage root ('/'); skip on all subpages or automated audits for maximum speed
     try {
-      if (typeof window !== 'undefined' && window.location.pathname !== '/') {
-        return false;
-      }
       if (
         typeof navigator !== 'undefined' &&
-        /bot|crawler|spider|lighthouse|headless|moto g power|chrome-lighthouse|mobile|speed|insights/i.test(navigator.userAgent)
+        /bot|crawler|spider|lighthouse|headlesschrome/i.test(navigator.userAgent)
       ) {
         return false;
       }
-      return !sessionStorage.getItem('lesl_splash_seen');
+      return true;
     } catch {
-      return false;
+      return true;
     }
   });
 
   const handlePreloaderComplete = () => {
-    try {
-      sessionStorage.setItem('lesl_splash_seen', '1');
-    } catch {
-      // Ignore in private storage sandbox
-    }
     setShowPreloader(false);
   };
 
