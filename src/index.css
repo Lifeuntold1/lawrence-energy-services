@@ -220,3 +220,17 @@ select:focus-visible {
 .badge-shimmer {
   animation: badge-shimmer 3s ease-in-out infinite;
 }
+
+/* Directional Organic Industrial Hero Blur Mask */
+.mask-hero-blur {
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 58%, rgba(0,0,0,0.6) 74%, transparent 92%);
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 58%, rgba(0,0,0,0.6) 74%, transparent 92%);
+}
+
+@media (min-width: 640px) {
+  .mask-hero-blur {
+    mask-image: linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 48%, rgba(0,0,0,0.8) 60%, rgba(0,0,0,0.2) 70%, transparent 80%);
+    -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 48%, rgba(0,0,0,0.8) 60%, rgba(0,0,0,0.2) 70%, transparent 80%);
+  }
+}
+

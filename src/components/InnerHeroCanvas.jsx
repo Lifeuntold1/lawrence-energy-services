@@ -71,7 +71,7 @@ export default function InnerHeroCanvas({ variant = 'about', className = '', ima
       className={`absolute inset-0 pointer-events-none overflow-hidden select-none ${className}`}
       aria-hidden="true"
     >
-      {/* 1. Authentic Industrial Background Cover Image (Preserves Natural Aspect Ratio on Mobile & Desktop) */}
+      {/* 1A. Authentic Base Sharp Cover Image (100% Quality, Natural Ratio, Bright & Vivid) */}
       <div
         className={`absolute inset-0 w-full h-full pointer-events-none select-none bg-no-repeat bg-cover transition-opacity duration-700 ${
           variant === 'partners'
@@ -85,23 +85,38 @@ export default function InnerHeroCanvas({ variant = 'about', className = '', ima
           filter:
             variant === 'partners'
               ? 'contrast(1.02) brightness(1.02)'
-              : 'contrast(1.08) brightness(1.08) saturate(1.10)',
+              : 'contrast(1.06) brightness(1.06) saturate(1.08)',
         }}
       />
 
-      {/* 2. Directional Parchment Scrim: solid text clarity on left, completely transparent & bright on right */}
+      {/* 1B. Directional Soft-Blurred Image Layer (Only active under text column, softens high-contrast equipment details) */}
+      {variant !== 'partners' && (
+        <div
+          className={`mask-hero-blur absolute inset-0 w-full h-full pointer-events-none select-none bg-no-repeat bg-cover scale-105 ${
+            variant === 'contact'
+              ? 'bg-[position:55%_22%] sm:bg-[position:72%_25%]'
+              : 'bg-[position:center_center]'
+          }`}
+          style={{
+            backgroundImage: `url("${bgWebp}"), url("${bgJpg}")`,
+            filter: 'blur(16px) contrast(1.04) brightness(1.02) saturate(1.06)',
+          }}
+        />
+      )}
+
+      {/* 2. Directional Parchment Scrim: solid legibility on left, gentle transition across text zone, 100% transparent on right */}
       <div
         className={`absolute inset-0 ${
           variant === 'partners'
             ? 'bg-gradient-to-r from-[#FAF9F5] via-[#FAF9F5]/90 sm:via-[#FAF9F5]/70 to-[#FAF9F5]/25 sm:to-transparent'
-            : 'bg-[linear-gradient(to_right,#FAF9F5_0%,#FAF9F5_22%,rgba(250,249,245,0.85)_42%,transparent_62%)] sm:bg-[linear-gradient(to_right,#FAF9F5_0%,#FAF9F5_18%,rgba(250,249,245,0.85)_28%,rgba(250,249,245,0.35)_38%,transparent_48%)]'
+            : 'bg-[linear-gradient(to_bottom,#FAF9F5_0%,#FAF9F5_45%,rgba(250,249,245,0.95)_65%,rgba(250,249,245,0.60)_82%,transparent_96%)] sm:bg-[linear-gradient(to_right,#FAF9F5_0%,#FAF9F5_28%,rgba(250,249,245,0.95)_44%,rgba(250,249,245,0.82)_58%,rgba(250,249,245,0.30)_70%,transparent_80%)]'
         }`}
       />
       <div className="absolute inset-x-0 bottom-0 h-8 bg-gradient-to-t from-[#FAF9F5]/70 to-transparent" />
 
       {/* 3. Subtle Technical CAD Blueprint Grid (Masked to text column only so photography remains razor sharp) */}
       <div 
-        className="absolute inset-0 opacity-25 pointer-events-none" 
+        className="absolute inset-0 opacity-20 pointer-events-none" 
         style={{
           backgroundImage: 'linear-gradient(to right, rgba(0,0,0,0.04) 1px, transparent 1px), linear-gradient(to bottom, rgba(0,0,0,0.04) 1px, transparent 1px)',
           backgroundSize: '40px 40px',
