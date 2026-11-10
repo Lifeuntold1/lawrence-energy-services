@@ -946,10 +946,36 @@ export default function HeroArt({ className = '', theme = 'light' }) {
               <circle cx="744" cy="802" r="2" fill="#10B981" className={motionActive ? "animate-ping" : ""} style={{ animationDuration: '2s' }} />
               <circle cx="738" cy="802" r="1.5" fill="#3B82F6" />
 
-              {/* Status Indicator LED Lights (Green/Amber/Red) */}
-              <circle cx="693" cy="834" r="3.2" fill="#10B981" stroke={colors.gearDark} strokeWidth="1" />
-              <circle cx="704" cy="834" r="3.2" fill="#F59E0B" stroke={colors.gearDark} strokeWidth="1" />
-              <circle cx="715" cy="834" r="3.2" fill="#EF4444" stroke={colors.gearDark} strokeWidth="1" />
+              {/* Status Indicator LED Lights (Green/Amber/Red with Alternating Phase Telemetry) */}
+              <g id="panel-status-leds">
+                <circle
+                  cx="693"
+                  cy="834"
+                  r="3.2"
+                  fill="#10B981"
+                  stroke={colors.gearDark}
+                  strokeWidth="1"
+                  className={motionActive ? "animate-led-green" : ""}
+                />
+                <circle
+                  cx="704"
+                  cy="834"
+                  r="3.2"
+                  fill="#F59E0B"
+                  stroke={colors.gearDark}
+                  strokeWidth="1"
+                  className={motionActive ? "animate-led-amber" : ""}
+                />
+                <circle
+                  cx="715"
+                  cy="834"
+                  r="3.2"
+                  fill="#EF4444"
+                  stroke={colors.gearDark}
+                  strokeWidth="1"
+                  className={motionActive ? "animate-led-red" : ""}
+                />
+              </g>
 
               {/* Analog Pressure / Output Dial */}
               <circle cx="739" cy="840" r="10" fill={colors.gaugeDial} stroke={colors.gearDark} strokeWidth="1.6" />
@@ -1099,19 +1125,26 @@ export default function HeroArt({ className = '', theme = 'light' }) {
               {/* Vertical Radio / Tool Pocket on Chest */}
               <rect x="38" y="47" width="8" height="8" rx="1" fill={isLight ? "#334155" : "#1E293B"} stroke="#84CC16" strokeWidth="0.8" />
 
-              {/* Left Arm: Operating Control Panel Breaker Switch */}
-              <path
-                d="M 24 49 L 3 58 L -9 55"
-                fill="none"
-                stroke={isLight ? "#1E293B" : "#0F172A"}
-                strokeWidth="5.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              {/* Neon Band on Left Sleeve */}
-              <line x1="9" y1="56" x2="14" y2="58" stroke="#84CC16" strokeWidth="4" />
-              {/* Work Glove Operating Console */}
-              <circle cx="-11" cy="55" r="5" fill="#D97706" stroke={colors.gearDark} strokeWidth="1.2" />
+              {/* Left Arm: Operating Control Panel Breaker Switch with Methodical Kinetic Pivot */}
+              <g
+                id="engineer-operating-arm"
+                className={motionActive ? "animate-arm-pivot" : ""}
+              >
+                <path
+                  d="M 24 49 L 3 58 L -9 55"
+                  fill="none"
+                  stroke={isLight ? "#1E293B" : "#0F172A"}
+                  strokeWidth="5.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                {/* Neon Band on Left Sleeve */}
+                <line x1="9" y1="56" x2="14" y2="58" stroke="#84CC16" strokeWidth="4" />
+                {/* Work Glove Operating Console */}
+                <circle cx="-11" cy="55" r="5" fill="#D97706" stroke={colors.gearDark} strokeWidth="1.2" />
+                {/* Glove Grip Detail */}
+                <circle cx="-8" cy="52" r="2" fill="#B45309" />
+              </g>
 
               {/* Right Arm: Confident Stance at Side */}
               <path

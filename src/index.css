@@ -234,3 +234,74 @@ select:focus-visible {
   }
 }
 
+/* Engineer Field Operating Arm Kinetic Pivot Motion */
+@keyframes engineer-arm-pivot {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  30% {
+    transform: rotate(-5deg);
+  }
+  42% {
+    transform: rotate(-6deg);
+  }
+  72% {
+    transform: rotate(3deg);
+  }
+  84% {
+    transform: rotate(2deg);
+  }
+}
+
+.animate-arm-pivot {
+  animation: engineer-arm-pivot 3.2s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+  transform-origin: 24px 49px;
+  will-change: transform;
+}
+
+/* Control Panel Alternating Phase Status Indicator LEDs */
+@keyframes led-phase-green {
+  0%, 45%, 100% {
+    opacity: 1;
+    filter: drop-shadow(0 0 3px #10B981);
+  }
+  50%, 95% {
+    opacity: 0.35;
+    filter: none;
+  }
+}
+
+@keyframes led-phase-amber {
+  0%, 45%, 100% {
+    opacity: 0.35;
+    filter: none;
+  }
+  50%, 95% {
+    opacity: 1;
+    filter: drop-shadow(0 0 3px #F59E0B);
+  }
+}
+
+@keyframes led-phase-red {
+  0%, 78%, 100% {
+    opacity: 0.3;
+    filter: none;
+  }
+  86%, 92% {
+    opacity: 1;
+    filter: drop-shadow(0 0 4px #EF4444);
+  }
+}
+
+.animate-led-green {
+  animation: led-phase-green 3.2s ease-in-out infinite;
+}
+
+.animate-led-amber {
+  animation: led-phase-amber 3.2s ease-in-out infinite;
+}
+
+.animate-led-red {
+  animation: led-phase-red 3.2s ease-in-out infinite;
+}
+
