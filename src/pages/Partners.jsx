@@ -7,7 +7,6 @@ import { initScrollAnimations, refreshScroll } from '../lib/motion';
 
 export default function Partners() {
   useEffect(() => {
-    window.scrollTo(0, 0);
     const cleanup = initScrollAnimations();
     refreshScroll();
     return () => {
@@ -176,24 +175,24 @@ export default function Partners() {
                 <img
                   src={`/${client.logo}`}
                   alt={client.name}
-                  className={`object-contain transition-transform duration-300 group-hover:scale-115 ${
+                  className={`object-contain transition-transform duration-300 group-hover:scale-110 ${
                     client.logo.includes('newbisco')
-                      ? 'w-[96%] max-h-24 sm:max-h-28 scale-130'
+                      ? 'w-[96%] max-h-24 sm:max-h-28 scale-[1.3]'
                       : client.logo.includes('metal-packaging')
-                      ? 'w-[94%] max-h-26 sm:max-h-30 scale-125'
+                      ? 'w-[94%] max-h-[6.5rem] sm:max-h-[7.5rem] scale-125'
                       : client.logo.includes('tgi')
-                      ? 'w-[90%] max-h-26 sm:max-h-30 scale-125'
+                      ? 'w-[90%] max-h-[6.5rem] sm:max-h-[7.5rem] scale-125'
                       : client.logo.includes('primera')
-                      ? 'w-[92%] max-h-26 sm:max-h-30 scale-120'
+                      ? 'w-[92%] max-h-[6.5rem] sm:max-h-[7.5rem] scale-[1.2]'
                       : client.logo.includes('clarke')
-                      ? 'w-[94%] max-h-26 sm:max-h-30 scale-120'
+                      ? 'w-[94%] max-h-[6.5rem] sm:max-h-[7.5rem] scale-[1.2]'
                       : client.logo.includes('dufil')
-                      ? 'w-[88%] max-h-28 sm:max-h-32 scale-120'
+                      ? 'w-[88%] max-h-28 sm:max-h-32 scale-[1.2]'
                       : client.logo.includes('cummins')
-                      ? 'h-[80%] sm:h-[86%] max-h-28 sm:max-h-34 w-auto scale-115'
+                      ? 'h-[80%] sm:h-[86%] max-h-28 sm:max-h-[8.5rem] w-auto scale-[1.15]'
                       : client.logo.includes('aspira') || client.logo.includes('mdv')
-                      ? 'h-[80%] sm:h-[86%] max-h-28 sm:max-h-34 w-auto scale-110'
-                      : 'w-auto h-auto max-h-28 sm:max-h-34 max-w-[88%] sm:max-w-[92%] scale-115'
+                      ? 'h-[80%] sm:h-[86%] max-h-28 sm:max-h-[8.5rem] w-auto scale-110'
+                      : 'w-auto h-auto max-h-28 sm:max-h-[8.5rem] max-w-[88%] sm:max-w-[92%] scale-[1.15]'
                   }`}
                   loading="lazy"
                 />

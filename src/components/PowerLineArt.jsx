@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useId } from 'react';
 
 export default function PowerLineArt({ className = '' }) {
+  const uid = useId().replace(/:/g, '');
+  const glowId = `glow-${uid}`;
+
   return (
     <div className={`relative select-none pointer-events-none ${className}`} aria-hidden="true">
       <svg
@@ -68,7 +71,7 @@ export default function PowerLineArt({ className = '' }) {
         />
 
         {/* Animated Traveling Spark on Active Wire */}
-        <circle r="4" fill="#FFF500" filter="url(#glow)">
+        <circle r="4" fill="#FFF500" filter={`url(#${glowId})`}>
           <animateMotion
             path="M0 270 Q140 310 250 260 T500 290"
             dur="4s"
@@ -85,7 +88,7 @@ export default function PowerLineArt({ className = '' }) {
         />
 
         <defs>
-          <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+          <filter id={glowId} x="-20%" y="-20%" width="140%" height="140%">
             <feGaussianBlur stdDeviation="3" result="coloredBlur" />
             <feMerge>
               <feMergeNode in="coloredBlur" />

@@ -1,15 +1,26 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 
 export default function Preloader({ onComplete }) {
   const [phase, setPhase] = useState('active');
+  const completedRef = useRef(false);
+  const dismissTimerRef = useRef(null);
 
-  const dismiss = () => {
-    if (phase === 'exit') return;
-    setPhase('exit');
-    setTimeout(() => {
-      if (onComplete) onComplete();
+  const finishPreloader = useCallback(() => {
+    if (completedRef.current) return;
+    completedRef.current = true;
+    if (onComplete) onComplete();
+  }, [onComplete]);
+
+  const dismiss = useCallback(() => {
+    setPhase((prev) => {
+      if (prev === 'exit') return prev;
+      return 'exit';
+    });
+    if (dismissTimerRef.current) clearTimeout(dismissTimerRef.current);
+    dismissTimerRef.current = setTimeout(() => {
+      finishPreloader();
     }, 450);
-  };
+  }, [finishPreloader]);
 
   useEffect(() => {
     // Immediately complete for automated auditing bots/Lighthouse to prevent synthetic LCP delay
@@ -18,7 +29,7 @@ export default function Preloader({ onComplete }) {
       /bot|crawler|spider|lighthouse|headlesschrome/i.test(navigator.userAgent);
 
     if (isBot) {
-      if (onComplete) onComplete();
+      finishPreloader();
       return;
     }
 
@@ -29,7 +40,7 @@ export default function Preloader({ onComplete }) {
 
     // Stage 2: Unmount callback at 900ms (completes well within 1.2s global standard)
     const completeTimer = setTimeout(() => {
-      if (onComplete) onComplete();
+      finishPreloader();
     }, 900);
 
     const handleKeyDown = (e) => {
@@ -43,14 +54,16 @@ export default function Preloader({ onComplete }) {
     return () => {
       clearTimeout(exitTimer);
       clearTimeout(completeTimer);
+      if (dismissTimerRef.current) clearTimeout(dismissTimerRef.current);
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [onComplete]);
+  }, [dismiss, finishPreloader]);
 
   return (
     <div
       onClick={dismiss}
-      role="region"
+      role="dialog"
+      aria-modal="true"
       tabIndex={0}
       aria-label="Lawrence Energy Services Limited Splash Screen - Click or tap to enter immediately"
       className={`fixed inset-0 z-[100] flex flex-col items-center justify-center bg-gradient-to-br from-[#D9251C] via-[#C82018] to-[#991510] text-white transition-all select-none cursor-pointer ${
@@ -62,7 +75,6 @@ export default function Preloader({ onComplete }) {
         transitionDuration: '450ms',
         transitionTimingFunction: 'cubic-bezier(0.65, 0, 0.35, 1)',
       }}
-      aria-hidden="true"
     >
       {/* Radial ambient lighting */}
       <div className="absolute w-[500px] h-[500px] rounded-full bg-white/10 blur-[120px] pointer-events-none" />
@@ -79,13 +91,7 @@ export default function Preloader({ onComplete }) {
 
       <div className="relative z-10 flex flex-col items-center px-6">
         {/* Official LESL Brand Logo Badge */}
-        <div
-          className={`bg-white px-8 sm:px-12 py-5 sm:py-6 rounded-[10px] shadow-2xl border border-white/40 transform transition-all duration-700 ease-out ${
-            phase === 'enter'
-              ? 'scale-90 opacity-0 translate-y-4'
-              : 'scale-100 opacity-100 translate-y-0 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.5)]'
-          }`}
-        >
+        <div className="bg-white px-8 sm:px-12 py-5 sm:py-6 rounded-[10px] shadow-[0_25px_60px_-15px_rgba(0,0,0,0.5)] border border-white/40 transform transition-all duration-700 ease-out scale-100 opacity-100 translate-y-0">
           <img
             src="/assets/brand/lesl-logo-on-white-badge.png"
             alt="Lawrence Energy Services Limited"
@@ -94,11 +100,7 @@ export default function Preloader({ onComplete }) {
         </div>
 
         {/* Brand Tagline */}
-        <p
-          className={`text-white text-xs sm:text-sm font-mono uppercase tracking-[0.22em] font-bold mt-8 transition-all duration-700 delay-150 ${
-            phase === 'enter' ? 'opacity-0 translate-y-2' : 'opacity-100 translate-y-0'
-          }`}
-        >
+        <p className="text-white text-xs sm:text-sm font-mono uppercase tracking-[0.22em] font-bold mt-8 transition-all duration-700 delay-150 opacity-100 translate-y-0">
           Industrial Engineering &amp; Power Infrastructure
         </p>
 
@@ -107,7 +109,7 @@ export default function Preloader({ onComplete }) {
           <div
             className="h-full bg-yellow transition-all duration-[900ms] ease-out shadow-[0_0_12px_#FFF500]"
             style={{
-              width: phase === 'enter' ? '25%' : phase === 'active' ? '96%' : '100%',
+              width: phase === 'active' ? '96%' : '100%',
             }}
           />
         </div>

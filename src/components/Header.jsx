@@ -27,9 +27,20 @@ export default function Header() {
   const lastScrollYRef = useRef(0);
   const isScrolledRef = useRef(false);
   const isHiddenRef = useRef(false);
+  const mobileMenuOpenRef = useRef(false);
+  const activeDropdownRef = useRef(null);
+  const navContainerRef = useRef(null);
 
   const location = useLocation();
   const isHome = location.pathname === '/';
+
+  useEffect(() => {
+    mobileMenuOpenRef.current = mobileMenuOpen;
+  }, [mobileMenuOpen]);
+
+  useEffect(() => {
+    activeDropdownRef.current = activeDropdown;
+  }, [activeDropdown]);
 
   useEffect(() => {
     let ticking = false;
@@ -37,9 +48,13 @@ export default function Header() {
     const handleScroll = () => {
       if (!ticking) {
         window.requestAnimationFrame(() => {
-          const currentScrollY = window.scrollY;
+          const currentScrollY = Math.max(0, window.scrollY);
           const nextScrolled = currentScrollY > 40;
-          const nextHidden = currentScrollY > 120 && currentScrollY > lastScrollYRef.current && !mobileMenuOpen;
+          const nextHidden =
+            currentScrollY > 120 &&
+            currentScrollY > lastScrollYRef.current &&
+            !mobileMenuOpenRef.current &&
+            !activeDropdownRef.current;
 
           if (nextScrolled !== isScrolledRef.current) {
             isScrolledRef.current = nextScrolled;
@@ -60,7 +75,31 @@ export default function Header() {
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [mobileMenuOpen]);
+  }, []);
+
+  // Close menus on Escape or outside pointer click (supports iPad/touch/keyboard)
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        setActiveDropdown(null);
+        setMobileMenuOpen(false);
+      }
+    };
+
+    const handlePointerDown = (e) => {
+      if (navContainerRef.current && !navContainerRef.current.contains(e.target)) {
+        setActiveDropdown(null);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    document.addEventListener('pointerdown', handlePointerDown);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      document.removeEventListener('pointerdown', handlePointerDown);
+      if (closeTimeoutRef.current) clearTimeout(closeTimeoutRef.current);
+    };
+  }, []);
 
   // Close menus on route change
   useEffect(() => {
@@ -203,7 +242,7 @@ export default function Header() {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-7" aria-label="Main Navigation">
+          <nav ref={navContainerRef} className="hidden lg:flex items-center gap-7" aria-label="Main Navigation">
             {navItems.map((item) => {
               const isActive =
                 item.href === '/'
@@ -220,10 +259,11 @@ export default function Header() {
                     onMouseEnter={() => handleMouseEnter(item.key)}
                     onMouseLeave={handleMouseLeave}
                   >
-                    <div className="flex items-center gap-1">
+                    <div className="flex items-center gap-0.5">
                       <Link
                         to={item.href}
-                        className={`relative py-1 text-[15px] font-semibold transition-colors duration-150 inline-flex items-center gap-1 ${
+                        onClick={() => setActiveDropdown(null)}
+                        className={`relative py-1 text-[15px] font-semibold transition-colors duration-150 inline-flex items-center ${
                           isSolid
                             ? isActive || isOpen
                               ? 'text-red'
@@ -234,11 +274,6 @@ export default function Header() {
                         }`}
                       >
                         <span>{item.label}</span>
-                        <ChevronDown
-                          className={`w-4 h-4 transition-transform duration-200 ${
-                            isOpen ? 'rotate-180' : ''
-                          }`}
-                        />
                         {isActive && (
                           <span
                             className={`absolute bottom-0 left-0 right-0 h-[2.5px] rounded-full ${
@@ -247,6 +282,29 @@ export default function Header() {
                           />
                         )}
                       </Link>
+                      <button
+                        type="button"
+                        onClick={() =>
+                          setActiveDropdown((prev) => (prev === item.key ? null : item.key))
+                        }
+                        aria-expanded={isOpen}
+                        aria-label={`Toggle ${item.label} submenu`}
+                        className={`p-1.5 rounded transition-colors ${
+                          isSolid
+                            ? isActive || isOpen
+                              ? 'text-red'
+                              : 'text-ink hover:text-red'
+                            : isActive || isOpen
+                            ? 'text-yellow'
+                            : 'text-white hover:text-yellow'
+                        }`}
+                      >
+                        <ChevronDown
+                          className={`w-4 h-4 transition-transform duration-200 ${
+                            isOpen ? 'rotate-180' : ''
+                          }`}
+                        />
+                      </button>
                     </div>
 
                     {/* Desktop Dropdown Panel */}
@@ -402,7 +460,8 @@ export default function Header() {
                       <button
                         type="button"
                         onClick={() => toggleMobileDropdown(item.key)}
-                        className="p-2 text-white/80 hover:text-white"
+                        className="min-w-[44px] min-h-[44px] flex items-center justify-center p-2 text-white/80 hover:text-white rounded-lg"
+                        aria-expanded={!!isOpen}
                         aria-label={`Toggle ${item.label} sub-navigation`}
                       >
                         <ChevronDown

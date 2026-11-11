@@ -11,7 +11,6 @@ export default function Projects() {
   const [selectedPhotoIndex, setSelectedPhotoIndex] = useState(0);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
     const cleanup = initScrollAnimations();
     refreshScroll();
     return () => {

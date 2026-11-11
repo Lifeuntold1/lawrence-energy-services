@@ -127,7 +127,11 @@ export default function About() {
                           {stat.prefix}
                         </span>
                       )}
-                      <span data-counter={cleanNumber}>{valStr}</span>
+                      {stat.type !== 'badge' ? (
+                        <span data-counter={cleanNumber}>{valStr}</span>
+                      ) : (
+                        <span>{valStr}</span>
+                      )}
                       {(stat.unit || stat.suffix) && (
                         <span className="text-lg sm:text-2xl font-bold text-red ml-1.5">
                           {stat.unit || stat.suffix}

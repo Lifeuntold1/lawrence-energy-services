@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useId, useCallback } from 'react';
 
 // Exact CAD Gear Tooth Path Generator
 function generateGearPath(cx, cy, rOuter, rRoot, numTeeth) {
@@ -32,8 +32,13 @@ export default function HeroArt({ className = '', theme = 'light' }) {
   const [sketchKey, setSketchKey] = useState(0);
   const [motionActive, setMotionActive] = useState(false);
   const [arcFlash, setArcFlash] = useState(false);
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const containerRef = useRef(null);
+  const rafTiltRef = useRef(0);
+  const uid = useId().replace(/:/g, '');
+  const elecGlowId = `hero-elec-glow-${uid}`;
+  const sparkGlowId = `hero-spark-glow-${uid}`;
+  const fluidGradId = `fluid-surge-pulse-${uid}`;
+  const catenaryGradId = `catenary-pulse-glow-${uid}`;
 
   const isLight = theme === 'light';
 
@@ -111,35 +116,71 @@ export default function HeroArt({ className = '', theme = 'light' }) {
       };
 
   useEffect(() => {
-    setMotionActive(false);
-    const timer = setTimeout(() => {
+    const isReduced =
+      typeof window !== 'undefined' &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (isReduced) {
       setMotionActive(true);
-    }, 10000);
+      return;
+    }
 
-    return () => clearTimeout(timer);
+    setMotionActive(false);
+    const timer = window.setTimeout(() => {
+      setMotionActive(true);
+    }, 2000);
+
+    return () => window.clearTimeout(timer);
   }, [sketchKey]);
 
   useEffect(() => {
     if (!motionActive) return;
-    const arcInterval = setInterval(() => {
+    let flashOffTimer = 0;
+    const arcInterval = window.setInterval(() => {
       setArcFlash(true);
-      setTimeout(() => setArcFlash(false), 380);
+      flashOffTimer = window.setTimeout(() => setArcFlash(false), 380);
     }, 3800);
 
-    return () => clearInterval(arcInterval);
+    return () => {
+      window.clearInterval(arcInterval);
+      if (flashOffTimer) window.clearTimeout(flashOffTimer);
+    };
   }, [motionActive]);
 
-  const handleMouseMove = (e) => {
-    if (!containerRef.current) return;
-    const rect = containerRef.current.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / rect.width - 0.5;
-    const y = (e.clientY - rect.top) / rect.height - 0.5;
-    setMousePos({ x: x * 6, y: y * 6 });
-  };
+  useEffect(() => {
+    return () => {
+      if (rafTiltRef.current) window.cancelAnimationFrame(rafTiltRef.current);
+    };
+  }, []);
 
-  const handleMouseLeave = () => {
-    setMousePos({ x: 0, y: 0 });
-  };
+  const handleMouseMove = useCallback((e) => {
+    if (!containerRef.current) return;
+    if (
+      typeof window !== 'undefined' &&
+      (window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
+        !window.matchMedia('(hover: hover)').matches)
+    ) {
+      return;
+    }
+    const clientX = e.clientX;
+    const clientY = e.clientY;
+    if (rafTiltRef.current) window.cancelAnimationFrame(rafTiltRef.current);
+    rafTiltRef.current = window.requestAnimationFrame(() => {
+      const el = containerRef.current;
+      if (!el) return;
+      const rect = el.getBoundingClientRect();
+      if (!rect.width || !rect.height) return;
+      const x = ((clientX - rect.left) / rect.width - 0.5) * 6;
+      const y = ((clientY - rect.top) / rect.height - 0.5) * 6;
+      el.style.transform = `perspective(1000px) rotateY(${(x * 0.4).toFixed(2)}deg) rotateX(${(-y * 0.4).toFixed(2)}deg)`;
+    });
+  }, []);
+
+  const handleMouseLeave = useCallback(() => {
+    if (rafTiltRef.current) window.cancelAnimationFrame(rafTiltRef.current);
+    if (containerRef.current) {
+      containerRef.current.style.transform = 'perspective(1000px) rotateY(0deg) rotateX(0deg)';
+    }
+  }, []);
 
   const handleReplaySketch = () => {
     setSketchKey((prev) => prev + 1);
@@ -157,7 +198,7 @@ export default function HeroArt({ className = '', theme = 'light' }) {
       onMouseLeave={handleMouseLeave}
       className={`relative select-none group ${className}`}
       style={{
-        transform: `perspective(1000px) rotateY(${mousePos.x * 0.4}deg) rotateX(${-mousePos.y * 0.4}deg)`,
+        transform: 'perspective(1000px) rotateY(0deg) rotateX(0deg)',
         transition: 'transform 0.35s cubic-bezier(0.22, 1, 0.36, 1)',
       }}
       role="img"
@@ -181,8 +222,8 @@ export default function HeroArt({ className = '', theme = 'light' }) {
         }`}
       >
         <defs>
-          {/* Intense Electrical and Radiant Glow Filters */}
-          <filter id="hero-elec-glow" x="-30%" y="-30%" width="160%" height="160%">
+          {/* Intense Electrical and Radiant Glow Filters (unique per instance for Safari) */}
+          <filter id={elecGlowId} x="-30%" y="-30%" width="160%" height="160%">
             <feGaussianBlur stdDeviation={isLight ? "1.5" : "3.8"} result="blur" />
             <feMerge>
               <feMergeNode in="blur" />
@@ -190,7 +231,7 @@ export default function HeroArt({ className = '', theme = 'light' }) {
             </feMerge>
           </filter>
 
-          <filter id="hero-spark-glow" x="-60%" y="-60%" width="220%" height="220%">
+          <filter id={sparkGlowId} x="-60%" y="-60%" width="220%" height="220%">
             <feGaussianBlur stdDeviation={isLight ? "2.5" : "6"} result="brightBlur" />
             <feMerge>
               <feMergeNode in="brightBlur" />
@@ -199,7 +240,7 @@ export default function HeroArt({ className = '', theme = 'light' }) {
           </filter>
 
           {/* Fluid Flow Gradient */}
-          <linearGradient id="fluid-surge-pulse" x1="0%" y1="100%" x2="100%" y2="0%">
+          <linearGradient id={fluidGradId} x1="0%" y1="100%" x2="100%" y2="0%">
             <stop offset="0%" stopColor={colors.pipeFlange} stopOpacity="0.1" />
             <stop offset="45%" stopColor={colors.gearAccent} stopOpacity="0.95" />
             <stop offset="55%" stopColor={isLight ? "#FFB300" : "#FFFFFF"} stopOpacity="1" />
@@ -207,7 +248,7 @@ export default function HeroArt({ className = '', theme = 'light' }) {
           </linearGradient>
 
           {/* Catenary Conductor Gradient */}
-          <linearGradient id="catenary-pulse-glow" x1="0%" y1="0%" x2="100%" y2="0%">
+          <linearGradient id={catenaryGradId} x1="0%" y1="0%" x2="100%" y2="0%">
             <stop offset="0%" stopColor={colors.catenaryPulseStart} stopOpacity="0" />
             <stop offset="35%" stopColor={colors.catenaryPulseEnd} stopOpacity="0.9" />
             <stop offset="50%" stopColor={isLight ? "#D9251C" : "#FFFFFF"} stopOpacity="1" />
@@ -216,11 +257,11 @@ export default function HeroArt({ className = '', theme = 'light' }) {
           </linearGradient>
 
           <style>{`
-            /* Hand-Drawn Blueprint Sketch Keyframes (Full 2000px length ensures zero cutoffs) */
+            /* Hand-Drawn Blueprint Sketch Keyframes (Snappy 1.9s choreography) */
             @keyframes drawBlueprintStroke {
               0% {
                 stroke-dashoffset: 2000;
-                opacity: 0.15;
+                opacity: 0.25;
               }
               1% {
                 opacity: 1;
@@ -234,31 +275,31 @@ export default function HeroArt({ className = '', theme = 'light' }) {
             .sketch-pipe {
               stroke-dasharray: 2000;
               stroke-dashoffset: 2000;
-              animation: drawBlueprintStroke 2.5s cubic-bezier(0.25, 1, 0.5, 1) 0.0s forwards;
+              animation: drawBlueprintStroke 0.55s cubic-bezier(0.25, 1, 0.5, 1) 0.0s forwards;
             }
 
             .sketch-mech {
               stroke-dasharray: 2000;
               stroke-dashoffset: 2000;
-              animation: drawBlueprintStroke 2.5s cubic-bezier(0.25, 1, 0.5, 1) 2.5s forwards;
+              animation: drawBlueprintStroke 0.6s cubic-bezier(0.25, 1, 0.5, 1) 0.25s forwards;
             }
 
             .sketch-tower {
               stroke-dasharray: 2000;
               stroke-dashoffset: 2000;
-              animation: drawBlueprintStroke 2.5s cubic-bezier(0.25, 1, 0.5, 1) 5.0s forwards;
+              animation: drawBlueprintStroke 0.65s cubic-bezier(0.25, 1, 0.5, 1) 0.55s forwards;
             }
 
             .sketch-crossarms {
               stroke-dasharray: 2000;
               stroke-dashoffset: 2000;
-              animation: drawBlueprintStroke 1.5s cubic-bezier(0.25, 1, 0.5, 1) 7.5s forwards;
+              animation: drawBlueprintStroke 0.55s cubic-bezier(0.25, 1, 0.5, 1) 0.9s forwards;
             }
 
             .sketch-catenary {
               stroke-dasharray: 2000;
               stroke-dashoffset: 2000;
-              animation: drawBlueprintStroke 1.0s cubic-bezier(0.25, 1, 0.5, 1) 9.0s forwards;
+              animation: drawBlueprintStroke 0.6s cubic-bezier(0.25, 1, 0.5, 1) 1.25s forwards;
             }
 
             /* Once fully drawn, ensure all static lines become 100% solid with zero dash gaps */
@@ -303,7 +344,7 @@ export default function HeroArt({ className = '', theme = 'light' }) {
             }
 
             @keyframes fluidSurgeFlow {
-              0% { stroke-dashoffset: 400; }
+              0% { stroke-dashoffset: 240; }
               100% { stroke-dashoffset: 0; }
             }
 
@@ -491,7 +532,7 @@ export default function HeroArt({ className = '', theme = 'light' }) {
                   fill={colors.insulatorOrb}
                   stroke={colors.insulatorDisc}
                   strokeWidth="2"
-                  filter="url(#hero-elec-glow)"
+                  filter={`url(#${elecGlowId})`}
                 />
               </g>
             ))}
@@ -509,6 +550,7 @@ export default function HeroArt({ className = '', theme = 'light' }) {
                   strokeWidth="2"
                   fill="none"
                   style={{
+                    transformBox: 'view-box',
                     transformOrigin: '430px 58px',
                     animation: 'coronaFlicker 2.8s ease-in-out infinite',
                   }}
@@ -522,6 +564,7 @@ export default function HeroArt({ className = '', theme = 'light' }) {
                   strokeDasharray="5 4"
                   fill="none"
                   style={{
+                    transformBox: 'view-box',
                     transformOrigin: '430px 58px',
                     animation: 'coronaFlicker 2.8s ease-in-out infinite 0.4s',
                   }}
@@ -535,11 +578,11 @@ export default function HeroArt({ className = '', theme = 'light' }) {
               stroke={colors.summitBoltStroke}
               strokeWidth="2.5"
               strokeLinejoin="round"
-              filter="url(#hero-spark-glow)"
+              filter={`url(#${sparkGlowId})`}
               className={`transition-transform duration-200 ${
                 motionActive && arcFlash ? 'scale-125' : 'scale-100'
               }`}
-              style={{ transformOrigin: '430px 60px' }}
+              style={{ transformBox: 'view-box', transformOrigin: '430px 60px' }}
             />
           </g>
 
@@ -551,7 +594,7 @@ export default function HeroArt({ className = '', theme = 'light' }) {
             fill="none"
             strokeLinecap="round"
             className="sketch-catenary"
-            filter="url(#hero-elec-glow)"
+            filter={`url(#${elecGlowId})`}
           />
           <path
             d="M 25 310 Q 220 380 430 295 T 840 335"
@@ -560,7 +603,7 @@ export default function HeroArt({ className = '', theme = 'light' }) {
             fill="none"
             strokeLinecap="round"
             className="sketch-catenary"
-            filter="url(#hero-elec-glow)"
+            filter={`url(#${elecGlowId})`}
           />
           <path
             d="M 15 420 Q 210 500 440 395 T 850 435"
@@ -569,16 +612,16 @@ export default function HeroArt({ className = '', theme = 'light' }) {
             fill="none"
             strokeLinecap="round"
             className="sketch-catenary"
-            filter="url(#hero-spark-glow)"
+            filter={`url(#${sparkGlowId})`}
           />
           {motionActive && (
             <path
               d="M 15 420 Q 210 500 440 395 T 850 435"
-              stroke="url(#catenary-pulse-glow)"
+              stroke={`url(#${catenaryGradId})`}
               strokeWidth="6"
               fill="none"
               strokeLinecap="round"
-              filter="url(#hero-spark-glow)"
+              filter={`url(#${sparkGlowId})`}
               className="catenary-wave-active"
             />
           )}
@@ -589,7 +632,7 @@ export default function HeroArt({ className = '', theme = 'light' }) {
             fill="none"
             strokeLinecap="round"
             className="sketch-catenary"
-            filter="url(#hero-elec-glow)"
+            filter={`url(#${elecGlowId})`}
           />
         </g>
 
@@ -656,7 +699,7 @@ export default function HeroArt({ className = '', theme = 'light' }) {
           {motionActive && (
             <path
               d="M 175 700 L 175 780 L 215 780 L 215 820 L 175 820 L 175 920 L 810 920 L 810 640 L 750 640"
-              stroke="url(#fluid-surge-pulse)"
+              stroke={`url(#${fluidGradId})`}
               strokeWidth="6"
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -681,61 +724,67 @@ export default function HeroArt({ className = '', theme = 'light' }) {
           </g>
 
           {/* Pressure Gauge 1 (Left Pipe Branch) */}
-          <g transform="translate(220, 660)" className="sketch-pipe">
-            <line x1="0" y1="40" x2="0" y2="24" stroke={colors.pipeWall} strokeWidth="3" />
-            <rect x="-5" y="24" width="10" height="6" fill={colors.pipeFlange} stroke={colors.pipeWall} strokeWidth="1.5" />
-            <circle cx="0" cy="0" r="24" fill={colors.gaugeDial} stroke={colors.gaugeRim} strokeWidth="3.2" />
-            <circle cx="0" cy="0" r="20" stroke={colors.gaugeTicks} strokeWidth="1" strokeDasharray="3 2" />
-            {[-120, -90, -60, -30, 0, 30, 60, 90, 120].map((deg, di) => (
-              <line
-                key={di}
-                x1="0"
-                y1="-14"
-                x2="0"
-                y2="-19"
-                stroke={colors.gaugeTicks}
-                strokeWidth="1.6"
-                transform={`rotate(${deg} 0 0)`}
-              />
-            ))}
+          <g className="sketch-pipe">
+            <g transform="translate(220, 660)">
+              <line x1="0" y1="40" x2="0" y2="24" stroke={colors.pipeWall} strokeWidth="3" />
+              <rect x="-5" y="24" width="10" height="6" fill={colors.pipeFlange} stroke={colors.pipeWall} strokeWidth="1.5" />
+              <circle cx="0" cy="0" r="24" fill={colors.gaugeDial} stroke={colors.gaugeRim} strokeWidth="3.2" />
+              <circle cx="0" cy="0" r="20" stroke={colors.gaugeTicks} strokeWidth="1" strokeDasharray="3 2" />
+              {[-120, -90, -60, -30, 0, 30, 60, 90, 120].map((deg, di) => (
+                <line
+                  key={di}
+                  x1="0"
+                  y1="-14"
+                  x2="0"
+                  y2="-19"
+                  stroke={colors.gaugeTicks}
+                  strokeWidth="1.6"
+                  transform={`rotate(${deg} 0 0)`}
+                />
+              ))}
+            </g>
             <g
               style={{
+                transformBox: 'view-box',
                 transformOrigin: '220px 660px',
                 animation: motionActive ? 'gaugeNeedleOscillate1 2.4s ease-in-out infinite' : 'none',
               }}
             >
-              <line x1="0" y1="0" x2="0" y2="-17" stroke={colors.gaugeNeedle} strokeWidth="2.6" strokeLinecap="round" />
-              <line x1="0" y1="0" x2="0" y2="4" stroke={colors.gaugeNeedle} strokeWidth="2.2" />
+              <line x1="220" y1="660" x2="220" y2="643" stroke={colors.gaugeNeedle} strokeWidth="2.6" strokeLinecap="round" />
+              <line x1="220" y1="660" x2="220" y2="664" stroke={colors.gaugeNeedle} strokeWidth="2.2" />
             </g>
-            <circle cx="0" cy="0" r="3.2" fill={colors.gaugeRim} stroke={colors.gaugeDial} strokeWidth="1" />
+            <circle cx="220" cy="660" r="3.2" fill={colors.gaugeRim} stroke={colors.gaugeDial} strokeWidth="1" />
           </g>
 
           {/* Pressure Gauge 2 (Intermediate Tube) */}
-          <g transform="translate(525, 410)" className="sketch-pipe">
-            <line x1="0" y1="28" x2="0" y2="18" stroke={colors.pipeWall} strokeWidth="2.5" />
-            <circle cx="0" cy="0" r="20" fill={colors.gaugeDial} stroke={colors.gaugeRim} strokeWidth="3" />
-            <circle cx="0" cy="0" r="16" stroke={colors.gaugeTicks} strokeWidth="1" strokeDasharray="3 2" />
-            {[-90, -45, 0, 45, 90].map((deg, di) => (
-              <line
-                key={di}
-                x1="0"
-                y1="-11"
-                x2="0"
-                y2="-16"
-                stroke={colors.gaugeTicks}
-                strokeWidth="1.5"
-                transform={`rotate(${deg} 0 0)`}
-              />
-            ))}
+          <g className="sketch-pipe">
+            <g transform="translate(525, 410)">
+              <line x1="0" y1="28" x2="0" y2="18" stroke={colors.pipeWall} strokeWidth="2.5" />
+              <circle cx="0" cy="0" r="20" fill={colors.gaugeDial} stroke={colors.gaugeRim} strokeWidth="3" />
+              <circle cx="0" cy="0" r="16" stroke={colors.gaugeTicks} strokeWidth="1" strokeDasharray="3 2" />
+              {[-90, -45, 0, 45, 90].map((deg, di) => (
+                <line
+                  key={di}
+                  x1="0"
+                  y1="-11"
+                  x2="0"
+                  y2="-16"
+                  stroke={colors.gaugeTicks}
+                  strokeWidth="1.5"
+                  transform={`rotate(${deg} 0 0)`}
+                />
+              ))}
+            </g>
             <g
               style={{
+                transformBox: 'view-box',
                 transformOrigin: '525px 410px',
                 animation: motionActive ? 'gaugeNeedleOscillate2 2.1s ease-in-out infinite' : 'none',
               }}
             >
-              <line x1="0" y1="0" x2="0" y2="-14" stroke={colors.gaugeNeedle} strokeWidth="2.5" strokeLinecap="round" />
+              <line x1="525" y1="410" x2="525" y2="396" stroke={colors.gaugeNeedle} strokeWidth="2.5" strokeLinecap="round" />
             </g>
-            <circle cx="0" cy="0" r="2.8" fill={colors.gaugeRim} />
+            <circle cx="525" cy="410" r="2.8" fill={colors.gaugeRim} />
           </g>
 
           {/* Turbine Structural Casing Shroud */}
@@ -758,6 +807,7 @@ export default function HeroArt({ className = '', theme = 'light' }) {
           <g
             className="sketch-mech"
             style={{
+              transformBox: 'view-box',
               transformOrigin: '660px 620px',
               animation: motionActive ? 'spinClockwise 12s linear infinite' : 'none',
             }}
@@ -800,6 +850,7 @@ export default function HeroArt({ className = '', theme = 'light' }) {
           <g
             className="sketch-mech"
             style={{
+              transformBox: 'view-box',
               transformOrigin: '470px 740px',
               animation: motionActive ? 'spinCounterClockwise 6s linear infinite' : 'none',
             }}
@@ -822,6 +873,7 @@ export default function HeroArt({ className = '', theme = 'light' }) {
           <g
             className="sketch-mech"
             style={{
+              transformBox: 'view-box',
               transformOrigin: '565px 795px',
               animation: motionActive ? 'spinClockwise 3.2s linear infinite' : 'none',
             }}
@@ -849,6 +901,7 @@ export default function HeroArt({ className = '', theme = 'light' }) {
           <g
             className="sketch-mech"
             style={{
+              transformBox: 'view-box',
               transformOrigin: '360px 840px',
               animation: motionActive ? 'crankPinSpin 2.4s linear infinite' : 'none',
             }}
@@ -940,10 +993,10 @@ export default function HeroArt({ className = '', theme = 'light' }) {
                 stroke="#10B981"
                 strokeWidth="1.8"
                 strokeLinecap="round"
-                className={motionActive ? "animate-pulse" : ""}
+                className="animate-pulse"
               />
               {/* Mini Readout Status Dots */}
-              <circle cx="744" cy="802" r="2" fill="#10B981" className={motionActive ? "animate-ping" : ""} style={{ animationDuration: '2s' }} />
+              <circle cx="744" cy="802" r="2" fill="#10B981" className="animate-ping" style={{ animationDuration: '2s' }} />
               <circle cx="738" cy="802" r="1.5" fill="#3B82F6" />
 
               {/* Status Indicator LED Lights (Green/Amber/Red with Alternating Phase Telemetry) */}
@@ -955,7 +1008,7 @@ export default function HeroArt({ className = '', theme = 'light' }) {
                   fill="#10B981"
                   stroke={colors.gearDark}
                   strokeWidth="1"
-                  className={motionActive ? "animate-led-green" : ""}
+                  className="animate-led-green"
                 />
                 <circle
                   cx="704"
@@ -964,7 +1017,7 @@ export default function HeroArt({ className = '', theme = 'light' }) {
                   fill="#F59E0B"
                   stroke={colors.gearDark}
                   strokeWidth="1"
-                  className={motionActive ? "animate-led-amber" : ""}
+                  className="animate-led-amber"
                 />
                 <circle
                   cx="715"
@@ -973,7 +1026,7 @@ export default function HeroArt({ className = '', theme = 'light' }) {
                   fill="#EF4444"
                   stroke={colors.gearDark}
                   strokeWidth="1"
-                  className={motionActive ? "animate-led-red" : ""}
+                  className="animate-led-red"
                 />
               </g>
 
@@ -988,7 +1041,7 @@ export default function HeroArt({ className = '', theme = 'light' }) {
                 stroke={colors.gaugeNeedle}
                 strokeWidth="1.5"
                 strokeLinecap="round"
-                className={motionActive ? "animate-pulse" : ""}
+                className="animate-pulse"
               />
               <circle cx="739" cy="840" r="1.8" fill={colors.gearRim || colors.gearDark} />
 
@@ -1125,27 +1178,6 @@ export default function HeroArt({ className = '', theme = 'light' }) {
               {/* Vertical Radio / Tool Pocket on Chest */}
               <rect x="38" y="47" width="8" height="8" rx="1" fill={isLight ? "#334155" : "#1E293B"} stroke="#84CC16" strokeWidth="0.8" />
 
-              {/* Left Arm: Operating Control Panel Breaker Switch with Methodical Kinetic Pivot */}
-              <g
-                id="engineer-operating-arm"
-                className={motionActive ? "animate-arm-pivot" : ""}
-              >
-                <path
-                  d="M 24 49 L 3 58 L -9 55"
-                  fill="none"
-                  stroke={isLight ? "#1E293B" : "#0F172A"}
-                  strokeWidth="5.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                {/* Neon Band on Left Sleeve */}
-                <line x1="9" y1="56" x2="14" y2="58" stroke="#84CC16" strokeWidth="4" />
-                {/* Work Glove Operating Console */}
-                <circle cx="-11" cy="55" r="5" fill="#D97706" stroke={colors.gearDark} strokeWidth="1.2" />
-                {/* Glove Grip Detail */}
-                <circle cx="-8" cy="52" r="2" fill="#B45309" />
-              </g>
-
               {/* Right Arm: Confident Stance at Side */}
               <path
                 d="M 49 49 L 54 68 L 52 82"
@@ -1198,6 +1230,24 @@ export default function HeroArt({ className = '', theme = 'light' }) {
                 strokeLinejoin="round"
               />
             </g>
+
+            {/* Left Arm: Operating Control Panel Breaker Switch (Root coords at shoulder 792,814 for Safari & Chrome accuracy) */}
+            <g id="engineer-operating-arm" className="animate-arm-pivot">
+              <path
+                d="M 792 814 L 771 823 L 759 820"
+                fill="none"
+                stroke={isLight ? "#1E293B" : "#0F172A"}
+                strokeWidth="5.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              {/* Neon Band on Left Sleeve */}
+              <line x1="777" y1="821" x2="782" y2="823" stroke="#84CC16" strokeWidth="4" />
+              {/* Work Glove Operating Console */}
+              <circle cx="757" cy="820" r="5" fill="#D97706" stroke={colors.gearDark} strokeWidth="1.2" />
+              {/* Glove Grip Detail */}
+              <circle cx="760" cy="817" r="2" fill="#B45309" />
+            </g>
           </g>
         </g>
 
@@ -1208,7 +1258,7 @@ export default function HeroArt({ className = '', theme = 'light' }) {
           <g id="kinetic-energy-pulses">
             {/* Operator Control Panel Energy Surge Pulse (Powering the Equipment) */}
             <g>
-              <circle r="6" fill="#10B981" filter="url(#hero-spark-glow)">
+              <circle r="6" fill="#10B981" filter={`url(#${sparkGlowId})`}>
                 <animateMotion
                   path="M 720 778 L 720 725 Q 720 680 690 655 L 668 640"
                   dur="2.4s"
@@ -1226,7 +1276,7 @@ export default function HeroArt({ className = '', theme = 'light' }) {
 
             {/* Secondary Pulse from Panel into Main Grid */}
             <g>
-              <circle r="6.5" fill={colors.summitBoltFill} filter="url(#hero-spark-glow)">
+              <circle r="6.5" fill={colors.summitBoltFill} filter={`url(#${sparkGlowId})`}>
                 <animateMotion
                   path="M 750 778 L 750 705 Q 750 635 780 595 L 810 530"
                   dur="3s"
@@ -1245,7 +1295,7 @@ export default function HeroArt({ className = '', theme = 'light' }) {
             </g>
             {/* Orb on Catenary 1 */}
             <g>
-              <circle r="7.5" fill={colors.catenaryPulseEnd} filter="url(#hero-spark-glow)">
+              <circle r="7.5" fill={colors.catenaryPulseEnd} filter={`url(#${sparkGlowId})`}>
                 <animateMotion
                   path="M 40 200 Q 230 255 430 190 T 820 230"
                   dur="4.2s"
@@ -1263,7 +1313,7 @@ export default function HeroArt({ className = '', theme = 'light' }) {
 
             {/* Orb on Catenary 2 (Bidirectional Sweep) */}
             <g>
-              <circle r="8.5" fill={colors.catenaryPulseEnd} filter="url(#hero-spark-glow)">
+              <circle r="8.5" fill={colors.catenaryPulseEnd} filter={`url(#${sparkGlowId})`}>
                 <animateMotion
                   path="M 25 310 Q 220 380 430 295 T 840 335"
                   dur="4.8s"
@@ -1289,7 +1339,7 @@ export default function HeroArt({ className = '', theme = 'light' }) {
 
             {/* High-Energy Pulse Orb on Catenary 3 */}
             <g>
-              <circle r="10.5" fill={colors.catenaryPulseStart} filter="url(#hero-spark-glow)">
+              <circle r="10.5" fill={colors.catenaryPulseStart} filter={`url(#${sparkGlowId})`}>
                 <animateMotion
                   path="M 15 420 Q 210 500 440 395 T 850 435"
                   dur="3.8s"
@@ -1307,7 +1357,7 @@ export default function HeroArt({ className = '', theme = 'light' }) {
 
             {/* Secondary Staggered Orb on Catenary 3 */}
             <g>
-              <circle r="7.5" fill={colors.catenaryPulseStart} filter="url(#hero-elec-glow)">
+              <circle r="7.5" fill={colors.catenaryPulseStart} filter={`url(#${elecGlowId})`}>
                 <animateMotion
                   path="M 15 420 Q 210 500 440 395 T 850 435"
                   dur="3.8s"
@@ -1327,7 +1377,7 @@ export default function HeroArt({ className = '', theme = 'light' }) {
 
             {/* Orb on Catenary 4 */}
             <g>
-              <circle r="8" fill={colors.catenaryPulseEnd} filter="url(#hero-spark-glow)">
+              <circle r="8" fill={colors.catenaryPulseEnd} filter={`url(#${sparkGlowId})`}>
                 <animateMotion
                   path="M 10 540 Q 220 625 440 515 T 845 555"
                   dur="5.4s"
@@ -1345,7 +1395,7 @@ export default function HeroArt({ className = '', theme = 'light' }) {
 
             {/* High-Voltage Arc Flash Sparks */}
             {arcFlash && (
-              <g filter="url(#hero-spark-glow)">
+              <g filter={`url(#${sparkGlowId})`}>
                 <path
                   d="M 220 315 L 245 350 L 230 358 L 260 390"
                   stroke={colors.insulatorOrb}

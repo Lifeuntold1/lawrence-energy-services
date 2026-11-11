@@ -61,10 +61,10 @@ html.lenis, html.lenis body {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
-  .marquee-track {
+  .marquee-track,
+  .animate-marquee,
+  .animate-marquee-reverse {
     animation: none !important;
-    flex-wrap: wrap !important;
-    width: auto !important;
   }
 }
 
@@ -209,11 +209,10 @@ select:focus-visible {
 /* Subtle Shimmer for High-Priority Engineering Badges */
 @keyframes badge-shimmer {
   0%, 100% {
-    opacity: 0.9;
+    opacity: 0.88;
   }
   50% {
     opacity: 1;
-    filter: drop-shadow(0 0 6px rgba(255, 245, 0, 0.5));
   }
 }
 
@@ -255,41 +254,36 @@ select:focus-visible {
 
 .animate-arm-pivot {
   animation: engineer-arm-pivot 3.2s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
-  transform-origin: 24px 49px;
+  transform-box: view-box;
+  transform-origin: 792px 814px;
   will-change: transform;
 }
 
-/* Control Panel Alternating Phase Status Indicator LEDs */
+/* Control Panel Alternating Phase Status Indicator LEDs (GPU opacity/transform only, Safari-safe) */
 @keyframes led-phase-green {
   0%, 45%, 100% {
     opacity: 1;
-    filter: drop-shadow(0 0 3px #10B981);
   }
   50%, 95% {
-    opacity: 0.35;
-    filter: none;
+    opacity: 0.28;
   }
 }
 
 @keyframes led-phase-amber {
   0%, 45%, 100% {
-    opacity: 0.35;
-    filter: none;
+    opacity: 0.28;
   }
   50%, 95% {
     opacity: 1;
-    filter: drop-shadow(0 0 3px #F59E0B);
   }
 }
 
 @keyframes led-phase-red {
   0%, 78%, 100% {
-    opacity: 0.3;
-    filter: none;
+    opacity: 0.28;
   }
   86%, 92% {
     opacity: 1;
-    filter: drop-shadow(0 0 4px #EF4444);
   }
 }
 

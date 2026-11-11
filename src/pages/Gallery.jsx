@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import {
   Grid,
@@ -275,7 +275,6 @@ export default function Gallery() {
   const railRef = useRef(null);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
     const cleanup = initScrollAnimations();
     refreshScroll();
     return () => {
@@ -293,17 +292,37 @@ export default function Gallery() {
     setCurrentIndex(idx);
   };
 
-  const nextPhoto = () => {
+  const nextPhoto = useCallback(() => {
+    if (!filteredPhotos.length) return;
     const nextIdx = (currentIndex + 1) % filteredPhotos.length;
     setCurrentIndex(nextIdx);
     setSelectedPhoto(filteredPhotos[nextIdx]);
-  };
+  }, [currentIndex, filteredPhotos]);
 
-  const prevPhoto = () => {
+  const prevPhoto = useCallback(() => {
+    if (!filteredPhotos.length) return;
     const prevIdx = (currentIndex - 1 + filteredPhotos.length) % filteredPhotos.length;
     setCurrentIndex(prevIdx);
     setSelectedPhoto(filteredPhotos[prevIdx]);
-  };
+  }, [currentIndex, filteredPhotos]);
+
+  useEffect(() => {
+    if (!selectedPhoto) {
+      document.body.style.overflow = '';
+      return;
+    }
+    document.body.style.overflow = 'hidden';
+    const onKeyDown = (e) => {
+      if (e.key === 'Escape') setSelectedPhoto(null);
+      if (e.key === 'ArrowRight') nextPhoto();
+      if (e.key === 'ArrowLeft') prevPhoto();
+    };
+    window.addEventListener('keydown', onKeyDown);
+    return () => {
+      document.body.style.overflow = '';
+      window.removeEventListener('keydown', onKeyDown);
+    };
+  }, [selectedPhoto, nextPhoto, prevPhoto]);
 
   const scrollRail = (direction) => {
     if (railRef.current) {
@@ -410,7 +429,6 @@ export default function Gallery() {
               {filteredPhotos.map((photo, idx) => (
                 <div
                   key={photo.id}
-                  data-reveal
                   onClick={() => openLightbox(photo, idx)}
                   className="group relative bg-white border border-line rounded-[6px] overflow-hidden shadow-card hover:border-red hover:shadow-hover cursor-pointer transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-between"
                 >
@@ -419,7 +437,7 @@ export default function Gallery() {
                     <img
                       src={`/${photo.src}`}
                       alt={photo.title}
-                      className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-106"
+                      className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                       loading="lazy"
                     />
 
@@ -443,7 +461,7 @@ export default function Gallery() {
 
                     <div className="mt-4 pt-3.5 border-t border-line/70 flex items-center justify-between text-xs font-mono text-red font-bold">
                       <span className="truncate pr-2">{photo.specs}</span>
-                      <Maximize2 className="w-3.5 h-3.5 shrink-0 transition-transform group-hover:scale-115" />
+                      <Maximize2 className="w-3.5 h-3.5 shrink-0 transition-transform group-hover:scale-110" />
                     </div>
                   </div>
                 </div>
@@ -487,7 +505,7 @@ export default function Gallery() {
                 ref={railRef}
                 className="flex gap-8 overflow-x-auto pb-8 pt-2 scroll-smooth select-none"
                 style={{
-                  touchAction: 'pan-y',
+                  touchAction: 'pan-x pan-y',
                   WebkitOverflowScrolling: 'touch',
                   scrollbarWidth: 'none',
                   msOverflowStyle: 'none',
@@ -562,8 +580,11 @@ export default function Gallery() {
       {/* 5. IMMERSIVE LIGHTBOX MODAL */}
       {selectedPhoto && (
         <div
-          className="fixed inset-0 z-50 bg-black/95 backdrop-blur-xl flex flex-col justify-between p-4 sm:p-8 animate-fadeIn"
+          className="fixed inset-0 z-50 bg-black/95 backdrop-blur-xl flex flex-col justify-between p-4 sm:p-8 transition-opacity duration-200"
           onClick={() => setSelectedPhoto(null)}
+          role="dialog"
+          aria-modal="true"
+          aria-label={selectedPhoto.title}
         >
           {/* Top Bar */}
           <div
@@ -582,7 +603,7 @@ export default function Gallery() {
             <button
               type="button"
               onClick={() => setSelectedPhoto(null)}
-              className="w-10 h-10 rounded-full border border-white/20 bg-white/10 hover:bg-red text-white flex items-center justify-center transition-colors"
+              className="w-11 h-11 rounded-full border border-white/20 bg-white/10 hover:bg-red text-white flex items-center justify-center transition-colors shrink-0"
               aria-label="Close photo preview"
             >
               <X className="w-5 h-5" />

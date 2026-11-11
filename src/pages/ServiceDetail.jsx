@@ -21,7 +21,6 @@ export default function ServiceDetail() {
   const [selectedProject, setSelectedProject] = useState(null);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
     const cleanup = initScrollAnimations();
     refreshScroll();
     return () => {

@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Calendar, Clock, Video, Building2, CheckCircle2, ArrowRight } from 'lucide-react';
 import content from '../data/content.json';
 import InnerHeroCanvas from '../components/InnerHeroCanvas';
 
 export default function Book() {
   const [submitted, setSubmitted] = useState(false);
+  const [dateError, setDateError] = useState('');
   const [formData, setFormData] = useState({
     name: '',
     company: '',
@@ -18,22 +19,25 @@ export default function Book() {
     honeypot: '',
   });
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   // Today formatted as YYYY-MM-DD
   const today = new Date().toISOString().split('T')[0];
 
   const handleDateChange = (e) => {
-    const selectedDate = new Date(e.target.value);
+    const val = e.target.value;
+    if (!val) {
+      setDateError('');
+      setFormData({ ...formData, date: '' });
+      return;
+    }
+    const selectedDate = new Date(val);
     const dayOfWeek = selectedDate.getUTCDay();
     // 0 is Sunday, 6 is Saturday
     if (dayOfWeek === 0 || dayOfWeek === 6) {
-      alert('Meetings are scheduled Monday to Friday only (9:00 am - 5:00 pm). Please select a weekday.');
+      setDateError('Meetings run Monday to Friday (9:00 AM - 5:00 PM). Please pick a weekday.');
       return;
     }
-    setFormData({ ...formData, date: e.target.value });
+    setDateError('');
+    setFormData({ ...formData, date: val });
   };
 
   const handleChange = (e) => {
@@ -270,8 +274,18 @@ export default function Book() {
                       min={today}
                       value={formData.date}
                       onChange={handleDateChange}
-                      className="w-full min-h-[52px] px-4 py-3.5 rounded-lg border border-line bg-white text-ink text-base focus:border-red focus:ring-2 focus:ring-red/20 focus:outline-none transition-all shadow-xs"
+                      aria-invalid={!!dateError}
+                      className={`w-full min-h-[52px] px-4 py-3.5 rounded-lg border bg-white text-ink text-base focus:ring-2 focus:outline-none transition-all shadow-xs ${
+                        dateError
+                          ? 'border-red ring-2 ring-red/20 focus:border-red focus:ring-red/20'
+                          : 'border-line focus:border-red focus:ring-red/20'
+                      }`}
                     />
+                    {dateError && (
+                      <p className="text-xs font-semibold text-red mt-1.5" role="alert">
+                        {dateError}
+                      </p>
+                    )}
                   </div>
 
                   <div>

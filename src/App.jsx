@@ -26,23 +26,28 @@ function RouteLoadingFallback() {
   return (
     <div role="status" aria-label="Loading page" className="min-h-screen flex items-center justify-center bg-white">
       <div className="flex flex-col items-center gap-3">
-        <div className="w-9 h-9 rounded-full border-3 border-line border-t-red animate-spin" />
+        <div className="w-9 h-9 rounded-full border-[3px] border-line border-t-red animate-spin" />
         <span className="text-xs font-mono uppercase tracking-widest text-grey">Loading</span>
       </div>
     </div>
   );
 }
 
+import { scrollToTopImmediate, initLenis, destroyLenis } from './lib/motion';
+
 function ScrollRestorationHandler() {
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
 
   useEffect(() => {
-    // Force browser to start at top on navigation and refresh
+    // Force browser to start at top (or target hash) on navigation and refresh
     if ('scrollRestoration' in window.history) {
       window.history.scrollRestoration = 'manual';
     }
-    window.scrollTo(0, 0);
-  }, [pathname]);
+    const timer = window.setTimeout(() => {
+      scrollToTopImmediate(hash);
+    }, hash ? 120 : 0);
+    return () => window.clearTimeout(timer);
+  }, [pathname, hash]);
 
   return null;
 }
@@ -80,12 +85,9 @@ export default function App() {
       !('ontouchstart' in window) &&
       navigator.maxTouchPoints === 0
     ) {
-      let activeLenis = null;
-      import('./lib/motion').then(({ initLenis }) => {
-        activeLenis = initLenis();
-      });
+      initLenis();
       return () => {
-        if (activeLenis) activeLenis.destroy();
+        destroyLenis();
       };
     }
   }, []);

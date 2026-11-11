@@ -1,12 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Mail, CheckCircle, Shield, Award, Users, ArrowRight } from 'lucide-react';
 import content from '../data/content.json';
 import InnerHeroCanvas from '../components/InnerHeroCanvas';
 
 export default function Careers() {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
 
   return (
     <div className="bg-white text-ink pt-16 sm:pt-20 lg:pt-24 pb-28 lg:pb-16">

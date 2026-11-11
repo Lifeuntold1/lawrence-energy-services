@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useId } from 'react';
 
 const VARIANT_IMAGES = {
   about: {
@@ -92,16 +92,25 @@ export default function InnerHeroCanvas({ variant = 'about', className = '', ima
         />
       </picture>
 
-      {/* 2. Directional Progressive Soft-Blur (0% blur on right flank, increases gradually toward text; 0% blur on Contact & Partners) */}
+      {/* 2. Directional Progressive Soft-Blur (Safari-safe GPU masked blur layer: 0% blur on right flank, increases gradually toward text) */}
       {variant !== 'partners' && variant !== 'contact' && (
-        <div
-          className="mask-hero-blur absolute inset-0 pointer-events-none"
+        <picture
+          className="mask-hero-blur absolute inset-0 w-full h-full pointer-events-none select-none"
           style={{
-            backdropFilter: 'blur(8px)',
-            WebkitBackdropFilter: 'blur(8px)',
-            backgroundColor: 'rgba(250, 249, 245, 0.01)',
+            filter: 'blur(8px)',
+            transform: 'scale(1.03)',
           }}
-        />
+        >
+          <source srcSet={bgWebp} type="image/webp" />
+          <img
+            src={bgJpg}
+            alt=""
+            loading="eager"
+            decoding="async"
+            aria-hidden="true"
+            className="w-full h-full object-cover object-center"
+          />
+        </picture>
       )}
 
       {/* 3. Directional Parchment Scrim: solid text clarity on left, creamy progressive transition, completely transparent on right */}
@@ -133,6 +142,8 @@ export default function InnerHeroCanvas({ variant = 'about', className = '', ima
 
 /* ================= 1. ABOUT US: STATUESQUE POWER TRANSMISSION ARC ================= */
 function AboutMotion() {
+  const uid = useId().replace(/:/g, '');
+  const gradId = `about-arc-grad-${uid}`;
   return (
     <svg
       viewBox="0 0 1440 460"
@@ -142,7 +153,7 @@ function AboutMotion() {
       preserveAspectRatio="xMidYMid slice"
     >
       <defs>
-        <linearGradient id="about-arc-grad" x1="0" y1="0" x2="1" y2="0">
+        <linearGradient id={gradId} x1="0" y1="0" x2="1" y2="0">
           <stop offset="0%" stopColor="#D9251C" stopOpacity="0.05" />
           <stop offset="50%" stopColor="#FFF500" stopOpacity="0.35" />
           <stop offset="100%" stopColor="#D9251C" stopOpacity="0.05" />
@@ -152,7 +163,7 @@ function AboutMotion() {
       {/* Bold Catenary Transmission Arc */}
       <path
         d="M -100 380 C 350 180, 1050 180, 1540 380"
-        stroke="url(#about-arc-grad)"
+        stroke={`url(#${gradId})`}
         strokeWidth="2.5"
         className="opacity-90"
       />
@@ -183,6 +194,8 @@ function AboutMotion() {
 
 /* ================= 2. SERVICES: PURE HARMONIC VOLTAGE SINE WAVE ================= */
 function ServicesMotion() {
+  const uid = useId().replace(/:/g, '');
+  const gradId = `services-sine-grad-${uid}`;
   return (
     <svg
       viewBox="0 0 1440 460"
@@ -192,7 +205,7 @@ function ServicesMotion() {
       preserveAspectRatio="xMidYMid slice"
     >
       <defs>
-        <linearGradient id="services-sine-grad" x1="0" y1="0" x2="1" y2="0">
+        <linearGradient id={gradId} x1="0" y1="0" x2="1" y2="0">
           <stop offset="0%" stopColor="#FFF500" stopOpacity="0.1" />
           <stop offset="50%" stopColor="#FFF500" stopOpacity="0.4" />
           <stop offset="100%" stopColor="#D9251C" stopOpacity="0.15" />
@@ -202,7 +215,7 @@ function ServicesMotion() {
       {/* Bold, Elegant Primary Sine Waveform */}
       <path
         d="M -60 230 Q 320 110, 700 230 T 1460 230"
-        stroke="url(#services-sine-grad)"
+        stroke={`url(#${gradId})`}
         strokeWidth="2.5"
         className="opacity-80"
       />
@@ -293,6 +306,8 @@ function GalleryMotion() {
 
 /* ================= 5. PARTNERS: CONTINENTAL INTERCONNECTION ARTERIES ================= */
 function PartnersMotion() {
+  const uid = useId().replace(/:/g, '');
+  const gradId = `partners-artery-grad-${uid}`;
   return (
     <svg
       viewBox="0 0 1440 460"
@@ -302,7 +317,7 @@ function PartnersMotion() {
       preserveAspectRatio="xMidYMid slice"
     >
       <defs>
-        <linearGradient id="partners-artery-grad" x1="0" y1="0" x2="1" y2="1">
+        <linearGradient id={gradId} x1="0" y1="0" x2="1" y2="1">
           <stop offset="0%" stopColor="#D9251C" stopOpacity="0.1" />
           <stop offset="50%" stopColor="#FFF500" stopOpacity="0.4" />
           <stop offset="100%" stopColor="#D9251C" stopOpacity="0.1" />
@@ -312,7 +327,7 @@ function PartnersMotion() {
       {/* East-West Interconnection Trunk */}
       <path
         d="M -80 320 C 420 180, 980 360, 1520 190"
-        stroke="url(#partners-artery-grad)"
+        stroke={`url(#${gradId})`}
         strokeWidth="2.2"
         className="opacity-80"
       />

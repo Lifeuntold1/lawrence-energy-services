@@ -368,7 +368,11 @@ export default function Home() {
                     <div className="h-1 w-10 bg-red mb-4" />
                     <div className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-black flex items-baseline flex-wrap">
                       {stat.prefix && <span className="text-base sm:text-xl font-bold text-grey mr-1">{stat.prefix}</span>}
-                      <span data-counter={cleanNumber}>{valStr}</span>
+                      {stat.type !== 'badge' ? (
+                        <span data-counter={cleanNumber}>{valStr}</span>
+                      ) : (
+                        <span>{valStr}</span>
+                      )}
                       {unitLabel && <span className="text-lg sm:text-2xl font-bold text-red ml-1.5">{unitLabel}</span>}
                     </div>
                     <p className="text-xs sm:text-sm font-semibold text-grey mt-2 leading-snug">

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { ArrowRight, CheckCircle2, ShieldCheck, FileText, Zap } from 'lucide-react';
 import content from '../data/content.json';
 import InnerHeroCanvas from '../components/InnerHeroCanvas';
@@ -15,10 +15,6 @@ export default function Quote() {
     details: '',
     honeypot: '',
   });
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });

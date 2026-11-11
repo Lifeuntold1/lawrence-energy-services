@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Zap } from 'lucide-react';
+import { scrollToTopImmediate } from '../lib/motion';
 
 export default function PageTransitionWipe({ children }) {
   const location = useLocation();
@@ -18,30 +19,39 @@ export default function PageTransitionWipe({ children }) {
     // Check if reduced motion is requested
     const isReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (isReduced) {
-      window.scrollTo(0, 0);
+      scrollToTopImmediate(location.hash);
       return;
     }
 
     setAnimating(true);
-    setWipePhase('covering');
+    setWipePhase('idle');
 
-    // After 220ms, curtain covers screen. Reset scroll to top immediately!
-    const coverTimer = setTimeout(() => {
-      window.scrollTo(0, 0);
+    let raf2 = 0;
+    const raf1 = window.requestAnimationFrame(() => {
+      raf2 = window.requestAnimationFrame(() => {
+        setWipePhase('covering');
+      });
+    });
+
+    // After curtain covers screen, reset scroll cleanly via Lenis + window
+    const coverTimer = window.setTimeout(() => {
+      scrollToTopImmediate(location.hash);
       setWipePhase('uncovering');
     }, 240);
 
-    // After 500ms, curtain finished uncovering
-    const finishTimer = setTimeout(() => {
+    // After curtain finished uncovering
+    const finishTimer = window.setTimeout(() => {
       setAnimating(false);
       setWipePhase('idle');
-    }, 480);
+    }, 520);
 
     return () => {
-      clearTimeout(coverTimer);
-      clearTimeout(finishTimer);
+      window.cancelAnimationFrame(raf1);
+      window.cancelAnimationFrame(raf2);
+      window.clearTimeout(coverTimer);
+      window.clearTimeout(finishTimer);
     };
-  }, [location.pathname]);
+  }, [location.pathname, location.hash]);
 
   return (
     <>

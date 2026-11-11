@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { MapPin, Phone, Mail, Clock, Send, CheckCircle, ExternalLink } from 'lucide-react';
 import content from '../data/content.json';
 import InnerHeroCanvas from '../components/InnerHeroCanvas';
@@ -12,10 +12,6 @@ export default function Contact() {
     message: '',
     honeypot: '',
   });
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
