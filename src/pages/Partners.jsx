@@ -114,6 +114,9 @@ export default function Partners() {
                   <img
                     src={`/assets/client-logos/${partner.logo}`}
                     alt={partner.name}
+                    width="290"
+                    height="96"
+                    style={{ aspectRatio: '290 / 96' }}
                     className="max-h-20 sm:max-h-24 max-w-[250px] sm:max-w-[290px] object-contain"
                     loading="lazy"
                   />
@@ -175,6 +178,9 @@ export default function Partners() {
                 <img
                   src={`/${client.logo}`}
                   alt={client.name}
+                  width="200"
+                  height="120"
+                  loading="lazy"
                   className={`object-contain transition-transform duration-300 group-hover:scale-110 ${
                     client.logo.includes('newbisco')
                       ? 'w-[96%] max-h-24 sm:max-h-28 scale-[1.3]'
@@ -194,7 +200,6 @@ export default function Partners() {
                       ? 'h-[80%] sm:h-[86%] max-h-28 sm:max-h-[8.5rem] w-auto scale-110'
                       : 'w-auto h-auto max-h-28 sm:max-h-[8.5rem] max-w-[88%] sm:max-w-[92%] scale-[1.15]'
                   }`}
-                  loading="lazy"
                 />
               </div>
             ))}

@@ -113,6 +113,9 @@ export default function Projects() {
                   <img
                     src={`/${proj.photos[0]}`}
                     alt={proj.title}
+                    width="600"
+                    height="450"
+                    style={{ aspectRatio: '4 / 3' }}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     loading="lazy"
                   />

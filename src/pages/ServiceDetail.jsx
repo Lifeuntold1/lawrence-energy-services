@@ -192,6 +192,9 @@ export default function ServiceDetail() {
                     <img
                       src={`/${proj.photos[0]}`}
                       alt={proj.title}
+                      width="400"
+                      height="300"
+                      style={{ aspectRatio: '4 / 3' }}
                       className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                       loading="lazy"
                     />

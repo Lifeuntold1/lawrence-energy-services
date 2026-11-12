@@ -43,10 +43,14 @@ export default function LeaderModal({ isOpen, onClose }) {
           <img
             src={`/${leader.photo}`}
             alt={leader.name}
+            width="112"
+            height="144"
+            style={{ aspectRatio: '112 / 144' }}
             className="w-28 h-36 object-cover rounded-[6px] border-2 border-red shadow-sm shrink-0"
+            loading="lazy"
           />
           <div className="text-center sm:text-left">
-            <span className="text-xs font-bold uppercase tracking-widest text-red bg-red-tint px-2.5 py-1 rounded-[4px]">
+            <span className="text-xs font-bold uppercase tracking-widest text-red-deep bg-red-tint px-2.5 py-1 rounded-[4px]">
               Executive Profile
             </span>
             <h2 id="leader-modal-title" className="text-2xl font-bold text-black mt-2">

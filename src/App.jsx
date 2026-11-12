@@ -55,26 +55,19 @@ function ScrollRestorationHandler() {
 export default function App() {
   const [showPreloader, setShowPreloader] = useState(() => {
     try {
-      if (typeof window === 'undefined') return false;
-      // Do not block mobile devices (< 1024px) or repeat visits for instant LCP
-      if (window.innerWidth < 1024) return false;
-      if (sessionStorage.getItem('lesl_intro_seen')) return false;
       if (
         typeof navigator !== 'undefined' &&
-        /bot|crawler|spider|lighthouse|headlesschrome|mobile/i.test(navigator.userAgent)
+        /bot|crawler|spider|lighthouse|headlesschrome/i.test(navigator.userAgent)
       ) {
         return false;
       }
       return true;
     } catch {
-      return false;
+      return true;
     }
   });
 
   const handlePreloaderComplete = () => {
-    try {
-      sessionStorage.setItem('lesl_intro_seen', '1');
-    } catch {}
     setShowPreloader(false);
   };
 

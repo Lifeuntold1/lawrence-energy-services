@@ -33,15 +33,15 @@ export default function Preloader({ onComplete }) {
       return;
     }
 
-    // Stage 1: Hold active splash screen with official logo for 300ms, then wipe curtain upward
+    // Stage 1: Hold active splash screen with official logo for 380ms, then wipe curtain upward
     const exitTimer = setTimeout(() => {
       setPhase('exit');
-    }, 300);
+    }, 380);
 
-    // Stage 2: Unmount callback at 600ms for instant perceived performance
+    // Stage 2: Complete curtain unmount at 780ms
     const completeTimer = setTimeout(() => {
       finishPreloader();
-    }, 600);
+    }, 780);
 
     const handleKeyDown = (e) => {
       if (e.key === 'Escape' || e.key === 'Enter' || e.key === ' ') {

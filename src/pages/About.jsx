@@ -80,9 +80,13 @@ export default function About() {
             <div className="lg:col-span-5">
               <div className="relative rounded-[6px] overflow-hidden border border-line shadow-card">
                 <img
-                  src="/assets/projects/elebele-9mw-ipp.jpg"
+                  src="/assets/projects/elebele-9mw-ipp.webp"
                   alt="LESL 9MW Power Plant Elebele"
+                  width="800"
+                  height="600"
+                  style={{ aspectRatio: '4 / 3' }}
                   className="w-full h-auto object-cover aspect-[4/3]"
+                  loading="lazy"
                 />
                 <div className="p-4 bg-white border-t border-line">
                   <p className="text-xs font-mono font-bold text-red uppercase tracking-wider">Independent Power Project</p>
@@ -307,7 +311,7 @@ export default function About() {
       <section className="py-20 bg-cream border-b border-line" id="leadership">
         <div className="max-w-container mx-auto px-5 lg:px-10">
           <div className="text-center max-w-2xl mx-auto mb-16">
-            <span className="text-xs font-mono font-bold uppercase tracking-widest text-red bg-red-tint px-3 py-1 rounded-[4px]">
+            <span className="text-xs font-mono font-bold uppercase tracking-widest text-red-deep bg-red-tint px-3 py-1 rounded-[4px]">
               Executive Team
             </span>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-black mt-3 tracking-tight">
@@ -331,6 +335,9 @@ export default function About() {
                   <img
                     src={`/${leader.photo}`}
                     alt={leader.name}
+                    width="300"
+                    height="375"
+                    style={{ aspectRatio: '4 / 5' }}
                     className="w-full h-full object-cover object-top transition-transform duration-300 group-hover:scale-105"
                     loading="lazy"
                   />

@@ -22,7 +22,7 @@ const GALLERY_PHOTOS = [
     location: 'SBC Ikeja Plant, Oregun, Ikeja',
     category: 'Power Generation',
     specs: '17.6 MW (4 × 4.4 MW CAT Sets) / Complete BOPs',
-    src: 'assets/projects/sbc-ikeja-4-4mw-2.jpg',
+    src: 'assets/projects/sbc-ikeja-4-4mw-2.webp',
     caption: 'Procurement of installation materials, complete electrical and mechanical installation, and commissioning of four 4.4 MW Caterpillar gas generator sets with all balance of plant systems.',
   },
   {
@@ -32,7 +32,7 @@ const GALLERY_PHOTOS = [
     location: 'Challawa, Kano',
     category: 'Power Generation',
     specs: '30 MW / Natural Gas / Synchronised Grid',
-    src: 'assets/projects/mamuda-30mw-jenbacher.jpg',
+    src: 'assets/projects/mamuda-30mw-jenbacher.webp',
     caption: 'Full turnkey installation, synchronization, and commissioning of multiple Jenbacher gas-fueled engine sets providing prime power for heavy manufacturing.',
   },
   {
@@ -42,7 +42,7 @@ const GALLERY_PHOTOS = [
     location: 'Elebele, Yenagoa, Bayelsa State',
     category: 'Power Generation',
     specs: '9 MW / Turnkey Generation / 33 kV Substation',
-    src: 'assets/projects/elebele-9mw-ipp.jpg',
+    src: 'assets/projects/elebele-9mw-ipp.webp',
     caption: 'Engineering, balance of plant, synchronization switchgear, and step-up transformer installation for the Elebele Independent Power Project.',
   },
   {
@@ -52,7 +52,7 @@ const GALLERY_PHOTOS = [
     location: 'Brass Island, Bayelsa State',
     category: 'Power Generation',
     specs: '3 MW Prime Power / Marine Environment',
-    src: 'assets/projects/oando-brass-3mw.jpg',
+    src: 'assets/projects/oando-brass-3mw.webp',
     caption: 'Offshore logistics, mechanical positioning, and electrical commissioning of 3 MW prime power units for terminal operations.',
   },
   {
@@ -62,7 +62,7 @@ const GALLERY_PHOTOS = [
     location: 'Agbara Industrial Zone, Ogun State',
     category: 'Power Generation',
     specs: '4 MW Combined / Capstone Turbines',
-    src: 'assets/projects/evans-pharm-capstone.jpg',
+    src: 'assets/projects/evans-pharm-capstone.webp',
     caption: 'Precision installation and exhaust heat integration of two 2 MW low-emission Capstone microturbine generators for pharmaceutical manufacturing.',
   },
   {
@@ -72,7 +72,7 @@ const GALLERY_PHOTOS = [
     location: 'Ogba, Ikeja, Lagos',
     category: 'Power Generation',
     specs: '195 kW / Low Emission / Dual Fuel',
-    src: 'assets/projects/schneider-ogba-turbines.jpg',
+    src: 'assets/projects/schneider-ogba-turbines.webp',
     caption: 'Electrical paralleling and mechanical installation of three compact turbine units integrated into Schneider Electric facilities.',
   },
   {
@@ -82,7 +82,7 @@ const GALLERY_PHOTOS = [
     location: 'Ogba, Ikeja, Lagos',
     category: 'Piping & Boilers',
     specs: 'High-Temperature Exhaust / Clad Insulation',
-    src: 'assets/projects/schneider-ogba-turbines-2.jpg',
+    src: 'assets/projects/schneider-ogba-turbines-2.webp',
     caption: 'Fabrication and erection of stainless steel exhaust ductwork and thermal lagging for gas turbine installations.',
   },
   {
@@ -92,7 +92,7 @@ const GALLERY_PHOTOS = [
     location: 'Challawa, Kano',
     category: 'Power Generation',
     specs: 'Civil, Mechanical & Electrical Balance of Plant',
-    src: 'assets/projects/kano-30mw-greenfield.jpg',
+    src: 'assets/projects/kano-30mw-greenfield.webp',
     caption: 'Ground-up plant construction including generator foundations, structural steel frames, cable trenches, and overhead crane rails.',
   },
   {
@@ -102,7 +102,7 @@ const GALLERY_PHOTOS = [
     location: 'Challawa, Kano',
     category: 'Substations & Switchgear',
     specs: '30 MW Paralleling / PLC Automation / SCADA',
-    src: 'assets/projects/kano-30mw-panels.jpg',
+    src: 'assets/projects/kano-30mw-panels.webp',
     caption: 'Assembly and commissioning of high-specification synchronization and protection panels controlling 30 MW aggregate power generation.',
   },
   {
@@ -112,7 +112,7 @@ const GALLERY_PHOTOS = [
     location: 'Challawa, Kano',
     category: 'Distribution & Cabling',
     specs: '11 kV XLPE Armoured / Dual Feeder Lines',
-    src: 'assets/projects/mamuda-11kv-cabling.jpg',
+    src: 'assets/projects/mamuda-11kv-cabling.webp',
     caption: 'Trenching, bedding, and laying of 11,000 V cross-linked polyethylene armoured cables linking generation skids to main factory substations.',
   },
   {
@@ -122,7 +122,7 @@ const GALLERY_PHOTOS = [
     location: 'Challawa, Kano',
     category: 'Distribution & Cabling',
     specs: '11 kV Raychem Terminations / Hi-Pot Tested',
-    src: 'assets/projects/mamuda-11kv-cabling-2.jpg',
+    src: 'assets/projects/mamuda-11kv-cabling-2.webp',
     caption: 'Certified heat-shrink terminations, stress control tubes, and high-potential insulation resistance testing before line energization.',
   },
   {
@@ -132,7 +132,7 @@ const GALLERY_PHOTOS = [
     location: 'Port Harcourt, Rivers State',
     category: 'Piping & Boilers',
     specs: 'Steam Generation / Flue Gas Heat Recovery',
-    src: 'assets/projects/nbc-whrb.jpg',
+    src: 'assets/projects/nbc-whrb.webp',
     caption: 'Mechanical installation and high-pressure steam tie-ins for a cogeneration waste heat boiler capturing exhaust thermal energy.',
   },
   {
@@ -142,7 +142,7 @@ const GALLERY_PHOTOS = [
     location: 'Port Harcourt, Rivers State',
     category: 'Piping & Boilers',
     specs: 'Schedule 80 Carbon Steel / X-Ray Inspected',
-    src: 'assets/projects/nbc-whrb-2.jpg',
+    src: 'assets/projects/nbc-whrb-2.webp',
     caption: 'ASME-compliant high-pressure welded steam pipe manifold, non-return valves, and thermodynamic steam traps.',
   },
   {
@@ -152,7 +152,7 @@ const GALLERY_PHOTOS = [
     location: 'Industrial Estate, Nigeria',
     category: 'Piping & Boilers',
     specs: '34 MW Heat Dissipation / Dual Circuit / Variable Speed Array',
-    src: 'assets/projects/cooling-radiator-3-4mw.jpg',
+    src: 'assets/projects/cooling-radiator-3-4mw.webp',
     caption: 'Rooftop electric cooling fan array and heat exchanger installation engineered for 34 MW gas engine jacket water and intercooler cooling circuits.',
   },
   {
@@ -162,7 +162,7 @@ const GALLERY_PHOTOS = [
     location: 'Kano, Nigeria',
     category: 'Piping & Boilers',
     specs: 'Natural Gas / Certified Flanged Runs',
-    src: 'assets/projects/gas-piping-burner.jpg',
+    src: 'assets/projects/gas-piping-burner.webp',
     caption: 'Double-block-and-bleed gas train installation, slam-shut safety valves, and burner interconnecting pipeline for Seven-Up Bottling Company (SBC) Kano.',
   },
   {
@@ -172,7 +172,7 @@ const GALLERY_PHOTOS = [
     location: 'Ikeja Industrial Zone, Lagos',
     category: 'Factory Automation',
     specs: 'Acoustic Attenuation to 69 dB / Splitters & Dampers',
-    src: 'assets/projects/generator-room-soundproofing.jpg',
+    src: 'assets/projects/generator-room-soundproofing.webp',
     caption: 'Complete acoustic engineering including perforated galvanized sound panels, intake silencer louvers, and vibration isolators engineered to attain noise reduction up to 69 dB.',
   },
   {
@@ -182,7 +182,7 @@ const GALLERY_PHOTOS = [
     location: 'Ikeja Industrial Zone, Lagos',
     category: 'Factory Automation',
     specs: 'High-Volume Air Flow / Fire-Rated Dampers',
-    src: 'assets/projects/generator-room-soundproofing-2.jpg',
+    src: 'assets/projects/generator-room-soundproofing-2.webp',
     caption: 'Inlet air acoustic baffles engineered to supply maximum combustion and cooling air while mitigating plant sound pollution.',
   },
   {
@@ -192,7 +192,7 @@ const GALLERY_PHOTOS = [
     location: 'Ikeja Industrial Zone, Lagos',
     category: 'Factory Automation',
     specs: '45 dB STC Rating / Panic Hardware',
-    src: 'assets/projects/generator-room-soundproofing-3.jpg',
+    src: 'assets/projects/generator-room-soundproofing-3.webp',
     caption: 'Custom fabricated acoustic seals, emergency panic exit hardware, and noise-damping wall panelling.',
   },
   {
@@ -202,7 +202,7 @@ const GALLERY_PHOTOS = [
     location: 'Ogun State, Nigeria',
     category: 'Substations & Switchgear',
     specs: '11 kV / 1250 A / Vacuum Circuit Breakers',
-    src: 'assets/projects/switchgear-11kv.jpg',
+    src: 'assets/projects/switchgear-11kv.webp',
     caption: 'Assembly, copper busbar torquing, secondary wiring, and dielectric withstand testing of 11 kV switchgear lineup.',
   },
   {
@@ -212,7 +212,7 @@ const GALLERY_PHOTOS = [
     location: 'Ogun State, Nigeria',
     category: 'Substations & Switchgear',
     specs: 'Microprocessor Protection / Arc Flash Relay',
-    src: 'assets/projects/switchgear-11kv-2.jpg',
+    src: 'assets/projects/switchgear-11kv-2.webp',
     caption: 'Digital overcurrent, earth fault, and differential relay calibration and secondary injection testing.',
   },
   {
@@ -222,7 +222,7 @@ const GALLERY_PHOTOS = [
     location: 'Lagos, Nigeria',
     category: 'Substations & Switchgear',
     specs: 'Automatic Transfer / VFD Speed Control',
-    src: 'assets/projects/control-panel.jpg',
+    src: 'assets/projects/control-panel.webp',
     caption: 'Turnkey fabrication of modular motor control centers with variable speed drives and automatic mains failure switching.',
   },
   {
@@ -232,7 +232,7 @@ const GALLERY_PHOTOS = [
     location: 'Lagos State',
     category: 'Safety & Commissioning',
     specs: 'SF6 Gas Insulated / 24 kV Rating',
-    src: 'assets/projects/sbc-ikeja-4-4mw-1.jpg',
+    src: 'assets/projects/sbc-ikeja-4-4mw-1.webp',
     caption: 'Turnkey installation, MV switchgear, SF6 gas verification, mechanism lubrication, and high-voltage circuit breaker commissioning.',
   },
   {
@@ -242,7 +242,7 @@ const GALLERY_PHOTOS = [
     location: 'Lagos State',
     category: 'Safety & Commissioning',
     specs: 'VLF (0.1 Hz) High-Voltage Insulation Test',
-    src: 'assets/projects/rmu-service-2.jpg',
+    src: 'assets/projects/rmu-service-2.webp',
     caption: 'VLF (0.1 Hz) high-voltage insulation withstand testing to ensure integrity of new compact ring main substation feeds.',
   },
   {
@@ -252,7 +252,7 @@ const GALLERY_PHOTOS = [
     location: 'Ibeju Lekki, Lagos',
     category: 'Safety & Commissioning',
     specs: 'Zero Lost-Time Injury / Top Ranked Vendor',
-    src: 'assets/projects/safety-award.jpg',
+    src: 'assets/projects/safety-award.webp',
     caption: 'Formal industry recognition awarded to LESL by Lagos Free Zone (LFZ) for 100,000 safe man-hours executed without a single lost-time incident.',
   },
 ];

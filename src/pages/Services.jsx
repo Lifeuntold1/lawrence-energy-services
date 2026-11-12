@@ -30,10 +30,10 @@ export default function Services() {
   };
 
   const servicePhotos = {
-    electrical: 'assets/projects/sbc-ikeja-4-4mw-1.jpg',
-    mechanical: 'assets/projects/nbc-whrb.jpg',
-    supply: 'assets/projects/kano-30mw-panels.jpg',
-    consultancy: 'assets/projects/safety-award.jpg',
+    electrical: 'assets/projects/sbc-ikeja-4-4mw-1.webp',
+    mechanical: 'assets/projects/nbc-whrb.webp',
+    supply: 'assets/projects/kano-30mw-panels.webp',
+    consultancy: 'assets/projects/safety-award.webp',
   };
 
   return (
