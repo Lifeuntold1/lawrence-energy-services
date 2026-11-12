@@ -349,8 +349,8 @@
         "Electrical"
       ],
       "photos": [
-        "assets/projects/sbc-ikeja-4-4mw-2.jpg",
-        "assets/projects/sbc-ikeja-4-4mw-1.jpg"
+        "assets/projects/sbc-ikeja-4-4mw-2.webp",
+        "assets/projects/sbc-ikeja-4-4mw-1.webp"
       ]
     },
     {
@@ -361,7 +361,7 @@
         "Safety"
       ],
       "photos": [
-        "assets/projects/safety-award.jpg"
+        "assets/projects/safety-award.webp"
       ]
     },
     {
@@ -372,7 +372,7 @@
         "Power plants"
       ],
       "photos": [
-        "assets/projects/oando-brass-3mw.jpg"
+        "assets/projects/oando-brass-3mw.webp"
       ]
     },
     {
@@ -383,7 +383,7 @@
         "Power plants"
       ],
       "photos": [
-        "assets/projects/elebele-9mw-ipp.jpg"
+        "assets/projects/elebele-9mw-ipp.webp"
       ]
     },
     {
@@ -394,7 +394,7 @@
         "Gas turbines and generators"
       ],
       "photos": [
-        "assets/projects/evans-pharm-capstone.jpg"
+        "assets/projects/evans-pharm-capstone.webp"
       ]
     },
     {
@@ -405,8 +405,8 @@
         "Gas turbines and generators"
       ],
       "photos": [
-        "assets/projects/schneider-ogba-turbines.jpg",
-        "assets/projects/schneider-ogba-turbines-2.jpg"
+        "assets/projects/schneider-ogba-turbines.webp",
+        "assets/projects/schneider-ogba-turbines-2.webp"
       ]
     },
     {
@@ -418,7 +418,7 @@
         "Electrical"
       ],
       "photos": [
-        "assets/projects/kano-30mw-panels.jpg"
+        "assets/projects/kano-30mw-panels.webp"
       ]
     },
     {
@@ -430,7 +430,7 @@
         "Gas turbines and generators"
       ],
       "photos": [
-        "assets/projects/mamuda-30mw-jenbacher.jpg"
+        "assets/projects/mamuda-30mw-jenbacher.webp"
       ]
     },
     {
@@ -441,8 +441,8 @@
         "Electrical"
       ],
       "photos": [
-        "assets/projects/mamuda-11kv-cabling.jpg",
-        "assets/projects/mamuda-11kv-cabling-2.jpg"
+        "assets/projects/mamuda-11kv-cabling.webp",
+        "assets/projects/mamuda-11kv-cabling-2.webp"
       ]
     },
     {
@@ -454,8 +454,8 @@
         "Electrical"
       ],
       "photos": [
-        "assets/projects/nbc-whrb.jpg",
-        "assets/projects/nbc-whrb-2.jpg"
+        "assets/projects/nbc-whrb.webp",
+        "assets/projects/nbc-whrb-2.webp"
       ]
     },
     {
@@ -466,9 +466,9 @@
         "Mechanical and piping"
       ],
       "photos": [
-        "assets/projects/generator-room-soundproofing.jpg",
-        "assets/projects/generator-room-soundproofing-2.jpg",
-        "assets/projects/generator-room-soundproofing-3.jpg"
+        "assets/projects/generator-room-soundproofing.webp",
+        "assets/projects/generator-room-soundproofing-2.webp",
+        "assets/projects/generator-room-soundproofing-3.webp"
       ]
     },
     {
@@ -479,8 +479,8 @@
         "Electrical"
       ],
       "photos": [
-        "assets/projects/sbc-ikeja-4-4mw-1.jpg",
-        "assets/projects/rmu-service-2.jpg"
+        "assets/projects/sbc-ikeja-4-4mw-1.webp",
+        "assets/projects/rmu-service-2.webp"
       ]
     },
     {
@@ -491,7 +491,7 @@
         "Power plants"
       ],
       "photos": [
-        "assets/projects/kano-30mw-greenfield.jpg"
+        "assets/projects/kano-30mw-greenfield.webp"
       ]
     },
     {
@@ -503,7 +503,7 @@
         "Mechanical and piping"
       ],
       "photos": [
-        "assets/projects/cooling-radiator-3-4mw.jpg"
+        "assets/projects/cooling-radiator-3-4mw.webp"
       ]
     },
     {
@@ -514,7 +514,7 @@
         "Mechanical and piping"
       ],
       "photos": [
-        "assets/projects/gas-piping-burner.jpg"
+        "assets/projects/gas-piping-burner.webp"
       ]
     },
     {
@@ -525,8 +525,8 @@
         "Electrical"
       ],
       "photos": [
-        "assets/projects/switchgear-11kv.jpg",
-        "assets/projects/switchgear-11kv-2.jpg"
+        "assets/projects/switchgear-11kv.webp",
+        "assets/projects/switchgear-11kv-2.webp"
       ]
     },
     {
@@ -537,7 +537,7 @@
         "Electrical"
       ],
       "photos": [
-        "assets/projects/control-panel.jpg"
+        "assets/projects/control-panel.webp"
       ]
     }
   ],
@@ -553,14 +553,14 @@
     {
       "slug": "clarke-energy",
       "name": "Clarke Energy Limited",
-      "logo": "clarke-energy.png",
+      "logo": "clarke-energy.webp",
       "story": "Clarke Energy is part of the Rehlko group. It builds distributed energy systems, from engineering and installation to long-term care. In Nigeria and other African countries, Clarke Energy works with LESL as its specialized Nigerian engineering partner for gas generator installation and power plant setup for private industries.",
       "highlight": "Since 2012, LESL has executed approximately 400 MW of industrial power plant projects featuring Jenbacher gas generator sets, for which Clarke Energy serves as the authorized distributor in Nigeria and globally."
     },
     {
       "slug": "cummins-west-africa",
       "name": "Cummins West Africa Limited",
-      "logo": "cummins.png",
+      "logo": "cummins.webp",
       "story": "Cummins West Africa has partnered with LESL for over 12 years, relying on our team as a trusted Nigerian engineering partner for heavy electrical installations, generator overhauls, and power plant infrastructure.",
       "bullets": [
         "Engineering installations for Independent Power Producer (IPP) utility plants across Nigeria",
@@ -571,7 +571,7 @@
     {
       "slug": "seven-up-bottling",
       "name": "Seven-Up Bottling Company Limited (SBC)",
-      "logo": "sbc-seven-up.png",
+      "logo": "sbc-seven-up.webp",
       "story": "For over 12 years, LESL has served as the nationwide electrical and mechanical engineering contractor for Seven-Up Bottling Company, maintaining continuous operations across all 9 beverage manufacturing plants in Nigeria.",
       "bullets": [
         "Turnkey power plant installations across factories in Ikeja, Abuja, Aba, Kano, Enugu, and Benin totaling 40 MW electrical generation capacity",
@@ -585,67 +585,67 @@
   "clients": [
     {
       "name": "7UP Bottling Company",
-      "logo": "assets/client-logos/sbc-seven-up.png"
+      "logo": "assets/client-logos/sbc-seven-up.webp"
     },
     {
       "name": "Cummins West Africa",
-      "logo": "assets/client-logos/cummins.png"
+      "logo": "assets/client-logos/cummins.webp"
     },
     {
       "name": "Clarke Energy",
-      "logo": "assets/client-logos/clarke-energy.png"
+      "logo": "assets/client-logos/clarke-energy.webp"
     },
     {
       "name": "Lagos Free Zone",
-      "logo": "assets/client-logos/lagos-free-zone.png"
+      "logo": "assets/client-logos/lagos-free-zone.webp"
     },
     {
       "name": "Mamuda",
-      "logo": "assets/client-logos/mamuda.png"
+      "logo": "assets/client-logos/mamuda.webp"
     },
     {
       "name": "Dufil",
-      "logo": "assets/client-logos/dufil.png"
+      "logo": "assets/client-logos/dufil.webp"
     },
     {
       "name": "TGI",
-      "logo": "assets/client-logos/tgi.png"
+      "logo": "assets/client-logos/tgi.webp"
     },
     {
       "name": "OK Foods",
-      "logo": "assets/client-logos/ok-foods.png"
+      "logo": "assets/client-logos/ok-foods.webp"
     },
     {
       "name": "Rite Foods",
-      "logo": "assets/client-logos/rite-foods.png"
+      "logo": "assets/client-logos/rite-foods.webp"
     },
     {
       "name": "Primera Foods",
-      "logo": "assets/client-logos/primera-foods.png"
+      "logo": "assets/client-logos/primera-foods.webp"
     },
     {
       "name": "New Bisco",
-      "logo": "assets/client-logos/newbisco.png"
+      "logo": "assets/client-logos/newbisco.webp"
     },
     {
       "name": "Prime Pak",
-      "logo": "assets/client-logos/primepak.png"
+      "logo": "assets/client-logos/primepak.webp"
     },
     {
       "name": "OK Plastic",
-      "logo": "assets/client-logos/ok-plast.png"
+      "logo": "assets/client-logos/ok-plast.webp"
     },
     {
       "name": "Sunplast",
-      "logo": "assets/client-logos/sunplast.png"
+      "logo": "assets/client-logos/sunplast.webp"
     },
     {
       "name": "Metal Packaging",
-      "logo": "assets/client-logos/metal-packaging.png"
+      "logo": "assets/client-logos/metal-packaging.webp"
     },
     {
       "name": "MDV",
-      "logo": "assets/client-logos/mdv-industries.png"
+      "logo": "assets/client-logos/mdv-industries.webp"
     },
     {
       "name": "Sunglass Industries",
@@ -653,7 +653,7 @@
     },
     {
       "name": "Aspira",
-      "logo": "assets/client-logos/aspira.png"
+      "logo": "assets/client-logos/aspira.webp"
     },
     {
       "name": "Eko Supreme",
@@ -661,11 +661,11 @@
     },
     {
       "name": "Premium Cocoa",
-      "logo": "assets/client-logos/cocoa-ile-oluji.png"
+      "logo": "assets/client-logos/cocoa-ile-oluji.webp"
     },
     {
       "name": "RCE Overseas",
-      "logo": "assets/client-logos/rce-international.png"
+      "logo": "assets/client-logos/rce-international.webp"
     }
   ],
   "leaders": [
@@ -675,7 +675,7 @@
       "name": "Lawrence Ehigie",
       "full_name": "Lawrence Ehigie Obaghagie",
       "title": "Chairman & Managing Director",
-      "photo": "assets/team/lawrence-ehigie-v2.jpeg",
+      "photo": "assets/team/lawrence-ehigie-v2.webp",
       "bio": "Lawrence has more than 20 years in electrical engineering, factory installations, power systems and project management. He trained with Boulting Group in the UK from 1999 to 2003. He then led electrical and technical work at E-Jerrys Nigeria Limited (2003 to 2010) and headed the electrical department at IMPCO (2010 to 2012). Since 2012 he has led LESL as Chairman and Managing Director. He studied technical and engineering subjects at Benin Technical College and Federal Polytechnic Auchi.",
       "skills": [
         "Electrical design, installation and care",
@@ -694,28 +694,28 @@
       "tier": 2,
       "name": "Ekhaine Wasiu",
       "title": "Director of Operations",
-      "photo": "assets/team/ekhaine-wasiu-v2.jpeg"
+      "photo": "assets/team/ekhaine-wasiu-v2.webp"
     },
     {
       "rank": 3,
       "tier": 3,
       "name": "Otsemobor Godfrey",
       "title": "Senior Site Manager",
-      "photo": "assets/team/otsemobor-godfrey.jpg"
+      "photo": "assets/team/otsemobor-godfrey.webp"
     },
     {
       "rank": 4,
       "tier": 3,
       "name": "Audu Anthony",
       "title": "Head, Accounts and Admin",
-      "photo": "assets/team/audu-anthony.jpg"
+      "photo": "assets/team/audu-anthony.webp"
     },
     {
       "rank": 5,
       "tier": 3,
       "name": "Njoku Ogechi Kasarachi",
       "title": "Head of Legal and Compliance, and Human Resources Manager",
-      "photo": "assets/team/njoku-ogechi-kasarachi-v4.jpeg"
+      "photo": "assets/team/njoku-ogechi-kasarachi-v4.webp"
     }
   ],
   "org_chart": {

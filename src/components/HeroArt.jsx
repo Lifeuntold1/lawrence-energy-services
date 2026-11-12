@@ -748,6 +748,7 @@ export default function HeroArt({ className = '', theme = 'light' }) {
                 transformBox: 'view-box',
                 transformOrigin: '220px 660px',
                 animation: motionActive ? 'gaugeNeedleOscillate1 2.4s ease-in-out infinite' : 'none',
+                willChange: 'transform',
               }}
             >
               <line x1="220" y1="660" x2="220" y2="643" stroke={colors.gaugeNeedle} strokeWidth="2.6" strokeLinecap="round" />
@@ -780,6 +781,7 @@ export default function HeroArt({ className = '', theme = 'light' }) {
                 transformBox: 'view-box',
                 transformOrigin: '525px 410px',
                 animation: motionActive ? 'gaugeNeedleOscillate2 2.1s ease-in-out infinite' : 'none',
+                willChange: 'transform',
               }}
             >
               <line x1="525" y1="410" x2="525" y2="396" stroke={colors.gaugeNeedle} strokeWidth="2.5" strokeLinecap="round" />
@@ -810,6 +812,7 @@ export default function HeroArt({ className = '', theme = 'light' }) {
               transformBox: 'view-box',
               transformOrigin: '660px 620px',
               animation: motionActive ? 'spinClockwise 12s linear infinite' : 'none',
+              willChange: 'transform',
             }}
           >
             {/* Translucent fill allows tower struts behind to remain visible */}
@@ -853,6 +856,7 @@ export default function HeroArt({ className = '', theme = 'light' }) {
               transformBox: 'view-box',
               transformOrigin: '470px 740px',
               animation: motionActive ? 'spinCounterClockwise 6s linear infinite' : 'none',
+              willChange: 'transform',
             }}
           >
             <path d={spurGearPath} fill={isLight ? "rgba(240, 238, 230, 0.55)" : "rgba(20, 22, 25, 0.55)"} stroke={colors.gearDark} strokeWidth="2.8" />
@@ -876,6 +880,7 @@ export default function HeroArt({ className = '', theme = 'light' }) {
               transformBox: 'view-box',
               transformOrigin: '565px 795px',
               animation: motionActive ? 'spinClockwise 3.2s linear infinite' : 'none',
+              willChange: 'transform',
             }}
           >
             <path d={pinionGearPath} fill={isLight ? "rgba(240, 238, 230, 0.65)" : "rgba(20, 22, 25, 0.65)"} stroke={colors.gearPinion} strokeWidth="2.5" />
@@ -904,6 +909,7 @@ export default function HeroArt({ className = '', theme = 'light' }) {
               transformBox: 'view-box',
               transformOrigin: '360px 840px',
               animation: motionActive ? 'crankPinSpin 2.4s linear infinite' : 'none',
+              willChange: 'transform',
             }}
           >
             <circle cx="360" cy="840" r="42" fill={isLight ? "rgba(240, 238, 230, 0.65)" : "rgba(20, 22, 25, 0.65)"} stroke={colors.gearDark} strokeWidth="3" />
@@ -917,6 +923,7 @@ export default function HeroArt({ className = '', theme = 'light' }) {
             className="sketch-mech"
             style={{
               animation: motionActive ? 'pistonReciprocateMotion 2.4s ease-in-out infinite' : 'none',
+              willChange: 'transform',
             }}
           >
             <g transform="translate(295, 775) rotate(-32)">

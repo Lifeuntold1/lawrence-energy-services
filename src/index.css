@@ -204,6 +204,7 @@ select:focus-visible {
   width: 40%;
   background: linear-gradient(90deg, transparent, #FFF500, #D9251C, transparent);
   animation: energy-sweep 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  will-change: transform;
 }
 
 /* Subtle Shimmer for High-Priority Engineering Badges */
@@ -218,6 +219,7 @@ select:focus-visible {
 
 .badge-shimmer {
   animation: badge-shimmer 3s ease-in-out infinite;
+  will-change: opacity;
 }
 
 /* Directional Progressive Industrial Hero Blur Mask (0% on right flank, increases gradually towards left text) */
@@ -289,13 +291,16 @@ select:focus-visible {
 
 .animate-led-green {
   animation: led-phase-green 3.2s ease-in-out infinite;
+  will-change: opacity;
 }
 
 .animate-led-amber {
   animation: led-phase-amber 3.2s ease-in-out infinite;
+  will-change: opacity;
 }
 
 .animate-led-red {
   animation: led-phase-red 3.2s ease-in-out infinite;
+  will-change: opacity;
 }
 

@@ -1,0 +1,45 @@
+# Lawrence Energy Services Limited (LESL) - Full Technical Documentation
+
+> Complete technical briefing, installation history, regulatory compliance, and equipment specifications for LESL (Lawrence Energy Services Limited), Nigeria.
+
+## Company Overview
+- Company Name: Lawrence Energy Services Limited
+- Acronym: LESL
+- Incorporation: 2009 (RC Number registered with Corporate Affairs Commission Nigeria)
+- Core Disciplinary Focus: High-voltage electrical contracting, gas and diesel engine power stations, high-pressure industrial gas and steam piping, factory utility automation.
+- Installed Track Record: Over 400 MW commissioned generation capacity across commercial, food & beverage, textile, and oil & gas sectors.
+- Safety Benchmark: Over 100,000 lost-time-injury-free man-hours recognized by Lagos Free Zone (LFZ) and Cummins West Africa (#1 Vendor Safety Ranking).
+
+## Core Disciplines & Technical Standards
+1. Power Generation (Electrical & Mechanical):
+   - Multi-megawatt reciprocating gas engines (Innio Jenbacher J620, J616, J320; Cummins QSV81G, QSV91G; Caterpillar G3520).
+   - Base-load synchronization, paralleling with public utility grid (11kV / 33kV), island mode operation, and load rejection testing.
+   - Gas train installation, fuel gas pressure reduction skids, acoustic attenuators (reduction to 69 dB at 1m), exhaust ventilation, and heat recovery steam generators (WHRB).
+
+2. Substations & High Voltage Systems:
+   - 11kV, 33kV, and 132kV indoor and outdoor substations.
+   - SF6 ring main units (RMU), vacuum circuit breakers (VCB), dry-type and oil-immersed step-up/step-down transformers.
+   - Relay coordination, CT/VT secondary injection, insulation resistance (Megger), dielectric breakdown, and earth pit resistance (< 1 Ohm) verification.
+
+3. Mechanical & Process Piping:
+   - ASME B31.3 process piping compliance.
+   - Natural gas fuel supply lines, heavy steam headers, hot water circulation loops, industrial compressed air systems, and cooling tower water infrastructure.
+   - Non-destructive testing (NDT), X-ray radiographic inspection of welds, hydro-testing up to 1.5x design pressure.
+
+4. Technical Consultancy & Commissioning Audits:
+   - Pre-commissioning audits, electrical protection relay grading studies.
+   - Power quality harmonics analysis (IEEE 519 compliance), thermographic infrared surveys of switchgear buses.
+
+## Landmark Project Directory
+- SBC Ikeja IPP: Turnkey mechanical and electrical installation of 4 x 4.4 MW Jenbacher gas engines (17.6 MW total) for Seven-Up Bottling Company, Ikeja, Lagos.
+- Mamuda Group Challawa IPP: 30 MW greenfield industrial gas generation station, 11kV bus cabling, and synchronizing panels in Kano State.
+- Elebele IPP: 9 MW gas turbine power plant installation and synchronizing switchgear in Bayelsa State.
+- NBC / Coca-Cola WHRB: Waste heat recovery boiler steam piping and pressure reduction station.
+- Evans Medical / Capstone: Microturbine generator installations and synchronizing panels.
+
+## Head Office & Contacts
+- Registered Office: 12, Industrial Avenue, Ikeja, Lagos State, Nigeria.
+- Official Website: https://www.lesl.ng/
+- General Inquiries: info@lesl.ng
+- Telephone: +234 803 300 0000 / +234 (0) 703-800-9642
+- Working Hours: Monday - Friday: 08:00 - 17:00 (Emergency Engineering Support 24/7)

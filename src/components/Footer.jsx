@@ -124,7 +124,7 @@ export default function Footer() {
               <span>{content.company.email}</span>
             </a>
 
-            <div className="flex items-start gap-3 text-white/60 text-xs pt-1">
+            <div className="flex items-start gap-3 text-white/80 text-xs pt-1">
               <Clock className="w-4 h-4 text-yellow shrink-0 mt-0.5" />
               <div>
                 <p>{content.company.hours}</p>
@@ -135,12 +135,12 @@ export default function Footer() {
         </div>
 
         {/* Dedicated Legal Section */}
-        <div className="py-6 border-b border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs text-white/60">
+        <div className="py-6 border-b border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs text-white/80">
           <div className="flex items-center gap-2">
             <Scale className="w-4 h-4 text-yellow shrink-0" />
-            <span className="font-bold text-white/80 uppercase tracking-wider font-mono">Legal &amp; Regulatory Compliance:</span>
+            <span className="font-bold text-white/90 uppercase tracking-wider font-mono">Legal &amp; Regulatory Compliance:</span>
           </div>
-          <div className="flex flex-wrap items-center gap-6 text-white/70">
+          <div className="flex flex-wrap items-center gap-6 text-white/85">
             <Link to="/legal/terms" className="hover:text-yellow transition-colors font-medium">
               Terms of Service
             </Link>
@@ -149,12 +149,12 @@ export default function Footer() {
               Privacy Policy
             </Link>
             <span className="text-white/20">&bull;</span>
-            <span className="text-white/50">NEMSA Standards Compliant</span>
+            <span className="text-white/75">NEMSA Standards Compliant</span>
           </div>
         </div>
 
         {/* Bottom Sub-bar */}
-        <div className="pt-6 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-white/60">
+        <div className="pt-6 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-white/80">
           <div>
             &copy; {new Date().getFullYear()} {content.company.name}. All rights reserved.
           </div>

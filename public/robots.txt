@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://lesl-energy-website.vercel.app/sitemap.xml
+Agentmap: https://lesl-energy-website.vercel.app/.well-known/ard.json

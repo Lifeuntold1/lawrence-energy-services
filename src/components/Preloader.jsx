@@ -33,15 +33,15 @@ export default function Preloader({ onComplete }) {
       return;
     }
 
-    // Stage 1: Hold active splash screen with official logo for 550ms, then wipe curtain upward
+    // Stage 1: Hold active splash screen with official logo for 300ms, then wipe curtain upward
     const exitTimer = setTimeout(() => {
       setPhase('exit');
-    }, 550);
+    }, 300);
 
-    // Stage 2: Unmount callback at 900ms (completes well within 1.2s global standard)
+    // Stage 2: Unmount callback at 600ms for instant perceived performance
     const completeTimer = setTimeout(() => {
       finishPreloader();
-    }, 900);
+    }, 600);
 
     const handleKeyDown = (e) => {
       if (e.key === 'Escape' || e.key === 'Enter' || e.key === ' ') {
@@ -115,7 +115,7 @@ export default function Preloader({ onComplete }) {
         </div>
 
         {/* Verification Label */}
-        <span className="text-white/60 text-[10px] font-mono tracking-widest uppercase mt-3">
+        <span className="text-white/90 text-[10px] font-mono tracking-widest uppercase mt-3">
           Since 2009 • Done As Agreed
         </span>
       </div>

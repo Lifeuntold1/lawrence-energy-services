@@ -43,10 +43,10 @@ export default function Home() {
   };
 
   const servicePhotos = {
-    electrical: 'assets/projects/kano-30mw-panels.jpg',
-    mechanical: 'assets/projects/nbc-whrb.jpg',
-    supply: 'assets/projects/mamuda-11kv-cabling.jpg',
-    consultancy: 'assets/projects/rmu-service.jpg',
+    electrical: 'assets/projects/kano-30mw-panels.webp',
+    mechanical: 'assets/projects/nbc-whrb.webp',
+    supply: 'assets/projects/mamuda-11kv-cabling.webp',
+    consultancy: 'assets/projects/rmu-service.webp',
   };
 
   // Distinct projects for the rail including landmark SBC Ikeja IPP
@@ -69,10 +69,12 @@ export default function Home() {
         {/* Subtle CAD Drafting Grid and Engineering Backdrop */}
         <div className="absolute inset-0 z-0">
           <img
-            src="/assets/projects/mamuda-30mw-jenbacher.jpg"
+            src="/assets/projects/mamuda-30mw-jenbacher.webp"
             alt="Power Plant Installation by LESL"
             width="1920"
             height="1080"
+            loading="eager"
+            fetchPriority="low"
             className="w-full h-full object-cover object-center opacity-[0.05] mix-blend-multiply filter grayscale select-none scale-105"
           />
           {/* Subtle Ambient Radial Warmth */}
@@ -135,7 +137,7 @@ export default function Home() {
             </div>
 
             {/* 3 Proof Chips */}
-            <div className="flex flex-wrap items-center gap-2.5 sm:gap-4 pt-3 text-xs text-grey-dark font-semibold border-t border-line w-full max-w-xl">
+            <div className="flex flex-wrap items-center gap-2.5 sm:gap-4 pt-3 text-xs text-ink font-semibold border-t border-line w-full max-w-xl">
               <span className="inline-flex items-center gap-2 bg-white border border-line px-3 py-1.5 rounded-[4px] shadow-2xs">
                 <CheckCircle2 className="w-3.5 h-3.5 text-red shrink-0" />
                 <span>About 400 MW built</span>
@@ -207,6 +209,9 @@ export default function Home() {
                     <img
                       src={`/${servicePhotos[svc.slug]}`}
                       alt={svc.title}
+                      width="400"
+                      height="300"
+                      style={{ aspectRatio: '4 / 3' }}
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                       loading="lazy"
                     />
@@ -254,8 +259,11 @@ export default function Home() {
             <div className="order-2 lg:order-1 lg:col-span-5 relative mt-6 lg:mt-0" data-reveal>
               <div className="relative rounded-[6px] overflow-hidden border-2 border-line shadow-card bg-black">
                 <img
-                  src="/assets/projects/evans-pharm-capstone.jpg"
+                  src="/assets/projects/evans-pharm-capstone.webp"
                   alt="Turbine Installation at Evans Pharm"
+                  width="600"
+                  height="750"
+                  style={{ aspectRatio: '4 / 5' }}
                   className="w-full h-auto object-cover aspect-[4/5]"
                   loading="lazy"
                 />
@@ -270,7 +278,7 @@ export default function Home() {
             {/* Right Tabbed Narrative (Order 1 on Mobile so Users Read About First) */}
             <div className="order-1 lg:order-2 lg:col-span-7 flex flex-col gap-6" data-reveal>
               <div>
-                <span className="text-xs font-mono font-bold uppercase tracking-widest text-red bg-red-tint px-3 py-1 rounded-[4px]">
+                <span className="text-xs font-mono font-bold uppercase tracking-widest text-red-deep bg-red-tint px-3 py-1 rounded-[4px]">
                   About LESL
                 </span>
                 <h2 className="text-3xl sm:text-4xl font-extrabold text-black mt-3 tracking-tight">
@@ -391,7 +399,7 @@ export default function Home() {
         <div className="max-w-container mx-auto px-5 lg:px-10">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12">
             <div>
-              <span className="text-xs font-mono font-bold uppercase tracking-widest text-red bg-red-tint px-3 py-1 rounded-[4px]">
+              <span className="text-xs font-mono font-bold uppercase tracking-widest text-red-deep bg-red-tint px-3 py-1 rounded-[4px]">
                 Portfolio
               </span>
               <h2 className="text-3xl sm:text-5xl font-extrabold text-black mt-3 tracking-tight">
@@ -443,7 +451,7 @@ export default function Home() {
       <section className="py-24 bg-cream border-t border-line">
         <div className="max-w-container mx-auto px-5 lg:px-10">
           <div className="text-center max-w-2xl mx-auto mb-16">
-            <span className="text-xs font-mono font-bold uppercase tracking-widest text-red bg-red-tint px-3 py-1 rounded-[4px]">
+            <span className="text-xs font-mono font-bold uppercase tracking-widest text-red-deep bg-red-tint px-3 py-1 rounded-[4px]">
               Our Process
             </span>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-black mt-3 tracking-tight">
@@ -529,7 +537,7 @@ export default function Home() {
       <section className="py-24 bg-white" id="partners">
         <div className="max-w-container mx-auto px-5 lg:px-10 mb-12">
           <div className="text-center max-w-2xl mx-auto">
-            <span className="text-xs font-mono font-bold uppercase tracking-widest text-red bg-red-tint px-3 py-1 rounded-[4px]">
+            <span className="text-xs font-mono font-bold uppercase tracking-widest text-red-deep bg-red-tint px-3 py-1 rounded-[4px]">
               Trusted Partnerships
             </span>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-black mt-3 tracking-tight">
@@ -561,6 +569,9 @@ export default function Home() {
                     <img
                       src={`/assets/client-logos/${partner.logo}`}
                       alt={partner.name}
+                      width="150"
+                      height="48"
+                      style={{ aspectRatio: '150 / 48' }}
                       className="max-h-12 max-w-[150px] object-contain"
                       loading="lazy"
                     />
@@ -596,7 +607,7 @@ export default function Home() {
         <div className="max-w-container mx-auto px-5 lg:px-10">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-16">
             <div>
-              <span className="text-xs font-mono font-bold uppercase tracking-widest text-red bg-red-tint px-3 py-1 rounded-[4px]">
+              <span className="text-xs font-mono font-bold uppercase tracking-widest text-red-deep bg-red-tint px-3 py-1 rounded-[4px]">
                 Leadership
               </span>
               <h2 className="text-3xl sm:text-4xl font-extrabold text-black mt-3 tracking-tight">
@@ -626,6 +637,9 @@ export default function Home() {
                   <img
                     src={`/${leader.photo}`}
                     alt={leader.name}
+                    width="300"
+                    height="375"
+                    style={{ aspectRatio: '4 / 5' }}
                     className="w-full h-full object-cover object-top transition-transform duration-300 group-hover:scale-105"
                     loading="lazy"
                   />
@@ -652,7 +666,7 @@ export default function Home() {
       <section className="py-24 bg-white border-t border-line" id="faq">
         <div className="max-w-3xl mx-auto px-5 lg:px-8">
           <div className="text-center mb-14">
-            <span className="text-xs font-mono font-bold uppercase tracking-widest text-red bg-red-tint px-3 py-1 rounded-[4px]">
+            <span className="text-xs font-mono font-bold uppercase tracking-widest text-red-deep bg-red-tint px-3 py-1 rounded-[4px]">
               Common Inquiries
             </span>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-black mt-3 tracking-tight">
@@ -696,9 +710,13 @@ export default function Home() {
       <section className="relative py-20 bg-black text-white overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
-            src="/assets/projects/gas-piping-burner.jpg"
+            src="/assets/projects/gas-piping-burner.webp"
             alt="Gas Piping to Boiler Burner"
+            width="1600"
+            height="600"
+            style={{ aspectRatio: '1600 / 600' }}
             className="w-full h-full object-cover object-center opacity-25"
+            loading="lazy"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-red-deep/95 via-red/90 to-black/90" />
         </div>

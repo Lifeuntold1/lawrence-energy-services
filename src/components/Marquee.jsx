@@ -31,6 +31,9 @@ export default function Marquee({
                 <img
                   src={`/${item.logo}`}
                   alt={item.name}
+                  width="145"
+                  height="64"
+                  style={{ aspectRatio: '145 / 64' }}
                   className="max-h-14 sm:max-h-16 max-w-[125px] sm:max-w-[145px] object-contain"
                   loading="lazy"
                 />

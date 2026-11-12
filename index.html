@@ -88,10 +88,18 @@
       })();
     </script>
 
-    <!-- Google Fonts: Poppins (400, 500, 600, 700, 800) -->
+    <!-- Agentic Resource Discovery (ARD) & LLM Discoverability -->
+    <link rel="ard" href="/.well-known/ard.json" />
+    <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM Context" />
+
+    <!-- Google Fonts: Poppins (400, 500, 600, 700, 800) - Non-render-blocking -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" />
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'" />
+    <noscript>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" />
+    </noscript>
   </head>
 
   <body class="bg-white text-ink font-sans antialiased selection:bg-yellow selection:text-black">

@@ -1,16 +1,52 @@
 {
-  "name": "Lawrence Energy Services Limited (LESL)",
-  "description": "Turnkey electrical and mechanical engineering contractors for power plants, 11kV/33kV substations, industrial piping, and factory automation in Nigeria.",
-  "url": "https://lesl-energy-website.vercel.app",
-  "llms_txt": "https://lesl-energy-website.vercel.app/llms.txt",
-  "contact": {
-    "email": "info@lesl.ng",
-    "phone": "+2348033000000"
+  "$schema": "https://agenticresourcediscovery.org/schemas/v0.91/ai-catalog.schema.json",
+  "specVersion": "0.91",
+  "host": {
+    "displayName": "Lawrence Energy Services Limited (LESL)",
+    "identifier": "urn:air:lesl-energy-website.vercel.app:host",
+    "documentationUrl": "https://lesl-energy-website.vercel.app/about",
+    "logoUrl": "https://lesl-energy-website.vercel.app/assets/brand/lesl-logo-on-white-badge.png"
   },
-  "services": [
-    "Power Generation Contracting",
-    "High Voltage Substations & Switchgear",
-    "Industrial Gas & Steam Piping",
-    "Testing, Commissioning & Technical Consultancy"
+  "entries": [
+    {
+      "identifier": "urn:air:lesl-energy-website.vercel.app:services:power-generation",
+      "displayName": "Turnkey Power Plant Engineering & Gas Generation",
+      "type": "text/markdown",
+      "url": "https://lesl-energy-website.vercel.app/services/electrical",
+      "representativeQueries": [
+        "Turnkey multi-megawatt gas generator power plant installation Nigeria",
+        "Jenbacher, Caterpillar, Cummins power station commissioning"
+      ]
+    },
+    {
+      "identifier": "urn:air:lesl-energy-website.vercel.app:services:substations",
+      "displayName": "11kV and 33kV Substations & Switchgear",
+      "type": "text/markdown",
+      "url": "https://lesl-energy-website.vercel.app/services/electrical",
+      "representativeQueries": [
+        "11 kV / 33 kV substation erection and switchgear assembly Nigeria",
+        "RMU maintenance and transformer testing in Lagos"
+      ]
+    },
+    {
+      "identifier": "urn:air:lesl-energy-website.vercel.app:services:piping",
+      "displayName": "Industrial Gas & Steam Piping (ASME B31.3)",
+      "type": "text/markdown",
+      "url": "https://lesl-energy-website.vercel.app/services/mechanical",
+      "representativeQueries": [
+        "High pressure gas pipelines and boiler burner piping contractors",
+        "Acoustic generator room soundproofing down to 69 dB"
+      ]
+    },
+    {
+      "identifier": "urn:air:lesl-energy-website.vercel.app:services:consultancy",
+      "displayName": "Testing, Commissioning & Technical Consultancy",
+      "type": "text/markdown",
+      "url": "https://lesl-energy-website.vercel.app/services/consultancy",
+      "representativeQueries": [
+        "Secondary injection, dielectric testing, heat rate audits Nigeria",
+        "Power plant protection testing and power quality analysis"
+      ]
+    }
   ]
 }
