@@ -1,4 +1,6 @@
-# Logs
+*.zip
+client-review-videos
+scratch/
 logs
 *.log
 npm-debug.log*

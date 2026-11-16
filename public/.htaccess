@@ -3,6 +3,9 @@
 # Optimized for Single Page Application (SPA) Routing & High-Performance Serving
 # ==============================================================================
 
+# Prevent Directory Browsing
+Options -Indexes
+
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteBase /
