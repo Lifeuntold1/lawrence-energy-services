@@ -1,0 +1,120 @@
+================================================================================
+LESL WEBSITE — COMPLETE CPANEL UPLOAD & DEPLOYMENT GUIDE
+Website: https://lesl.ng | Lawrence Energy Services Limited
+================================================================================
+
+*** ZERO TERMINAL COMMANDS REQUIRED ***
+This build is 100% pre-compiled. You do NOT need Node.js, npm, Git, or SSH 
+terminal access on the server. The entire upload is completed through your 
+cPanel web browser interface in under 5 minutes.
+
+--------------------------------------------------------------------------------
+PACKAGE OVERVIEW
+--------------------------------------------------------------------------------
+- Deployment Archive : LESL-cPanel-Production-Deploy.zip (~41 MB)
+- Platform           : Standard cPanel Hosting (Apache / LiteSpeed / Nginx)
+- Pre-configured     : Includes .htaccess file for seamless URL routing,
+                       Gzip speed compression, and browser caching.
+
+--------------------------------------------------------------------------------
+5-MINUTE STEP-BY-STEP INSTRUCTIONS
+--------------------------------------------------------------------------------
+
+STEP 1: LOG IN TO CPANEL
+  1. Open your web browser and go to your hosting control panel
+     (e.g., https://yourdomain.com:2083 or via your hosting client area).
+  2. Log in with your cPanel username and password.
+
+STEP 2: OPEN FILE MANAGER & ENABLE HIDDEN FILES
+  1. In the cPanel dashboard, find the "Files" section and click "File Manager".
+  2. In the top-right corner of File Manager, click the "Settings" button.
+  3. Check the box: [✓] "Show Hidden Files (dotfiles)".
+  4. Click "Save".
+     * NOTE: This step is important so that the ".htaccess" routing file 
+       is visible and properly extracted.
+
+STEP 3: NAVIGATE TO YOUR WEB ROOT FOLDER (public_html)
+  1. In the left folder tree of File Manager, click on "public_html".
+     (If deploying to an Addon Domain or Subdomain, open that domain's assigned 
+     root folder instead).
+  2. If there are old website files: select all old files, click "Compress" 
+     to back them up, then delete or move the old files out of public_html.
+
+STEP 4: UPLOAD THE ZIP ARCHIVE
+  1. Click the "Upload" button on the top File Manager toolbar.
+  2. Click "Select File" (or drag and drop) and select:
+       LESL-cPanel-Production-Deploy.zip
+  3. Wait for the upload bar to reach 100% and turn GREEN.
+  4. Click the link at the bottom: "Go Back to /public_html".
+
+STEP 5: EXTRACT THE FILES
+  1. In File Manager, click once on "LESL-cPanel-Production-Deploy.zip" to highlight it.
+  2. Click the "Extract" button on the top toolbar (or right-click -> "Extract").
+  3. A popup will ask for the extraction path. Confirm it says:
+       /public_html
+  4. Click "Extract File(s)".
+  5. Once extraction finishes, click "Close".
+
+STEP 6: VERIFY THE ROOT STRUCTURE
+  Check that the following files and folders appear directly inside your
+  public_html directory:
+    ├── .htaccess                     (Apache URL rewrite & speed config)
+    ├── index.html                    (Main website entry file)
+    ├── assets/                       # (Images, logos, scripts & stylesheets)
+    ├── .well-known/                  (Domain identity files)
+    ├── robots.txt                    (Search engine rules)
+    ├── sitemap.xml                   (Google XML sitemap)
+    ├── llms.txt & llms-full.txt
+    └── README_CPANEL_INSTRUCTIONS.txt
+
+  * IMPORTANT: Make sure the files are directly in public_html, NOT inside 
+    an extra subfolder like public_html/dist/.
+
+STEP 7: CLEAN UP (OPTIONAL)
+  Right-click "LESL-cPanel-Production-Deploy.zip" in File Manager and click 
+  "Delete" to free up server disk space.
+
+STEP 8: TEST THE LIVE WEBSITE
+  Open your web browser and visit:
+    https://lesl.ng/
+  
+  Test clicking through the pages:
+    - About Us      : https://lesl.ng/about
+    - Services      : https://lesl.ng/services
+    - Projects      : https://lesl.ng/projects
+    - Gallery       : https://lesl.ng/gallery
+    - Partners      : https://lesl.ng/partners
+    - Contact       : https://lesl.ng/contact
+    - Careers       : https://lesl.ng/careers
+    - Book          : https://lesl.ng/book
+    - Quote         : https://lesl.ng/quote
+
+  * Verification Test: Click through the navigation links, then press Refresh 
+    (F5) on any page like /about or /services. The page will reload cleanly 
+    without any 404 errors because the .htaccess file automatically routes 
+    the request to index.html.
+
+--------------------------------------------------------------------------------
+TROUBLESHOOTING & COMMON QUESTIONS
+--------------------------------------------------------------------------------
+1. Old website still appears?
+   Clear your browser cache using Ctrl + Shift + R (Windows) or Cmd + Shift + R 
+   (Mac), or open a Private/Incognito window. If using Cloudflare, click 
+   "Purge Everything" in the Cloudflare caching dashboard.
+
+2. Page refresh on /about or /services gives "404 Not Found"?
+   Confirm that the ".htaccess" file was extracted into public_html. 
+   Make sure "Show Hidden Files" is enabled in File Manager Settings so you 
+   can see it.
+
+3. The website shows an empty white page or directory listing?
+   Make sure "index.html" is located directly inside public_html and not 
+   inside a subfolder.
+
+4. Free SSL / HTTPS?
+   In cPanel under the "Security" section, check "SSL/TLS Status" and click 
+   "Run AutoSSL" to automatically issue an active SSL certificate.
+
+================================================================================
+Lawrence Energy Services Limited (LESL) - Technical Support
+================================================================================
